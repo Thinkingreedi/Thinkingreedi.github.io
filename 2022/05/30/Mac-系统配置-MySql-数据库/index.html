@@ -15,7 +15,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>HEXO 测试 |  会思想的苇草i</title>
+      <title>MySQL的安装（MAC系统） |  会思想的苇草i</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -56,58 +56,273 @@
       
     <main class="content on">
       <section class="outer">
-  
-  
-  <article class="articles">
+  <article
+  id="post-Mac-系统配置-MySql-数据库"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
     
-    
-    <h1 class="page-type-title">HEXO 测试</h1>
-    
-    
-  
-  
-  
-  
-  
-  
-  <div class="archives-wrap">
-    <div class="archive-year-wrap">
-      <a href="/archives/2022" class="archive-year">2022</a>
-    </div>
-    <div class="archives">
-      
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/08/09/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" class="archive-article-date">
-  <time datetime="2022-08-09T06:57:01.000Z" itemprop="datePublished">08/09</time>
-</a>
+    <header class="article-header">
        
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/2022/08/09/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"
-    >第一篇博客</a> 
-</h2>
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  MySQL的安装（MAC系统）
+</h1>
  
 
+      
     </header>
-    
-      
+     
+    <div class="article-meta">
+      <a href="/2022/05/30/Mac-%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE-MySql-%E6%95%B0%E6%8D%AE%E5%BA%93/" class="article-date">
+  <time datetime="2022-05-30T07:45:26.000Z" itemprop="datePublished">2022-05-30</time>
+</a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/HEXO-%E6%B5%8B%E8%AF%95/">HEXO 测试</a>
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
   </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">303</span>
+        </span>
+    </span>
 
-    
-    
-  </div>
-</article>
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">1 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
       
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><a target="_blank" rel="noopener" href="https://www.mysql.com/">MySQL官网</a></p>
+<h2 id="1-安装-MySQL-数据库"><a href="#1-安装-MySQL-数据库" class="headerlink" title="1. 安装 MySQL 数据库"></a>1. 安装 MySQL 数据库</h2><ul>
+<li>1.1 双击打开安装包 <code>mysql-8.0.19-macos10.15-x86_64.dmg</code>：</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/4f7a91de98ec4c68985d0fad63f8bfa9.png#pic_center" alt="在这里插入图片描述"></p>
+<ul>
+<li>1.2 双击 <code>mysql-8.0.19-macos10.15-x86_64.pkg</code> 运行安装包，并点击 <code>继续</code> 按钮：</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/3bf322b35dd4440e8239951a61e4637b.png#pic_center" alt="在这里插入图片描述"></p>
+<ul>
+<li>1.3 进入 <code>介绍</code> 页面之后，点击 <code>继续</code> 按钮：</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/e7725ae6e99d450789ad9890ae454a07.png#pic_center" alt="在这里插入图片描述"></p>
+<ul>
+<li>1.4 进入 <code>安装类型</code> 页面之后，点击 <code>安装</code> 按钮：</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/7ce99f66f0384607b224dc395027db80.png#pic_center" alt="在这里插入图片描述"></p>
+<ul>
+<li>1.5 输入电脑的登录密码，从而确认此次安装行为：</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/10d1faf584be44cabc73246a1ea77f8d.png#pic_center" alt="在这里插入图片描述"></p>
+<ul>
+<li>1.6 在 <code>Configuration</code> 页面，确认勾选了 <code>Use Legacy Password Encryption</code> 选项之后，点击 <code>Next</code> 按钮：</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/acdabf372d3f4a4c8d330465f907bb53.png#pic_center" alt="在这里插入图片描述"></p>
+<ul>
+<li>1.7 为 root 用户设置初始密码为 admin123 之后，点击 <code>Finish</code> 按钮：</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/b98ba45b82d648cea239477d0ed8be0c.png#pic_center" alt="在这里插入图片描述"></p>
+<ul>
+<li>1.8 再次输入电脑登陆密码，确认此次 <code>设置初始密码</code> 的操作：</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/db28569a9e7c4e20b0181710d581df40.png#pic_center" alt="在这里插入图片描述"></p>
+<ul>
+<li>1.9 提示安装完成之后，点击 <code>关闭</code> 按钮即可：</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/a59597a93b864aada5fdb7f34ab8eeb0.png#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="2-安装-MySql-Workbench-可视化工具"><a href="#2-安装-MySql-Workbench-可视化工具" class="headerlink" title="2. 安装 MySql Workbench 可视化工具"></a>2. 安装 MySql Workbench 可视化工具</h2><ul>
+<li>2.1 双击打开安装包 <code>mysql-workbench-community-8.0.19-macos-x86_64.dmg</code>，进入到安装页面：</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/435c1d24f5524f5d9c3c78cc29f6a1fa.png#pic_center" alt="在这里插入图片描述"></p>
+<ul>
+<li>2.2 使用鼠标左键，将 <code>MySQLWorkbench</code> 图标拖拽到右侧 <code>Applications</code> 图标之上后，松开鼠标左键，等待进度条完成之后，就完成了安装的过程：</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/f568720ea6eb4fb5b41f644ef9dc844f.png#pic_center" alt="在这里插入图片描述"></p>
+<ul>
+<li>2.3 在启动台，找到 <code>MySQLWorkbench</code> 图标，点击之后，即可启动 MySQL 可视化管理工具：</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/17b7d8e5058f4647adf8c2265c02c326.png#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/204b48e19f674e568344fdd623c05542.png#pic_center" alt="在这里插入图片描述"></p>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
       
     </div>
-  </div>
-  
-  
+    
 
-  
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/05/30/Mac-%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE-MySql-%E6%95%B0%E6%8D%AE%E5%BA%93/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2022/08/09/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            第一篇博客
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2022/05/30/MySQL-%E5%9C%A8-Windows-%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84%E5%AE%89%E8%A3%85/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">MySQL的安装（Windows 系统）</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "keN4GS5JeQfwvylr07oj8w0n-gzGzoHsz",
+    app_key: "1C2GpGDbNeIOoqy8MLqxpNUu",
+    path: window.location.pathname,
+    avatar: "retro",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+    
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
 </section>
       <footer class="footer">
   <div class="outer">
@@ -240,6 +455,22 @@
 <script src="/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
 
 <script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
 <link

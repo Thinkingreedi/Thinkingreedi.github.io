@@ -15,7 +15,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>test |  会思想的苇草i</title>
+      <title>MySQL的安装（Windows 系统） |  会思想的苇草i</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -57,7 +57,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-test"
+  id="post-MySQL-在-Windows-系统下的安装"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -68,7 +68,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  test
+  MySQL的安装（Windows 系统）
 </h1>
  
 
@@ -76,11 +76,11 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2022/08/10/test/" class="article-date">
-  <time datetime="2022-08-10T00:11:27.882Z" itemprop="datePublished">2022-08-10</time>
+      <a href="/2022/05/30/MySQL-%E5%9C%A8-Windows-%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84%E5%AE%89%E8%A3%85/" class="article-date">
+  <time datetime="2022-05-30T07:36:14.000Z" itemprop="datePublished">2022-05-30</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/HEXO/">HEXO</a>
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
   </div>
   
 <div class="word_count">
@@ -88,7 +88,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">9</span>
+            <span class="post-count">275</span>
         </span>
     </span>
 
@@ -104,15 +104,98 @@
  
     </div>
       
-    <div class="tocbot"></div>
-
 
 
 
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="test"><a href="#test" class="headerlink" title="test"></a>test</h1><p>用于测试自动发布</p>
+  <ol start="0">
+<li><p><a target="_blank" rel="noopener" href="https://www.mysql.com/">MySQL官网</a></p>
+</li>
+<li><p>下载好之后双击 <code>mysql-installer-community-8.0.19.0.msi</code>，启动 MySQL 安装程序。</p>
+</li>
+<li><p>如果弹框提示如下的警告信息，证明你的电脑需要安装额外的 <code>.NET Framework</code> 依赖包。此时，先退出 MySQL 的安装程序，然后双击 <code>NDP452-KB2901907-x86-x64-AllOS-ENU.exe</code>，启动 <code>.NET Framework 4.5.2</code> 的安装程序。</p>
+</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/eb4a8c0d0e9340a5b799ef94e6b49639.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="3">
+<li>重新启动 MySQL 的安装程序，看到如下界面：</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/ab756f23261e41a0ad2fb72bc062a1b9.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="4">
+<li>进入如下界面：</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/1a906b670fad4276b336577752fba721.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="5">
+<li>正在安装依赖项：</li>
+</ol>
+<p>  <img src="https://img-blog.csdnimg.cn/7988ce91e3714b3cbeeba1e7441835e3.png#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/c28c94b989b246f897074d4eb3611624.png#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/7b2da79530ef42138af65b13c19d15e1.png#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/e1712dd2e632477f84ca018925fd5414.png#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/cb858dd666664c0485877ecc58d00a2f.png#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/357dcae60a274fffacbe4302fa32f033.png#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/88a58e4c864349b1b8eae1af3dd3942c.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="6">
+<li>完成依赖项的安装：</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/9677b623b9ff4e7fb9964bddc2c74799.png#pic_center" alt="在这里插入图片描述"></p>
+<p>   此时，会弹出如下警告窗，直接点击 Yes 即可：</p>
+<p><img src="https://img-blog.csdnimg.cn/15c3b2a45a5845ef9d3cdc2d157de2e6.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="7">
+<li>进入 MySQL 的安装页面：</li>
+</ol>
+<p>  <img src="https://img-blog.csdnimg.cn/b6607310395642549373fb3d11af8d15.png#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/c25e979a450a472e99015202177dcd95.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="8">
+<li>完成 MySQL 功能项的安装：</li>
+</ol>
+<p>  <img src="https://img-blog.csdnimg.cn/1d4e83b748fb47f7a274c4bc84cdeac3.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="9">
+<li>配置 MySQL：</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/3cbf0a0aa849402384c83024830f3476.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="10">
+<li>选择 MySQL 数据库的运行模式：</li>
+</ol>
+<p> <img src="https://img-blog.csdnimg.cn/e39f9644572d4918b36c472eb84db6a9.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="11">
+<li>设置网络模式：</li>
+</ol>
+<p>  <img src="https://img-blog.csdnimg.cn/7bd97b9fac29425fb8a1adc26e7fa83d.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="12">
+<li>配置身份认证方式：</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/0074b1601f2e458d8a6f5c649bd1628f.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="13">
+<li>将 MySQL 的默认 root 用户密码，设置为 admin123</li>
+</ol>
+<p>   <img src="https://img-blog.csdnimg.cn/a1d08f05d8694b88b1d5b6debe3c599c.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="14">
+<li>将 MySQL 配置为 Windows 的服务：</li>
+</ol>
+<p>  <img src="https://img-blog.csdnimg.cn/d2fe2a01d5d4451cb57a9afc2e65f602.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="15">
+<li>保存刚才对 MySQL 配置的修改：</li>
+</ol>
+<p>  <img src="https://img-blog.csdnimg.cn/81d995774a404eac9da7c81d5aaa0ab4.png#pic_center" alt="在这里插入图片描述"></p>
+<p>  <img src="https://img-blog.csdnimg.cn/33744119f39d426ebcaebd1f0671fce5.png#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/a1cbb89bdc5b49cf9817201aed5cc8de.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="16">
+<li>继续完成后续的配置流程：</li>
+</ol>
+<p> <img src="https://img-blog.csdnimg.cn/182af3a089c145d68aded954eeb3c3bd.png#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/d1960f1b1ee446b38b621e9a3be50d8a.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="17">
+<li>最后一个配置项：</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/7ef3255e7c0746528f51072907406492.png#pic_center" alt="在这里插入图片描述"></p>
+<p>   测试能否正常连接到刚才安装的 MySQL 数据库：</p>
+<p><img src="https://img-blog.csdnimg.cn/dcf26dae2b564545ae12679af779dcb9.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="18">
+<li>保存刚才的配置：</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/7fea51e75cbb4eb4bddc3143a86466c1.png#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/3a0ad5bb4d3e4ba08768d34ae7d8d472.png#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/db252e47e2da437ab01ca2c773fef051.png#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/e2ec557bfc9c46eeb4811f6f846b5f09.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="19">
+<li>完成 MySQL 的安装与配置：</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/50df9407b59746b481e35da57258934d.png#pic_center" alt="在这里插入图片描述"></p>
  
       <!-- reward -->
       
@@ -183,12 +266,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/08/10/test/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/05/30/MySQL-%E5%9C%A8-Windows-%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84%E5%AE%89%E8%A3%85/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
 
     </footer>
   </div>
@@ -196,11 +279,15 @@
    
   <nav class="article-nav">
     
-    
-      <a href="/2022/08/09/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" class="article-nav-link">
-        <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">第一篇博客</div>
+      <a href="/2022/05/30/Mac-%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE-MySql-%E6%95%B0%E6%8D%AE%E5%BA%93/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            MySQL的安装（MAC系统）
+          
+        </div>
       </a>
+    
     
   </nav>
 

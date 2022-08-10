@@ -7,22 +7,168 @@
 <p><img src="https://cdn.jsdelivr.net/gh/Thinkingreedi/myblog@main/img/image-20220810162354923.png" alt="image-20220810162354923"></p>
 ]]></content>
       <categories>
-        <category>HEXO 测试</category>
+        <category>测试</category>
       </categories>
       <tags>
-        <tag>前端 测试</tag>
+        <tag>测试</tag>
       </tags>
   </entry>
   <entry>
-    <title>test</title>
-    <url>/2022/08/10/test/</url>
-    <content><![CDATA[<h1 id="test"><a href="#test" class="headerlink" title="test"></a>test</h1><p>用于测试自动发布</p>
+    <title>MySQL的安装（Windows 系统）</title>
+    <url>/2022/05/30/MySQL-%E5%9C%A8-Windows-%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<ol start="0">
+<li><p><a href="https://www.mysql.com/">MySQL官网</a></p>
+</li>
+<li><p>下载好之后双击 <code>mysql-installer-community-8.0.19.0.msi</code>，启动 MySQL 安装程序。</p>
+</li>
+<li><p>如果弹框提示如下的警告信息，证明你的电脑需要安装额外的 <code>.NET Framework</code> 依赖包。此时，先退出 MySQL 的安装程序，然后双击 <code>NDP452-KB2901907-x86-x64-AllOS-ENU.exe</code>，启动 <code>.NET Framework 4.5.2</code> 的安装程序。</p>
+</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/eb4a8c0d0e9340a5b799ef94e6b49639.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="3">
+<li>重新启动 MySQL 的安装程序，看到如下界面：</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/ab756f23261e41a0ad2fb72bc062a1b9.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="4">
+<li>进入如下界面：</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/1a906b670fad4276b336577752fba721.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="5">
+<li>正在安装依赖项：</li>
+</ol>
+<p>  <img src="https://img-blog.csdnimg.cn/7988ce91e3714b3cbeeba1e7441835e3.png#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/c28c94b989b246f897074d4eb3611624.png#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/7b2da79530ef42138af65b13c19d15e1.png#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/e1712dd2e632477f84ca018925fd5414.png#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/cb858dd666664c0485877ecc58d00a2f.png#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/357dcae60a274fffacbe4302fa32f033.png#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/88a58e4c864349b1b8eae1af3dd3942c.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="6">
+<li>完成依赖项的安装：</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/9677b623b9ff4e7fb9964bddc2c74799.png#pic_center" alt="在这里插入图片描述"></p>
+<p>   此时，会弹出如下警告窗，直接点击 Yes 即可：</p>
+<p><img src="https://img-blog.csdnimg.cn/15c3b2a45a5845ef9d3cdc2d157de2e6.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="7">
+<li>进入 MySQL 的安装页面：</li>
+</ol>
+<p>  <img src="https://img-blog.csdnimg.cn/b6607310395642549373fb3d11af8d15.png#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/c25e979a450a472e99015202177dcd95.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="8">
+<li>完成 MySQL 功能项的安装：</li>
+</ol>
+<p>  <img src="https://img-blog.csdnimg.cn/1d4e83b748fb47f7a274c4bc84cdeac3.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="9">
+<li>配置 MySQL：</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/3cbf0a0aa849402384c83024830f3476.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="10">
+<li>选择 MySQL 数据库的运行模式：</li>
+</ol>
+<p> <img src="https://img-blog.csdnimg.cn/e39f9644572d4918b36c472eb84db6a9.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="11">
+<li>设置网络模式：</li>
+</ol>
+<p>  <img src="https://img-blog.csdnimg.cn/7bd97b9fac29425fb8a1adc26e7fa83d.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="12">
+<li>配置身份认证方式：</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/0074b1601f2e458d8a6f5c649bd1628f.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="13">
+<li>将 MySQL 的默认 root 用户密码，设置为 admin123</li>
+</ol>
+<p>   <img src="https://img-blog.csdnimg.cn/a1d08f05d8694b88b1d5b6debe3c599c.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="14">
+<li>将 MySQL 配置为 Windows 的服务：</li>
+</ol>
+<p>  <img src="https://img-blog.csdnimg.cn/d2fe2a01d5d4451cb57a9afc2e65f602.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="15">
+<li>保存刚才对 MySQL 配置的修改：</li>
+</ol>
+<p>  <img src="https://img-blog.csdnimg.cn/81d995774a404eac9da7c81d5aaa0ab4.png#pic_center" alt="在这里插入图片描述"></p>
+<p>  <img src="https://img-blog.csdnimg.cn/33744119f39d426ebcaebd1f0671fce5.png#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/a1cbb89bdc5b49cf9817201aed5cc8de.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="16">
+<li>继续完成后续的配置流程：</li>
+</ol>
+<p> <img src="https://img-blog.csdnimg.cn/182af3a089c145d68aded954eeb3c3bd.png#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/d1960f1b1ee446b38b621e9a3be50d8a.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="17">
+<li>最后一个配置项：</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/7ef3255e7c0746528f51072907406492.png#pic_center" alt="在这里插入图片描述"></p>
+<p>   测试能否正常连接到刚才安装的 MySQL 数据库：</p>
+<p><img src="https://img-blog.csdnimg.cn/dcf26dae2b564545ae12679af779dcb9.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="18">
+<li>保存刚才的配置：</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/7fea51e75cbb4eb4bddc3143a86466c1.png#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/3a0ad5bb4d3e4ba08768d34ae7d8d472.png#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/db252e47e2da437ab01ca2c773fef051.png#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/e2ec557bfc9c46eeb4811f6f846b5f09.png#pic_center" alt="在这里插入图片描述"></p>
+<ol start="19">
+<li>完成 MySQL 的安装与配置：</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/50df9407b59746b481e35da57258934d.png#pic_center" alt="在这里插入图片描述"></p>
 ]]></content>
       <categories>
-        <category>HEXO</category>
+        <category>数据库</category>
       </categories>
       <tags>
-        <tag>前端</tag>
+        <tag>数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL的安装（MAC系统）</title>
+    <url>/2022/05/30/Mac-%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE-MySql-%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
+    <content><![CDATA[<p><a href="https://www.mysql.com/">MySQL官网</a></p>
+<h2 id="1-安装-MySQL-数据库"><a href="#1-安装-MySQL-数据库" class="headerlink" title="1. 安装 MySQL 数据库"></a>1. 安装 MySQL 数据库</h2><ul>
+<li>1.1 双击打开安装包 <code>mysql-8.0.19-macos10.15-x86_64.dmg</code>：</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/4f7a91de98ec4c68985d0fad63f8bfa9.png#pic_center" alt="在这里插入图片描述"></p>
+<ul>
+<li>1.2 双击 <code>mysql-8.0.19-macos10.15-x86_64.pkg</code> 运行安装包，并点击 <code>继续</code> 按钮：</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/3bf322b35dd4440e8239951a61e4637b.png#pic_center" alt="在这里插入图片描述"></p>
+<ul>
+<li>1.3 进入 <code>介绍</code> 页面之后，点击 <code>继续</code> 按钮：</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/e7725ae6e99d450789ad9890ae454a07.png#pic_center" alt="在这里插入图片描述"></p>
+<ul>
+<li>1.4 进入 <code>安装类型</code> 页面之后，点击 <code>安装</code> 按钮：</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/7ce99f66f0384607b224dc395027db80.png#pic_center" alt="在这里插入图片描述"></p>
+<ul>
+<li>1.5 输入电脑的登录密码，从而确认此次安装行为：</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/10d1faf584be44cabc73246a1ea77f8d.png#pic_center" alt="在这里插入图片描述"></p>
+<ul>
+<li>1.6 在 <code>Configuration</code> 页面，确认勾选了 <code>Use Legacy Password Encryption</code> 选项之后，点击 <code>Next</code> 按钮：</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/acdabf372d3f4a4c8d330465f907bb53.png#pic_center" alt="在这里插入图片描述"></p>
+<ul>
+<li>1.7 为 root 用户设置初始密码为 admin123 之后，点击 <code>Finish</code> 按钮：</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/b98ba45b82d648cea239477d0ed8be0c.png#pic_center" alt="在这里插入图片描述"></p>
+<ul>
+<li>1.8 再次输入电脑登陆密码，确认此次 <code>设置初始密码</code> 的操作：</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/db28569a9e7c4e20b0181710d581df40.png#pic_center" alt="在这里插入图片描述"></p>
+<ul>
+<li>1.9 提示安装完成之后，点击 <code>关闭</code> 按钮即可：</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/a59597a93b864aada5fdb7f34ab8eeb0.png#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="2-安装-MySql-Workbench-可视化工具"><a href="#2-安装-MySql-Workbench-可视化工具" class="headerlink" title="2. 安装 MySql Workbench 可视化工具"></a>2. 安装 MySql Workbench 可视化工具</h2><ul>
+<li>2.1 双击打开安装包 <code>mysql-workbench-community-8.0.19-macos-x86_64.dmg</code>，进入到安装页面：</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/435c1d24f5524f5d9c3c78cc29f6a1fa.png#pic_center" alt="在这里插入图片描述"></p>
+<ul>
+<li>2.2 使用鼠标左键，将 <code>MySQLWorkbench</code> 图标拖拽到右侧 <code>Applications</code> 图标之上后，松开鼠标左键，等待进度条完成之后，就完成了安装的过程：</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/f568720ea6eb4fb5b41f644ef9dc844f.png#pic_center" alt="在这里插入图片描述"></p>
+<ul>
+<li>2.3 在启动台，找到 <code>MySQLWorkbench</code> 图标，点击之后，即可启动 MySQL 可视化管理工具：</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/17b7d8e5058f4647adf8c2265c02c326.png#pic_center" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/204b48e19f674e568344fdd623c05542.png#pic_center" alt="在这里插入图片描述"></p>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>数据库</tag>
       </tags>
   </entry>
 </search>
