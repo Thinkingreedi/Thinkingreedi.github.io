@@ -24,4 +24,16 @@
         <tag>前端</tag>
       </tags>
   </entry>
+  <entry>
+    <title>test</title>
+    <url>/2022/08/10/test/</url>
+    <content><![CDATA[<h1 id="test"><a href="#test" class="headerlink" title="test"></a>test</h1><p>用于测试自动发布</p>
+]]></content>
+      <categories>
+        <category>HEXO</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
 </search>
