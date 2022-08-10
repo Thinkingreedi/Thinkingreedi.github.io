@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="前端 算法 技术" />
+       
+      <meta name="description" content="一个有趣且实用的博客网站，涉及前端，算法，数据结构，操作系统等计算机相关知识。" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>Java入门 |  会思想的苇草i</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-Java程序设计-Java入门（一）"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Java入门
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/03/18/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-Java%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89/" class="article-date">
+  <time datetime="2022-03-18T02:58:12.000Z" itemprop="datePublished">2022-03-18</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.8k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">6 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <hr>
+<h1 id="1、Java概述"><a href="#1、Java概述" class="headerlink" title="1、Java概述"></a>1、Java概述</h1><h2 id="1-1-Java语言发展史"><a href="#1-1-Java语言发展史" class="headerlink" title="1.1 Java语言发展史"></a>1.1 Java语言发展史</h2><p>语言：人与人交流沟通的表达方式</p>
+<p>计算机语言：人与计算机之间进行信息交流沟通的一种特殊语言</p>
+<p>Java语言是美国Sun公司（Stanford University Network）在1995年推出的计算机语言</p>
+<p><strong>Java之父：詹姆斯·高斯林（James Gosling）</strong></p>
+<p>2009年，Sun公司被甲骨文公司收购，所以我们现在访问oracle官网即可：</p>
+<p><a target="_blank" rel="noopener" href="https://www.oracle.com/">https://www.oracle.com</a> </p>
+<h2 id="1-2-Java语言跨平台原理"><a href="#1-2-Java语言跨平台原理" class="headerlink" title="1.2 Java语言跨平台原理"></a>1.2 Java语言跨平台原理</h2><p>&#x3D;&#x3D;Java程序并非是直接运行的，Java编译器将Java源程序编译成与平台无关的字节码文件(class文件)，然后由Java虚拟机（JVM）对字节码文件解释执行&#x3D;&#x3D;。</p>
+<p>所以在不同的操作系统下，只需安装不同的Java虚拟机即可实现java程序的跨平台。</p>
+<p><img src="https://img-blog.csdnimg.cn/00d64b27088f428c875436a954746333.png#pic_center"></p>
+<h2 id="1-3-JRE和JDK"><a href="#1-3-JRE和JDK" class="headerlink" title="1.3 JRE和JDK"></a>1.3 JRE和JDK</h2><p><img src="https://img-blog.csdnimg.cn/95fa75ac50a94c44b60de10cf804a7e3.png#pic_center"></p>
+<p><strong>&#x3D;&#x3D;JVM（Java Virtual Machine），Java虚拟机&#x3D;&#x3D;</strong></p>
+<p><strong>&#x3D;&#x3D;JRE（Java Runtime Environment），Java运行环境，包含了JVM和Java的核心类库（Java API）&#x3D;&#x3D;</strong></p>
+<p><strong>&#x3D;&#x3D;JDK（Java Development Kit）称为Java开发工具，包含了JRE和开发工具&#x3D;&#x3D;</strong></p>
+<p><strong>总结：我们只需安装JDK即可，它包含了java的运行环境和虚拟机。</strong></p>
+<h2 id="1-4-JDK的下载和安装"><a href="#1-4-JDK的下载和安装" class="headerlink" title="1.4 JDK的下载和安装"></a>1.4 JDK的下载和安装</h2><p> <strong>下载</strong></p>
+<p>通过官方网站获取JDK</p>
+<p><a target="_blank" rel="noopener" href="http://www.oracle.com/">http://www.oracle.com</a></p>
+<p><strong>安装</strong></p>
+<p>双击打开安装包，直接下一步， 等待进度条完成、点击关闭，安装成功。</p>
+<blockquote>
+<p>小贴士：<br>安装路径不要有中文，不要有空格<br>找一个固定的文件夹专门安装所有跟开发相关的软件，方便管理。</p>
+</blockquote>
+<p><strong>注意</strong>：安装路径不要包含中文或者空格等特殊字符（使用纯英文目录）。</p>
+<p><strong>JDK的安装目录介绍</strong></p>
+<table>
+<thead>
+<tr>
+<th>目录名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bin</td>
+<td>该路径下存放了JDK的各种工具命令。javac和java就放在这个目录。</td>
+</tr>
+<tr>
+<td>conf</td>
+<td>该路径下存放了JDK的相关配置文件。</td>
+</tr>
+<tr>
+<td>include</td>
+<td>该路径下存放了一些平台特定的头文件。</td>
+</tr>
+<tr>
+<td>jmods</td>
+<td>该路径下存放了JDK的各种模块。</td>
+</tr>
+<tr>
+<td>legal</td>
+<td>该路径下存放了JDK各模块的授权文档。</td>
+</tr>
+<tr>
+<td>lib</td>
+<td>该路径下存放了JDK工具的一些补充JAR包。</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="2-入门程序HelloWorld"><a href="#2-入门程序HelloWorld" class="headerlink" title="2. 入门程序HelloWorld"></a>2. 入门程序HelloWorld</h1><h2 id="2-1-常用DOS命令"><a href="#2-1-常用DOS命令" class="headerlink" title="2.1 常用DOS命令"></a>2.1 常用DOS命令</h2><p>在接触集成开发环境之前，我们需要使用命令行窗口对java程序进行编译和运行，所以需要知道一些常用DOS命令。</p>
+<p>1、打开命令行窗口的方式：win + r 打开运行窗口，输入cmd，回车。</p>
+<p>2、常用命令及其作用</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>盘符名称:</td>
+<td>盘符切换。E:回车，表示切换到E盘。</td>
+</tr>
+<tr>
+<td>dir</td>
+<td>查看当前路径下的内容。</td>
+</tr>
+<tr>
+<td>cd 目录</td>
+<td>进入单级目录。cd itheima</td>
+</tr>
+<tr>
+<td>cd ..</td>
+<td>回退到上一级目录。</td>
+</tr>
+<tr>
+<td>cd 目录1\目录2...</td>
+<td>进入多级目录。cd itheima\JavaSE</td>
+</tr>
+<tr>
+<td>cd \</td>
+<td>回退到盘符目录。</td>
+</tr>
+<tr>
+<td>cls</td>
+<td>清屏。</td>
+</tr>
+<tr>
+<td>exit</td>
+<td>退出命令提示符窗口。</td>
+</tr>
+</tbody></table>
+<h2 id="2-2-Path环境变量的配置"><a href="#2-2-Path环境变量的配置" class="headerlink" title="2.2 Path环境变量的配置"></a>2.2 Path环境变量的配置</h2><p> <strong>2.2.1 为什么配置环境变量</strong></p>
+<p>开发Java程序，需要使用JDK提供的开发工具（比如javac.exe、java.exe等命令），而这些工具在JDK的安装目录的bin目录下，如果不配置环境变量，那么这些命令只可以在该目录下执行。我们不可能把所有的java文件都放到JDK的bin目录下，所以&#x3D;&#x3D;配置环境变量的作用就是可以使bin目录下的java相关命令可以在任意目录下使用。&#x3D;&#x3D;</p>
+<p>注意：目前较新的JDK安装时会自动配置javac、java命令的路径到Path环境变量中去 ，所以javac、java可以直接使用。</p>
+<p><img src="https://img-blog.csdnimg.cn/5d212c563b1f4db9b5025fe70d31a35f.png#pic_center"></p>
+<p>但是以前下载的老版本的JDK是没有自动配置的，此时必需要自己配置Path环境变量。</p>
+<p>①<strong>JAVA_HOME</strong>：告诉操作系统JDK安装在了哪个位置（未来其他技术要通过这个找JDK）</p>
+<p><img src="https://img-blog.csdnimg.cn/e6dca75d2f9d433d9302277bc93d729e.png#pic_center"><br>②<strong>Path</strong>：告诉操作系统JDK提供的javac(编译)、java(执行)命令安装到了哪个位置</p>
+<p><img src="https://img-blog.csdnimg.cn/e853bed804a6405aaa8e6fdd277356eb.png#pic_center"></p>
+<p><strong>注意：新版本的JDK只是自动配置了Path，没有自动配置JAVA_HOME。</strong></p>
+<h2 id="2-3-HelloWorld案例"><a href="#2-3-HelloWorld案例" class="headerlink" title="2.3 HelloWorld案例"></a>2.3 HelloWorld案例</h2><p>HelloWorld案例是指在计算机屏幕上输出“HelloWorld”这行文字。各种计算机语言都习惯使用该案例作为第一个演示案例。</p>
+<p><strong>Java程序开发运行流程</strong></p>
+<p>开发Java程序，需要三个步骤：&#x3D;&#x3D;编写程序，编译程序，运行程序&#x3D;&#x3D;。</p>
+<p><strong>HelloWorld案例的编写</strong></p>
+<p>1、新建文本文档文件，修改名称为HelloWorld.java。</p>
+<p>2、用记事本打开HelloWorld.java文件，输写程序内容。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloWorld</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;HelloWorld&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>HelloWorld案例的编译和运行</strong></p>
+<p>存文件，打开命令行窗口，将目录切换至java文件所在目录，编译java文件生成class文件，运行class文件。</p>
+<blockquote>
+<p>编译：javac 文件名.java</p>
+<p>范例：javac HelloWorld.java</p>
+<p>执行：java 类名</p>
+<p>范例：java HelloWorld</p>
+</blockquote>
+<h2 id="2-4-HelloWorld案例常见问题"><a href="#2-4-HelloWorld案例常见问题" class="headerlink" title="2.4 HelloWorld案例常见问题"></a>2.4 HelloWorld案例常见问题</h2><p><strong>BUG</strong></p>
+<p>在电脑系统或程序中，隐藏着的一些未被发现的缺陷或问题统称为bug（漏洞）。</p>
+<p><strong>BUG的解决</strong></p>
+<p>1、具备识别BUG的能力：多看</p>
+<p>2、具备分析BUG的能力：多思考，多查资料</p>
+<p>3、具备解决BUG的能力：多尝试，多总结</p>
+<p><strong>HelloWorld案例常见问题</strong></p>
+<p>1、非法字符问题。Java中的符号都是英文格式的。</p>
+<p>2、大小写问题。Java语言对大小写敏感（区分大小写）。</p>
+<p>3、在系统中显示文件的扩展名，避免出现HelloWorld.java.txt文件。</p>
+<p>4、编译命令后的java文件名需要带文件后缀.java</p>
+<p>5、运行命令后的class文件名（类名）不带文件后缀.class</p>
+<p>…</p>
+<hr>
+<h1 id="3、IDEA安装使用"><a href="#3、IDEA安装使用" class="headerlink" title="3、IDEA安装使用"></a>3、IDEA安装使用</h1><h2 id="3-1-IDEA概述、安装"><a href="#3-1-IDEA概述、安装" class="headerlink" title="3.1 IDEA概述、安装"></a>3.1 IDEA概述、安装</h2><p>之前的开发工具：</p>
+<p>文本编辑工具:记事本、ultraEdit , EditPlus , TextPad , NotePad++、sublime..存在的问题:编写代码时没有错误提醒、没有智能提示、需要自己进行编译、执行。功能不够强大。</p>
+<p>集成开发环境（ IDE， Integrated Development Environment )：</p>
+<p>把代码编写，编译，执行等多种功能综合到一起的开发工具，可以进行代码智能提示，错误提醒，项目管理等等。常见Java的IDE工具有: Eclipse、MyEclipse、Intelli IDEA、Jbuilder、NetBeans等。</p>
+<p>Intelli] IDEA开发工具：</p>
+<p>Intelli3 IDEA一般简称IDEA，是Java编程语言开发的集成环境，在业界被公认为最好的java开发工具。IDEA在代码错误提醒，智能代码补全等多方面表现的都非常优秀，是Java开发企业级首选工具。</p>
+<p>下载：<a target="_blank" rel="noopener" href="https://www.jetbrains.com/idea/">IDEA下载</a></p>
+<p>安装：直接安装，建议修改安装路径（不要安装在有空格和中文的路径下）</p>
+<h2 id="3-2-IDEA编写程序"><a href="#3-2-IDEA编写程序" class="headerlink" title="3.2 IDEA编写程序"></a>3.2 IDEA编写程序</h2><p><img src="https://img-blog.csdnimg.cn/78182aa83e2243f781b870b998bde291.png#pic_center"><br>使用步骤:</p>
+<ol>
+<li>创建Project空工程</li>
+<li>创建Module模块</li>
+<li>创建Package包</li>
+<li>创建class 类</li>
+<li>在类中编写代码</li>
+<li>完成编译运行</li>
+</ol>
+<h2 id="3-3-IDEA设置主题、字体"><a href="#3-3-IDEA设置主题、字体" class="headerlink" title="3.3 IDEA设置主题、字体"></a>3.3 IDEA设置主题、字体</h2><p><img src="https://img-blog.csdnimg.cn/e8bd9f0004d04873ad347d2e9beb35fa.png#pic_center"></p>
+<h2 id="3-4-IDEA常用快捷键操作"><a href="#3-4-IDEA常用快捷键操作" class="headerlink" title="3.4 IDEA常用快捷键操作"></a>3.4 IDEA常用快捷键操作</h2><table>
+<thead>
+<tr>
+<th align="center">快捷键</th>
+<th align="center">功能效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">main&#x2F;psvm、sout、…</td>
+<td align="center">快速键入相关代码</td>
+</tr>
+<tr>
+<td align="center">Ctrl + D</td>
+<td align="center">复制当前行数据到下一行</td>
+</tr>
+<tr>
+<td align="center">Ctrl + Y</td>
+<td align="center">删除所在行，建议用Ctrl + X</td>
+</tr>
+<tr>
+<td align="center">Ctrl + ALT + L</td>
+<td align="center">格式化代码</td>
+</tr>
+<tr>
+<td align="center">ALT +SHIFT + ↑, ALT + SHIFT + ↓</td>
+<td align="center">上下移动当前代码</td>
+</tr>
+<tr>
+<td align="center">Ctrl + &#x2F; , Ctrl + Shift + &#x2F;</td>
+<td align="center">对代码进行注释(讲注释的时候再说)</td>
+</tr>
+</tbody></table>
+<hr>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/03/18/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-Java%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag">Java基础</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2022/03/18/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%EF%BC%88%E4%BA%8C%EF%BC%89/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Java基础语法
+          
+        </div>
+      </a>
+    
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "keN4GS5JeQfwvylr07oj8w0n-gzGzoHsz",
+    app_key: "1C2GpGDbNeIOoqy8MLqxpNUu",
+    path: window.location.pathname,
+    avatar: "retro",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+    
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2022
+        <i class="ri-heart-fill heart_icon"></i> 会思想的苇草i
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/favicon.ico" alt="会思想的苇草i"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>感谢打赏哈哈嗝~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+ 
+<script src="/js/clickLove.js"></script>
+ 
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="前端 算法 技术" />
+       
+      <meta name="description" content="一个有趣且实用的博客网站，涉及前端，算法，数据结构，操作系统等计算机相关知识。" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>计算机组成原理基础知识点 |  会思想的苇草i</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-计算机组成原理基础知识点"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  计算机组成原理基础知识点
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/05/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9/" class="article-date">
+  <time datetime="2022-05-12T14:21:28.000Z" itemprop="datePublished">2022-05-12</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF/">计算机科学与技术</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">4.9k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">16 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <hr>
+<h1 id="1、计算机系统概论"><a href="#1、计算机系统概论" class="headerlink" title="1、计算机系统概论"></a>1、计算机系统概论</h1><p><img src="https://img-blog.csdnimg.cn/1507798567de4322a3e409314a643260.png#pic_center"></p>
+<p><strong>冯诺伊曼型计算机的主要设计思想是什么？他包括哪些主要组成部分？</strong></p>
+<ul>
+<li>&#x3D;&#x3D;主要设计思想：<strong>存储程序</strong>，将指令以代码的形式事先输入到计算机主存储器中，然后按其在存储器中的首地址执行程序的第一条指令，以后就按照该程序的规定<strong>顺序执行</strong>其他指令，直至程序执行结束。&#x3D;&#x3D;</li>
+<li>&#x3D;&#x3D;计算机硬件系统由<strong>运算器、存储器、控制器、输入设备和输出设备5大部件组成</strong>。&#x3D;&#x3D;</li>
+<li>指令和数据以同等地位存于存储器内，并可按地址寻访。</li>
+<li>指令和数据均用二进制代码表示。</li>
+<li>指令由操作码和地址码组成，操作码用来表示操作的性质，地址码用来表示操作数在存储器中的位置。</li>
+<li>指令在存储器内按顺序存放。通常，指令是顺序执行的，在特定条件下，可根据运算结果或根据设定的条件改变执行顺序。</li>
+<li>早期的冯·诺依曼机以运算器为中心，输入&#x2F;输出设备通过运算器与存储器传送数据。</li>
+</ul>
+<hr>
+<h1 id="2、运算器和方法器"><a href="#2、运算器和方法器" class="headerlink" title="2、运算器和方法器"></a>2、运算器和方法器</h1><p><img src="https://img-blog.csdnimg.cn/32af51994b6a4239b536a2c799965cf1.png#pic_center"></p>
+<p><strong>数的机器码表示</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/e8388b83a3eb4d1bba6c1d04326125ea.png"></p>
+<p><strong>补码加法</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/a1922cf1b3aa4189a692dab80bd2230c.png"><br><img src="https://img-blog.csdnimg.cn/02dbec1cb8cb4c058f64f2547aa9551a.png"></p>
+<p><strong>补码减法</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/c3207d2907a24006b02b33954ac65f81.png"><br><strong>双符号位溢出检测</strong><br><img src="https://img-blog.csdnimg.cn/7a0ed0108de140498008b6038e550a28.png"><br><img src="https://img-blog.csdnimg.cn/1d4594ccdbc149009ae018b2f5850437.png"></p>
+<p><strong>定点乘法运算 - - 带求补器的原码阵列乘法器</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/0f70bc4d83d7435782a81dfed30358a3.png"><br><img src="https://img-blog.csdnimg.cn/da720e7a887a49a7939839c551e5d680.png"><br><strong>定点乘法运算 - - 带求补器的补码阵列乘法器</strong><br><img src="https://img-blog.csdnimg.cn/26caee0a2fe74f8e9fcc207961231f42.png"><br><strong>定点除法运算</strong><br><img src="https://img-blog.csdnimg.cn/4a60ee37a21b4bb5a01cf5735677c642.png"><br><strong>浮点加减法运算</strong><br><img src="https://img-blog.csdnimg.cn/0b6363dca1bb45a7952c52d26fbd7799.png"><br><img src="https://img-blog.csdnimg.cn/8d58fe555813415686176cf1325b6f74.png"><br><strong>浮点乘除法运算</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/69d0a90dd0d64d19a1de0856e43233c7.png"></p>
+<hr>
+<h1 id="3、多层次的存储器"><a href="#3、多层次的存储器" class="headerlink" title="3、多层次的存储器"></a>3、多层次的存储器</h1><p><img src="https://img-blog.csdnimg.cn/af663c14a6e440b89057342213c7456d.png#pic_center"></p>
+<ul>
+<li>对存储器的要求是容量大、速度快、成本低。为了解决了这三方面的矛盾，计算机采用多级存储体系结构，即cache、主存和外存。<strong>CPU能直接访问内存(cache、主存)，但不能直接访问外存</strong>。存储器的技术指标有存储容量、存取时间、存储周期、存储器带宽。</li>
+<li>广泛使用的SRAM和DRAM都是半导体随机读写存储器，前者速度比后者快，但集成度不如后者高。二者的优点是体积小，可靠性高，价格低廉，<strong>缺点是断电后不能保存信息</strong>。</li>
+<li>只读存储器和闪速存储器正好弥补了SRAM和DRAM的缺点，即使<strong>断电也仍然保存原先写入的数据</strong>。特别是闪速存储器能提供高性能、低功耗、高可靠性以及移动性，是一种全新的存储器体系结构。</li>
+<li>双端存储器和多模块交叉存储器属于并行存储器结构。<strong>前者采用空间并行技术</strong>，<strong>后者采用时间并行技术</strong>。这两种类型的存储器在科研和工程中大量使用。</li>
+<li>cache是─种高速缓冲存储器，是<strong>为了解决CPU和主存之间速度不匹配而采用的一项重要的硬件技术</strong>,并且发展为多级cache体系，指令cache与数据cache分设体系。要求cache的命中率接近于1。主存与cache的地址映射有全相联、直接、组相联三种方式。其中<strong>组相联方式</strong>是前二者的折衷方案，适度地兼顾了二者的优点又尽量避免其缺点,从灵活性、命中率、硬件投资来说较为理想，因而得到了普遍采用。</li>
+</ul>
+<hr>
+<h1 id="4、指令系统"><a href="#4、指令系统" class="headerlink" title="4、指令系统"></a>4、指令系统</h1><p><img src="https://img-blog.csdnimg.cn/01346139dc4046db89290db524148ec3.png#pic_center"></p>
+<ul>
+<li>—台计算机中所有机器指令的集合，称为这台计算机的指令系统。指今系统是表征一台计算机性能的重要因素，它的格式与功能不仅直接影响到机器的硬件结构，而且也影响到系统软件。指令格式是指今学用二进制代码表示的结构形式,通常由<strong>操作码字段和地址码字段</strong>组成。</li>
+<li>操作码字段表征指令的操作特性与功能，而地址码字段指示操作数的地址。目前多采用<strong>二地址、单地址、零地址混合方式</strong>的指令格式。指令字长度分为:单字长、半字长、双字长三种形式。高档微机采用32位长度的单字长形式。</li>
+<li><strong>形成指令地址的方式，称为指令寻址方式</strong>。有<strong>顺序寻址</strong>和<strong>跳跃寻址</strong>两种，由指令计数器来跟踪。形成操作数地址的方式，称为数据寻址方式。操作数可放在专用寄存器、通用寄存器、内存和指令中。数据寻址方式有隐含寻址、立即寻址、直接寻址、间接寻址、寄存器寻址、寄存器间接寻址、相对寻址、基值寻址、变址寻址、块寻址、段寻址等多种。按操作数的物理位置不同，有RR型和RS型。前者比后者执行的速度快。</li>
+<li>按结构不同，分为<strong>寄存器堆栈</strong>和<strong>存储器堆栈</strong>。不同机器有不同的指今系统。一个较完善的指令系统应当包含数据传送类指令、算术运算类指令、逻辑运算类指令、程序控制类指令、I&#x2F;O类指令、字符串类指令、系统控制类指令。RISC指令系统是前计算机发展的主流，也是CISC指令系统的改进，它的最大特点是；①指令条数少:②指令长度固定，指令榕式和寻址方式种类少；③只有取数&#x2F;存数指令访问存储器，其余指令的操作均在寄存器之间进行。</li>
+</ul>
+<p><strong>常见指令寻址方式的特点及适用情况：</strong></p>
+<ol>
+<li>立即寻址：操作数获取便捷，通常用于给寄存器赋初值。</li>
+<li>直接寻址：相对于立即寻址，缩短了指令长度。</li>
+<li>间接寻址：扩大了寻址范围，便于编制程序，易于完成子程序返回。</li>
+<li>寄存器寻址：指令字较短，指令执行速度较快。</li>
+<li>寄存器间接寻址：扩大了寻址范围。</li>
+<li>基址寻址：扩大了操作数寻址范围，适用于多道程序设计，常用于为程序或数据分配存储空间。</li>
+<li>变址寻址：主要用于处理数组问题，适合编制循环程序。</li>
+<li>相对寻址：用于控制程序的执行顺序、转移等。</li>
+</ol>
+<p><strong>与CISC相比，RISC的优点：</strong></p>
+<ul>
+<li>更能充分利用VLSI芯片的面积；</li>
+<li>更能提高运算速度；</li>
+<li>便于设计，可降低成本，提高可靠性；</li>
+<li>有利于编译程序代码优化。</li>
+</ul>
+<hr>
+<h1 id="5、中央处理器"><a href="#5、中央处理器" class="headerlink" title="5、中央处理器"></a>5、中央处理器</h1><p><img src="https://img-blog.csdnimg.cn/d994d3141dd54a4887735ae7cda4a23b.png#pic_center"></p>
+<ul>
+<li>CPU是计算机的中央处理部件，<strong>具有指令控制、操作控制、时间控制、数据加工</strong>等基本功能。早期的CPU由<strong>运算器和控制器</strong>两大部分组成。随着高密度集成电路技术的发展，当今的CPU芯片变成<strong>运算器、cache和控制器</strong>三大部分，其中还包括浮点运算器、存储管理部件等。</li>
+<li>CPU中至少要有如下六类寄存器:<strong>指令寄存器、程序计数器、地址寄存器、数据缓冲寄存器、通用寄存器、状态条件寄存器</strong>。CPU从存储器取出一条指令并执行这条指令的时间和称为指令周期。cIsc中，由于各种指令的操作功能不同，各种指令的指令周期是不尽相同的。划分指令周期，是设计操作控制器的重要依据。</li>
+<li>RISC中，由于流水执行，大部分指令在一个机器周期完成时序信号产生器提供CPU周期(也称机器周期)所需的时序信号。操作控制器利用这些时序信号进行定时，有条不紊地取出一条指令并执行这条指令。</li>
+<li>微程序设计技术是利用软件方法设计操作控制器的一门技术。具有<strong>规整性、灵活件、可维护性</strong>等一系列优点，因而在计算机设许中得到了广泛应用。但是随着ULSI技术的发展和对机器速度的要求,硬连线逻辑设计思想又得到了重视。</li>
+<li>硬连线控制器的基本思想是:某一微操作控制信号是指令操作码译码输出、时序信号和状态条件信号的逻辑函数即用布尔代数写出逻辑表达式，然后用<strong>门电路、触发器</strong>等器件实现。</li>
+<li>从简单到复杂，举出一个CPU模型以及Intel8088、IBM370CPU等传统CPU的结构，这对于建立整机概念是干分重要的。不论微型机还是超级计算机，并行处理技术已成为计算机技术发展的主流。</li>
+<li>并行处理技术可贯穿于信息加工的各个步骤和阶段。概括起来，主要有三种形式: <strong>①时间并行;②空间并行;③时间并行+空间并行</strong>。</li>
+<li>流水CPU是以时间并行性为原理构造的处理机，是一种非常经济而实用的并行技术。目前的高性能微处理机几乎无一例外地使用了流水技术。流水技术中的主要问题是资源相关、数据相关和控制相关，为此需要采取相应的技术对策，才能保证流水线畅通而不断流。</li>
+<li>RISC CPU是继承CISC的成功技术，并在克服CISC机器缺点的基础上发展起来的。RISC机器的三个基本要素是:①一个有限的简单指令集，②CPU配备大量的通用寄存器,③强调指令流水线的优化。RISC机器一定是流水CPU,但流水CPU不一定是RISC机器。如奔腾CPU是流水CPU,但奔腾机是CISC机器。</li>
+<li>多媒体CPU是带有MMX技术的处理器。MMX是一种多媒体扩展结构技术，特别适合于图像数据处理，极大地提高了计算机在多媒体和通信应用方面的功能。多媒体CPU以新一代奔腾CPU为代表，开始采用单指令流多数据流的新型结构。</li>
+</ul>
+<hr>
+<h1 id="6、总线系统"><a href="#6、总线系统" class="headerlink" title="6、总线系统"></a>6、总线系统</h1><p><img src="https://img-blog.csdnimg.cn/6c2f90c8d7bb4f578f36c48defd7eed2.png#pic_center"></p>
+<ul>
+<li>总线是构成计算机系统的互联机构。是多个系统功能部件之间进行数据传送的公共通道，并在争用资源的基础上进行工作。</li>
+<li>总线有物理特性、功能特性、电气特性、机械特性，因此必须标准化。</li>
+<li>微型计算机系统的标准总线从ISA总线(16位，带宽8MB&#x2F;s)发展到EISA总线(32位，带宽33.3MB&#x2F;s)和VESA总线(32位，带宽132MB&#x2F;s) ，又进一步发展到PCI总线(64位，带宽264MB&#x2F;s ) </li>
+<li>衡量总线性能的重要指标是总线带宽，它定义为总线本身所能达到的最高传输速率</li>
+<li>当代流行的标准总线追求与结构、CPU、技术无关的开发标准。真总线内部结构包含:<strong>①数据传送总线（由地址线、数据线、控制线组成);②仲裁总线;③中断和同步总线;④公用线(电源、地线、时钟、复位等信号线)。</strong></li>
+<li>计算机系统中，根据应用条件和硬件资源不同，信息的传输方式可采用:<strong>①并行传送;②串行传送;复用传送。</strong></li>
+<li>各种外围设备必须通过I&#x2F;O接口与总线相连。I&#x2F;O接口是指CPU、主存、外围设备之间通过点线进行连接的逻辑部件。接口部件在它动态联结的两个切能部件间起着缓冲器和转换器的作用，以便实现彼此之间的信息传送。</li>
+<li>总线仲裁是总线系统的核心问题之一。为了解决多个主设备同时竞争点线控制枚的问题，必须具有总线仲裁部件。它通过采用优先级策略或公平策略，选择其中一个主设备作为总线的下一次主方，接管总线控制权。按照总线仲裁电路的位置不同:集中式仲裁:仲裁方式必有一个中央仲裁器，它受理所有功能模块的总线请求，按优先原则或公平原则。分布式仲裁：分布式仲裁不需要中央仲裁器，每个功能模块都有自己的仲裁号和仲裁器。</li>
+<li>总线定时是总线系统的又一核心问题之一。为了同步主方、从方的操作。必须制订定时协议，通常采用向步定时与异步定时两种方式：在同步定时协议中，事件出现在总线上的时刻由总线时钟信号来确定，总线周期的长度是固定的。在异步定时协议中，后一事件出现在总线上的时刻双决千一事件的出现,即建立在应答式或互锁机制基础上，不需要统一的公共时钟信号。在异步定时中，总线周期的长度是可变的。当代的总线标准大都能支持以下数据传送模式:<strong>①读&#x2F;写操作;②块传送操作;③写后读、读修改写操作;④广播、广集操作。</strong></li>
+<li>PCI总线是当前实用的总线，是一个高带宽且与处理器无关的标准总线，又是重要的层次总线。它采用<strong>同步定时协议和集中式仲裁策略</strong>，并具有自动配置能力。PCI适合于低成本的小系统，因此在微型机系统中得到了广泛的应用。</li>
+<li>InfiniBand标准，瞄准了高端服务器市场的最新I&#x2F;O规范，它是一种基于开关的体系结构，可连接多达64000个服务器、存储系统、网络设备能替代当前服务器中的PCI总线，数据传输率高达30GB&#x2F;s。因此适合于高成本的较大规模计算机系统。</li>
+</ul>
+<hr>
+<h1 id="7、外存和I-x2F-O设备"><a href="#7、外存和I-x2F-O设备" class="headerlink" title="7、外存和I&#x2F;O设备"></a>7、外存和I&#x2F;O设备</h1><p><img src="https://img-blog.csdnimg.cn/e5760f26042b45c4977e1f7245b91b2b.png#pic_center"></p>
+<ul>
+<li>外围设备大体分为<strong>输入设备、输出设备、外存设备、数据通信设备、过程控制设备五大类</strong>。每一种设备，都是在它自己的设备控制器控制下进行工作，而设备控制器则通过I&#x2F;O接模块和主机相连，并受主机控制。</li>
+<li>磁盘、磁带属于磁表面存储器，特点是存储容量大，位价格低，记录信息永久保存，但存取速度较慢，因此在计算机系统中作为辅助大容量存储器使用。</li>
+<li>硬磁盘按盘片结构分为<strong>可换盘片式、固定盘片式</strong>两种，磁头也分为可移动磁头和固定磁头两种。温彻斯特磁盘是一种采用先进技术研制的可移动磁头、固定盘片的磁盘机，组装成一个不可拆卸的机电一体化整体，防尘性能好，可靠性高，因而得到了广泛的应用，成为最有代表性的硬磁盘存储器。磁盘存储器的主要技术指标有:存储密度、存储容量、平均存取时间、数据传输速率。</li>
+<li>磁盘阵列RAID是多台磁盘存储器组成的大容量外存系统，它实现数据的<strong>并行存储、交叉存储，单独存储，改善了IO性能</strong>，增加了存储容量，是一种先进的硬磁盘体系结构。各种可移动硬盘的诞生，是磁盘先进技术的又一个重要进展。</li>
+<li>光盘和磁光盘是近年发展起来的一种外存设备，是多媒体计算机不可缺少的设备。不同的CRT豆示标准所支持的最大分辨率和颜色数目是不同的。VESA标准，是一个可扩展的标准，它除兼容传统的VGA等显示方式外，还支持1280×1024像素光栅，每像素点24位颜色深度，刷新频率可达75MHZ。显示适配器作为CRT与CPU的接口，由刷新存储器、显示控制器、ROM BIOS三部分组成。先进的显示控制器具有图形加速能力。</li>
+<li>常用的计算机输入设备有<strong>图形输入设备(键盘、鼠标）、图像输入设备、语音输入设备</strong>。常用的打印设备有激光打印机、彩色喷墨打印机等，它们都属于硬拷贝输出设备。</li>
+</ul>
+<hr>
+<h1 id="8、-输入输出系统"><a href="#8、-输入输出系统" class="headerlink" title="8、 输入输出系统"></a>8、 输入输出系统</h1><p><img src="https://img-blog.csdnimg.cn/c671df48e061406b876d0961dd20c70c.png#pic_center"></p>
+<ul>
+<li>各种外围设备的数据传输速率相差很大。如何保证主机与外围设备在时间上同步，则涉及外围设备的定时问题。在计算机系统中，CPU对外围设备的管理方式有:<strong>①程序查询方式;②程序中断方式;③DMA方式;④通道方式。</strong> 每种方式都需要硬件和软件结合起来进行。</li>
+<li>程序查询方式是CPU管理IO设备的最简单方式，CPU定期执行设备服务程序，主动来了解设备的工作状态。这种方式浪费CPU的宝贵资源。</li>
+<li><strong>程序中断方式是各类计算机中广泛使用的一种数据交换方式。当某一外设的数据准备就绪后，它“主动”向CPU发出请求信号。CPU响应中断请求后，暂停运行主程序，自动转移到该设备的中断服务子程序，为该设备进行服务，结束时返回主程序。中断处理过程可以嵌套进行，优先级高的设备可以中断优先级低的中断服务程序。</strong></li>
+<li>DMA技术的出现，使得外围设备可以通过DMA控制器直接访问内存，与此同时，CPU可以继续程序。DMA方式采用以下三种方法:<strong>①停止CPU访内;②周期挪用;③DMA与CPU交替访内</strong>。DMA控制器按其组成结构,分为选择型和多路型两类。</li>
+<li><strong>通道是一个特殊功能的处理器</strong>。它有自己的指令和程序专门负责数据输入输出的传输控制，从而使CPU将“传输控制”的功能下放给通道，CPU只负责“数据处理”功能。这样，通道与CPU分时使用内存，实现了CPU内部的数据处理与IO设备的平行工作。通道有两种类型:<strong>①选择通道;②多路通道。</strong></li>
+<li>标准化是建立开放式系统的基础。CPU、系统总线、IO总线及标准接口技术近年来取得了重大进步。其中并行VO接口SCSI与串行O接IEE1394是两个最具权威性和发展前景的标准接技术。</li>
+<li><strong>SCSI是系统级接口</strong>，是处于主适配器和智能设备控制器之间的并行O接口，改进的SCSI可允许连接1―15台不同类型的高速外围设备。sCSI的不足处在于硬件较昂贵，并需要通用设备驱动程序和各类设备的驱动程序模块的支持。</li>
+<li><strong>IEEE1394是串行UO标准接口</strong>。与SCSI并行IO接口相比，它具有更高的数据传输速率和数据传送的实时性，具有更小的体积和连接的方便性。1394的一个董大特点是，各被连接的设备的关系是平等的，不用PC介入也能自成系统。因此EEE1394已成为lntel、Microsoft等公司联手制定的新标准。</li>
+</ul>
+<hr>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/05/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">组成原理</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2022/05/30/MySQL-%E5%9C%A8-Windows-%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84%E5%AE%89%E8%A3%85/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            MySQL的安装（Windows 系统）
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2022/05/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">计算机操作系统基础知识点</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "keN4GS5JeQfwvylr07oj8w0n-gzGzoHsz",
+    app_key: "1C2GpGDbNeIOoqy8MLqxpNUu",
+    path: window.location.pathname,
+    avatar: "retro",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+    
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2022
+        <i class="ri-heart-fill heart_icon"></i> 会思想的苇草i
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/favicon.ico" alt="会思想的苇草i"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>感谢打赏哈哈嗝~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+ 
+<script src="/js/clickLove.js"></script>
+ 
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>

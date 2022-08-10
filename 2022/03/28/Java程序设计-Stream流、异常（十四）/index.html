@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="前端 算法 技术" />
+       
+      <meta name="description" content="一个有趣且实用的博客网站，涉及前端，算法，数据结构，操作系统等计算机相关知识。" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>Stream流、异常 |  会思想的苇草i</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-Java程序设计-Stream流、异常（十四）"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Stream流、异常
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/03/28/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-Stream%E6%B5%81%E3%80%81%E5%BC%82%E5%B8%B8%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89/" class="article-date">
+  <time datetime="2022-03-28T08:27:03.000Z" itemprop="datePublished">2022-03-28</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">4k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">17 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <hr>
+<h1 id="1、Stream流"><a href="#1、Stream流" class="headerlink" title="1、Stream流"></a>1、Stream流</h1><h2 id="1-1-Stream流的概述"><a href="#1-1-Stream流的概述" class="headerlink" title="1.1 Stream流的概述"></a>1.1 Stream流的概述</h2><p>&#x3D;&#x3D;用于简化集合和数组操作的API。&#x3D;&#x3D;</p>
+<p>Stream流式思想的核心:</p>
+<ol>
+<li>先得到集合或者数组的Stream流(就是一根传送带)</li>
+<li>把元素放上去</li>
+<li>然后就用这个Stream流简化的API来方便的操作元素。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        List&lt;String&gt; names = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        Collections.addAll(names, <span class="string">&quot;张三丰&quot;</span>,<span class="string">&quot;张无忌&quot;</span>,<span class="string">&quot;周芷若&quot;</span>,<span class="string">&quot;赵敏&quot;</span>,<span class="string">&quot;张强&quot;</span>);</span><br><span class="line">        System.out.println(names);</span><br><span class="line">        <span class="comment">// 使用Stream实现的</span></span><br><span class="line">        names.stream().filter(s -&gt; s.startsWith(<span class="string">&quot;张&quot;</span>)).filter(s -&gt; s.length() == <span class="number">3</span>).forEach(s -&gt; System.out.println(s));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-2-Stream流的获取"><a href="#1-2-Stream流的获取" class="headerlink" title="1.2 Stream流的获取"></a>1.2 Stream流的获取</h2><p><strong>获取Stream流</strong></p>
+<p>创建─条流水线，并把数据放到流水线上准备进行操作</p>
+<p><strong>中间方法</strong></p>
+<p>流水线上的操作。一次操作完毕之后，还可以继续进行其他操作</p>
+<p><strong>终结方法</strong></p>
+<p>一个Stream流只能有一个终结方法，是流水线上的最后一个操作</p>
+<p>Stream操作集合或者数组的第一步是先得到Stream流，然后才能使用流的功能。</p>
+<p><strong>集合获取Stream流的方式</strong></p>
+<p>可以使用Collection接口中的默认方法stream()生成流</p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">default Stream&lt; E &gt; stream()</td>
+<td align="center">获取当前集合对象的Stream流</td>
+</tr>
+<tr>
+<td align="center"><strong>数组获取Stream流的方式</strong></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public static &lt; T&gt; Stream&lt; T&gt; stream(T[ ] array)</td>
+<td align="center">获取当前数组的Stream流</td>
+</tr>
+<tr>
+<td align="center">public static&lt; T&gt; stream&lt; T&gt; of(T… values)</td>
+<td align="center">获取当前数组&#x2F;可变数据的Stream流</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">import</span> java.util.stream.Stream;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StreamDemo02</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">/** --------------------Collection集合获取流-------------------------------   */</span></span><br><span class="line">        Collection&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        Stream&lt;String&gt; s =  list.stream();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/** --------------------Map集合获取流-------------------------------   */</span></span><br><span class="line">        Map&lt;String, Integer&gt; maps = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        <span class="comment">// 键流</span></span><br><span class="line">        Stream&lt;String&gt; keyStream = maps.keySet().stream();</span><br><span class="line">        <span class="comment">// 值流</span></span><br><span class="line">        Stream&lt;Integer&gt; valueStream = maps.values().stream();</span><br><span class="line">        <span class="comment">// 键值对流（拿整体）</span></span><br><span class="line">        Stream&lt;Map.Entry&lt;String,Integer&gt;&gt; keyAndValueStream =  maps.entrySet().stream();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/** ---------------------数组获取流------------------------------   */</span></span><br><span class="line">        String[] names = &#123;<span class="string">&quot;赵敏&quot;</span>,<span class="string">&quot;小昭&quot;</span>,<span class="string">&quot;灭绝&quot;</span>,<span class="string">&quot;周芷若&quot;</span>&#125;;</span><br><span class="line">        Stream&lt;String&gt; nameStream = Arrays.stream(names);</span><br><span class="line">        Stream&lt;String&gt; nameStream2 = Stream.of(names);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-3-Stream流的常用API"><a href="#1-3-Stream流的常用API" class="headerlink" title="1.3 Stream流的常用API"></a>1.3 Stream流的常用API</h2><p>Stream流的常用API(中间操作方法)</p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">stream&lt; T&gt; filter(Predicate&lt;? super T&gt; predicate)</td>
+<td align="center">用于对流中的数据进行过滤。</td>
+</tr>
+<tr>
+<td align="center">stream&lt; T&gt; limit(long maxsize)</td>
+<td align="center">获取前几个元素</td>
+</tr>
+<tr>
+<td align="center">stream&lt; T&gt; skip(long n)</td>
+<td align="center">跳过前几个元素</td>
+</tr>
+<tr>
+<td align="center">stream&lt; T&gt; distinct()</td>
+<td align="center">去除流中重复的元素。依赖(hashCode和eqluals方法)</td>
+</tr>
+<tr>
+<td align="center">static &lt; T&gt; stream&lt; T&gt; concat(stream a,stream b)</td>
+<td align="center">合并a和b两个流为一个流</td>
+</tr>
+<tr>
+<td align="center">注意:</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<ul>
+<li>中间方法也称为非终结方法，调用完成后返回新的Stream流可以继续使用，支持链式编程。</li>
+<li>在Stream流中无法直接修改集合、数组中的数据。</li>
+</ul>
+<p><strong>Stream流的常见终结操作方法</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">void forEach(Consumer action)</td>
+<td align="center">对此流的每个元素执行遍历操作</td>
+</tr>
+<tr>
+<td align="center">long count()</td>
+<td align="center">返回此流中的元素数</td>
+</tr>
+<tr>
+<td align="center">注意:终结操作方法，调用完成后流就无法继续使用了，原因是不会返回Stream了。</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.function.Consumer;</span><br><span class="line"><span class="keyword">import</span> java.util.function.Function;</span><br><span class="line"><span class="keyword">import</span> java.util.function.Predicate;</span><br><span class="line"><span class="keyword">import</span> java.util.stream.Stream;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StreamDemo03</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        List&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;张无忌&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;周芷若&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;赵敏&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;张强&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;张三丰&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;张三丰&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Stream&lt;T&gt; filter(Predicate&lt;? super T&gt; predicate)</span></span><br><span class="line">        list.stream().filter(s -&gt; s.startsWith(<span class="string">&quot;张&quot;</span>)).forEach(s -&gt; System.out.println(s));</span><br><span class="line"></span><br><span class="line">        <span class="type">long</span> <span class="variable">size</span> <span class="operator">=</span> list.stream().filter(s -&gt; s.length() == <span class="number">3</span>).count();</span><br><span class="line">        System.out.println(size);</span><br><span class="line"></span><br><span class="line">       <span class="comment">// list.stream().filter(s -&gt; s.startsWith(&quot;张&quot;)).limit(2).forEach(s -&gt; System.out.println(s));</span></span><br><span class="line">        list.stream().filter(s -&gt; s.startsWith(<span class="string">&quot;张&quot;</span>)).limit(<span class="number">2</span>).forEach(System.out::println);</span><br><span class="line"></span><br><span class="line">        list.stream().filter(s -&gt; s.startsWith(<span class="string">&quot;张&quot;</span>)).skip(<span class="number">2</span>).forEach(System.out::println);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// map加工方法: 第一个参数原材料  -&gt; 第二个参数是加工后的结果。</span></span><br><span class="line">        <span class="comment">// 给集合元素的前面都加上一个：黑马的：</span></span><br><span class="line">        list.stream().map(s -&gt; <span class="string">&quot;黑马的：&quot;</span> + s).forEach(a -&gt; System.out.println(a));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 需求：把所有的名称 都加工成一个学生对象。</span></span><br><span class="line">         list.stream().map(s -&gt; <span class="keyword">new</span> <span class="title class_">Student</span>(s)).forEach(s -&gt; System.out.println(s));</span><br><span class="line"><span class="comment">//        list.stream().map(Student::new).forEach(System.out::println); // 构造器引用  方法引用</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 合并流。</span></span><br><span class="line">        Stream&lt;String&gt; s1 = list.stream().filter(s -&gt; s.startsWith(<span class="string">&quot;张&quot;</span>));</span><br><span class="line">        Stream&lt;String&gt; s2 = Stream.of(<span class="string">&quot;java1&quot;</span>, <span class="string">&quot;java2&quot;</span>);</span><br><span class="line">        <span class="comment">// public static &lt;T&gt; Stream&lt;T&gt; concat(Stream&lt;? extends T&gt; a, Stream&lt;? extends T&gt; b)</span></span><br><span class="line">        Stream&lt;String&gt; s3 = Stream.concat(s1 , s2);</span><br><span class="line">        s3.distinct().forEach(s -&gt; System.out.println(s));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-4-Stream流的收集操作"><a href="#1-4-Stream流的收集操作" class="headerlink" title="1.4 Stream流的收集操作"></a>1.4 Stream流的收集操作</h2><ul>
+<li><p>收集Stream流的含义:就是把Stream流操作后的结果数据转回到集合或者数组中去。</p>
+</li>
+<li><p>Stream流:方便操作集合&#x2F;数组的手段。</p>
+</li>
+<li><p>集合&#x2F;数组:才是开发中的目的。</p>
+</li>
+</ul>
+<p><strong>Stream流的收集方法</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">R collect(collector collector)</td>
+<td align="center">开始收集Stream流，指定收集器</td>
+</tr>
+<tr>
+<td align="center"><strong>Collectors工具类提供了具体的收集方式</strong></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">名称</td>
+<td align="center">说明</td>
+</tr>
+<tr>
+<td align="center">:-:</td>
+<td align="center">:-:</td>
+</tr>
+<tr>
+<td align="center">public static <T> Collector toList()</td>
+<td align="center">把元素收集到List集合中</td>
+</tr>
+<tr>
+<td align="center">public static <T> collector toSet()</td>
+<td align="center">把元素收集到Set集合中</td>
+</tr>
+<tr>
+<td align="center">public static collector toMap(Function keyMapper , Function valueMapper)</td>
+<td align="center">把元素收集到Map集合中</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">import</span> java.util.function.IntFunction;</span><br><span class="line"><span class="keyword">import</span> java.util.stream.Collectors;</span><br><span class="line"><span class="keyword">import</span> java.util.stream.Stream;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StreamDemo05</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        List&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        list.add(<span class="string">&quot;张无忌&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;周芷若&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;赵敏&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;张强&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;张三丰&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;张三丰&quot;</span>);</span><br><span class="line"></span><br><span class="line">        Stream&lt;String&gt; s1 = list.stream().filter(s -&gt; s.startsWith(<span class="string">&quot;张&quot;</span>));</span><br><span class="line">        List&lt;String&gt; zhangList = s1.collect(Collectors.toList()); <span class="comment">// 可变集合</span></span><br><span class="line">        zhangList.add(<span class="string">&quot;java1&quot;</span>);</span><br><span class="line">        System.out.println(zhangList);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 注意注意注意：“流只能使用一次”</span></span><br><span class="line">        Stream&lt;String&gt; s2 = list.stream().filter(s -&gt; s.startsWith(<span class="string">&quot;张&quot;</span>));</span><br><span class="line">        Set&lt;String&gt; zhangSet = s2.collect(Collectors.toSet());</span><br><span class="line">        System.out.println(zhangSet);</span><br><span class="line"></span><br><span class="line">        Stream&lt;String&gt; s3 = list.stream().filter(s -&gt; s.startsWith(<span class="string">&quot;张&quot;</span>));</span><br><span class="line"><span class="comment">//         Object[] arrs = s3.toArray();</span></span><br><span class="line">        String[] arrs = s3.toArray(String[]::<span class="keyword">new</span>); <span class="comment">// 可以不管，拓展一下思维！！</span></span><br><span class="line">        System.out.println(<span class="string">&quot;Arrays数组内容：&quot;</span> + Arrays.toString(arrs));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="2、异常处理"><a href="#2、异常处理" class="headerlink" title="2、异常处理"></a>2、异常处理</h1><h2 id="2-1-异常概述"><a href="#2-1-异常概述" class="headerlink" title="2.1 异常概述"></a>2.1 异常概述</h2><p>异常是程序在”编译”或者”执行”的过程中可能出现的问题，注意:语法错误不算在异常体系中。比如:数组索引越界、空指针异常、日期格式化异常，等…</p>
+<p>异常一旦出现了，如果没有提前处理，程序就会退出JVM虚拟机而终止。研究异常并且避免异常，然后提前处理异常，体现的是程序的安全，健壮性。</p>
+<p><img src="https://img-blog.csdnimg.cn/1748a15d7b024825996a9d4716f68b4c.png"><br><strong>Error:</strong></p>
+<ul>
+<li>&#x3D;&#x3D;系统级别问题、JVM退出等，代码无法控制。&#x3D;&#x3D;</li>
+</ul>
+<p><strong>Exception:</strong> java.lang包下，称为异常类，它表示程序本身可以处理的问题</p>
+<ul>
+<li><p>&#x3D;&#x3D; RuntimeException及其子类:运行时异常，编译阶段不会报错。(空指针异常，数组索引越界异常)&#x3D;&#x3D;</p>
+</li>
+<li><p>&#x3D;&#x3D; 除RuntimeException之外所有的异常:编译时异常，编译期必须处理的，否则程序不能通过编译。(日期格式化异常)。&#x3D;&#x3D;</p>
+</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/afb57acd5ab34038bba3df6fa06059b6.png"></p>
+<p>编译时异常就是在编译的时候出现的异常，运行时异常就是在运行时出现的异常。</p>
+<h2 id="2-2-常见运行时异常"><a href="#2-2-常见运行时异常" class="headerlink" title="2.2 常见运行时异常"></a>2.2 常见运行时异常</h2><p>直接继承自RuntimeException或者其子类，编译阶段不会报错，运行时可能出现的错误。</p>
+<p><strong>运行时异常示例</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">中文</th>
+<th align="center">英文</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">数组索引越界异常</td>
+<td align="center">ArraylndexOutOfBoundsException</td>
+</tr>
+<tr>
+<td align="center">空指针异常</td>
+<td align="center">NullPointerException，直接输出没有问题，但是调用空指针H的变量的</td>
+</tr>
+<tr>
+<td align="center">数学操作异常</td>
+<td align="center">ArithmeticException</td>
+</tr>
+<tr>
+<td align="center">类型转换异常</td>
+<td align="center">ClassCastException</td>
+</tr>
+<tr>
+<td align="center">数字转换异常</td>
+<td align="center">NumberFormatException</td>
+</tr>
+</tbody></table>
+<p><strong>运行时异常:一般是程序员业务没有考虑好或者是编程逻辑不严谨引起的程序错误，自己的水平有问题!</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ExceptionDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;程序开始。。。。。。&quot;</span>);</span><br><span class="line">        <span class="comment">/** 1.数组索引越界异常: ArrayIndexOutOfBoundsException。*/</span></span><br><span class="line">        <span class="type">int</span>[] arr = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line">        System.out.println(arr[<span class="number">2</span>]);</span><br><span class="line">        <span class="comment">// System.out.println(arr[3]); // 运行出错，程序终止</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">/** 2.空指针异常 : NullPointerException。直接输出没有问题。但是调用空指针的变量的功能就会报错！！ */</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        System.out.println(name); <span class="comment">// null</span></span><br><span class="line">        <span class="comment">// System.out.println(name.length()); // 运行出错，程序终止</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">/** 3.类型转换异常：ClassCastException。 */</span></span><br><span class="line">        <span class="type">Object</span> <span class="variable">o</span> <span class="operator">=</span> <span class="number">23</span>;</span><br><span class="line">        <span class="comment">// String s = (String) o;  // 运行出错，程序终止</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">/** 5.数学操作异常：ArithmeticException。 */</span></span><br><span class="line">        <span class="comment">//int c = 10 / 0;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">/** 6.数字转换异常： NumberFormatException。 */</span></span><br><span class="line">        <span class="comment">//String number = &quot;23&quot;;</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">number</span> <span class="operator">=</span> <span class="string">&quot;23aabbc&quot;</span>;</span><br><span class="line">        <span class="type">Integer</span> <span class="variable">it</span> <span class="operator">=</span> Integer.valueOf(number); <span class="comment">// 运行出错，程序终止</span></span><br><span class="line">        System.out.println(it + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;程序结束。。。。。&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3-常见编译时异常"><a href="#2-3-常见编译时异常" class="headerlink" title="2.3 常见编译时异常"></a>2.3 常见编译时异常</h2><p>不是RuntimeException或者其子类的异常，编译阶段就报错，必须处理，否则代码不通过。</p>
+<p>编译时异常的作用是担心程序员的技术不行，在编译阶段就爆出一个错误,目的在于提醒不要出错!编译时异常是可遇不可求。遇到了就遇到了呗。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ExceptionDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ParseException &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">date</span> <span class="operator">=</span> <span class="string">&quot;2015-01-12 10:23:21&quot;</span>;</span><br><span class="line">        <span class="comment">// 创建一个简单日期格式化类：</span></span><br><span class="line">        <span class="type">SimpleDateFormat</span> <span class="variable">sdf</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;yyyy/MM-dd HH:mm:ss&quot;</span>);</span><br><span class="line">        <span class="comment">// 解析字符串时间成为日期对象</span></span><br><span class="line">        <span class="type">Date</span> <span class="variable">d</span> <span class="operator">=</span> sdf.parse(date);</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        System.out.println(d);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-4-异常默认处理机制"><a href="#2-4-异常默认处理机制" class="headerlink" title="2.4 异常默认处理机制"></a>2.4 异常默认处理机制</h2><ol>
+<li>默认会在出现异常的代码那里自动的创建一个异常对象:ArithmeticException。</li>
+<li>异常会从方法中出现的点这里抛出给调用者，调用者最终抛出给JVM虚拟机。</li>
+<li>虚拟机接收到异常对象后，先在控制台直接输出异常栈信息数据。</li>
+<li>直接从当前执行的异常点干掉当前程序。</li>
+<li>后续代码没有机会执行了，因为程序已经死亡。</li>
+</ol>
+<h2 id="2-5-编译时异常的处理机制"><a href="#2-5-编译时异常的处理机制" class="headerlink" title="2.5 编译时异常的处理机制"></a>2.5 编译时异常的处理机制</h2><p>编译时异常是编译阶段就出错的，所以必须处理，否则代码根本无法通过。</p>
+<p>编译时异常的处理形式有三种:</p>
+<ol>
+<li>出现异常直接抛出去给调用者，调用者也继续抛出去。</li>
+<li>出现异常自己捕获处理，不麻烦别人。</li>
+<li>前两者结合，出现异常直接抛出去给调用者，调用者捕获处理。</li>
+</ol>
+<p><strong>异常处理方式1——throws</strong></p>
+<p>&#x3D;&#x3D;throws:用在方法上，可以将方法内部出现的异常抛出去给本方法的调用者处理。&#x3D;&#x3D;</p>
+<p>这种方式并不好，发生异常的方法自己不处理异常，如果异常最终抛出去给虚拟机将引起程序死亡。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//抛出异常格式</span></span><br><span class="line">方法 <span class="keyword">throws</span> 异常<span class="number">1</span>,异常<span class="number">2</span>,异常<span class="number">3.</span>.&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//规范做法</span></span><br><span class="line">方法 <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//（代表可以抛出一切异常）</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ExceptionDemo01</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;程序开始。。。。。&quot;</span>);</span><br><span class="line">        parseTime(<span class="string">&quot;2011-11-11 11:11:11&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;程序结束。。。。。&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">parseTime</span><span class="params">(String date)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">SimpleDateFormat</span> <span class="variable">sdf</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>);</span><br><span class="line">        <span class="type">Date</span> <span class="variable">d</span> <span class="operator">=</span> sdf.parse(date);</span><br><span class="line">        System.out.println(d);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>异常处理方式2—— try…catch…</strong></p>
+<p>&#x3D;&#x3D;监视捕获异常，用在方法内部，可以将方法内部出现的异常直接捕获处理。&#x3D;&#x3D;</p>
+<p>这种方式还可以，发生异常的方法自己独立完成异常的处理，程序可以继续往下执行。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//格式:</span></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">	<span class="comment">//监视可能出现异常的代码!</span></span><br><span class="line">&#125;<span class="keyword">catch</span>(异常类型<span class="number">1</span>变量)&#123;</span><br><span class="line">	<span class="comment">//处理异常</span></span><br><span class="line">&#125;<span class="keyword">catch</span>(异常类型<span class="number">2</span>变量)&#123;</span><br><span class="line">	<span class="comment">//处理异常</span></span><br><span class="line">&#125;...</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//建议格式:</span></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">	<span class="comment">//可能出现异常的代码！</span></span><br><span class="line">&#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">	e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Exception可以捕获一切异常类型</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.text.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ExceptionDemo02</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;程序开始。。。。&quot;</span>);</span><br><span class="line">        parseTime(<span class="string">&quot;2011-11-11 11:11:11&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;程序结束。。。。&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">parseTime</span><span class="params">(String date)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">SimpleDateFormat</span> <span class="variable">sdf</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;yyyy/MM-dd HH:mm:ss&quot;</span>);</span><br><span class="line">            <span class="type">Date</span> <span class="variable">d</span> <span class="operator">=</span> sdf.parse(date);</span><br><span class="line">            System.out.println(d);</span><br><span class="line"></span><br><span class="line">            <span class="type">InputStream</span> <span class="variable">is</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;E:/meinv.jpg&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace(); <span class="comment">// 打印异常栈信息</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>异常处理方式3——前两者结合</strong></p>
+<ul>
+<li>&#x3D;&#x3D;方法直接将异通过throws抛出去给调用者&#x3D;&#x3D;</li>
+<li>&#x3D;&#x3D;调用者收到异常后直接捕获处理&#x3D;&#x3D;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.text.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ExceptionDemo03</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;程序开始。。。。&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            parseTime(<span class="string">&quot;2011-11-11 11:11:11&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;功能操作成功~~~&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.out.println(<span class="string">&quot;功能操作失败~~~&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;程序结束。。。。&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">parseTime</span><span class="params">(String date)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">SimpleDateFormat</span> <span class="variable">sdf</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;yyyy、MM-dd HH:mm:ss&quot;</span>);</span><br><span class="line">        <span class="type">Date</span> <span class="variable">d</span> <span class="operator">=</span> sdf.parse(date);</span><br><span class="line">        System.out.println(d);</span><br><span class="line"></span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">is</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;D:/meinv.jpg&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>在开发中按照规范来说第三种方式是最好的:底层的异常抛出去给最外层，最外层集中捕获处理。</strong></p>
+<p>实际应用中，只要代码能够编译通过，并且功能能完成，那么每一种异常处理方式似乎也都是可以的。</p>
+<h2 id="2-6-运行时异常的处理机制"><a href="#2-6-运行时异常的处理机制" class="headerlink" title="2.6 运行时异常的处理机制"></a>2.6 运行时异常的处理机制</h2><p>运行时异常编译阶段不会出错，是运行时才可能出错的，所以编译阶段不处理也可以。</p>
+<p>按照规范建议还是处理:建议在最外层调用处集中捕获处理即可。</p>
+<h2 id="2-7-自定义异常"><a href="#2-7-自定义异常" class="headerlink" title="2.7 自定义异常"></a>2.7 自定义异常</h2><p>自定义异常的必要?</p>
+<ul>
+<li>Java无法为这个世界上全部的问题提供异常类。</li>
+<li>如果企业想通过异常的方式来管理自己的某个业务问题，就需要自定义异常类了。</li>
+</ul>
+<p>自定义异常的好处:</p>
+<ul>
+<li>可以使用异常的机制管理业务问题，如提醒程序员注意。</li>
+<li>同时一旦出现bug，可以用异常的形式清晰的指出出错的地方。</li>
+</ul>
+<p><strong>自定义异常的分类</strong></p>
+<p><strong>1、自定义编译时异常</strong></p>
+<ol>
+<li>定义一个异常类继承Exception</li>
+<li>重写构造器</li>
+<li>在出现异常的地方用throw new自定义对象抛出</li>
+</ol>
+<p>作用:编译时异常是编译阶段就报错，提醒更加强烈，一定需要处理!!</p>
+<p><strong>2、自定义运行时异常</strong></p>
+<ol>
+<li>定义一个异常类继承RuntimeException</li>
+<li>重写构造器</li>
+<li>在出现异常的地方用throw new自定义对象抛出</li>
+</ol>
+<p>作用:提醒不强烈，编译阶段不报错!!运行时才可能出现!!</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    自定义的编译时异常</span></span><br><span class="line"><span class="comment">      1、继承Exception</span></span><br><span class="line"><span class="comment">      2、重写构造器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ItheimaAgeIlleagalException</span> <span class="keyword">extends</span> <span class="title class_">Exception</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ItheimaAgeIlleagalException</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ItheimaAgeIlleagalException</span><span class="params">(String message)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    自定义的编译时异常</span></span><br><span class="line"><span class="comment">      1、继承RuntimeException</span></span><br><span class="line"><span class="comment">      2、重写构造器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ItheimaAgeIlleagalRuntimeException</span> <span class="keyword">extends</span> <span class="title class_">RuntimeException</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ItheimaAgeIlleagalRuntimeException</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ItheimaAgeIlleagalRuntimeException</span><span class="params">(String message)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ExceptionDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            checkAge2(-<span class="number">23</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">checkAge2</span><span class="params">(<span class="type">int</span> age)</span>  &#123;</span><br><span class="line">        <span class="keyword">if</span>(age &lt; <span class="number">0</span> || age &gt; <span class="number">200</span>)&#123;</span><br><span class="line">            <span class="comment">// 抛出去一个异常对象给调用者</span></span><br><span class="line">            <span class="comment">// throw ：在方法内部直接创建一个异常对象，并从此点抛出</span></span><br><span class="line">            <span class="comment">// throws : 用在方法申明上的，抛出方法内部的异常</span></span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">ItheimaAgeIlleagalRuntimeException</span>(age + <span class="string">&quot; is illeagal!&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;年龄合法：推荐商品给其购买~~&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">checkAge</span><span class="params">(<span class="type">int</span> age)</span> <span class="keyword">throws</span> ItheimaAgeIlleagalException &#123;</span><br><span class="line">        <span class="keyword">if</span>(age &lt; <span class="number">0</span> || age &gt; <span class="number">200</span>)&#123;</span><br><span class="line">            <span class="comment">// 抛出去一个异常对象给调用者</span></span><br><span class="line">            <span class="comment">// throw ：在方法内部直接创建一个异常对象，并从此点抛出</span></span><br><span class="line">            <span class="comment">// throws : 用在方法申明上的，抛出方法内部的异常</span></span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">ItheimaAgeIlleagalException</span>(age + <span class="string">&quot; is illeagal!&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;年龄合法：推荐商品给其购买~~&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/03/28/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-Stream%E6%B5%81%E3%80%81%E5%BC%82%E5%B8%B8%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%82%E5%B8%B8/" rel="tag">异常</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2022/03/29/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%88%A9%E5%99%A8-PxCook%EF%BC%88%E5%83%8F%E7%B4%A0%E5%A4%A7%E5%8E%A8%EF%BC%89/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            前端开发利器 - - PxCook（像素大厨）
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2022/03/24/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E9%9B%86%E5%90%88-%E4%B8%8A-%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">集合</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "keN4GS5JeQfwvylr07oj8w0n-gzGzoHsz",
+    app_key: "1C2GpGDbNeIOoqy8MLqxpNUu",
+    path: window.location.pathname,
+    avatar: "retro",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+    
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2022
+        <i class="ri-heart-fill heart_icon"></i> 会思想的苇草i
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/favicon.ico" alt="会思想的苇草i"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>感谢打赏哈哈嗝~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+ 
+<script src="/js/clickLove.js"></script>
+ 
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>

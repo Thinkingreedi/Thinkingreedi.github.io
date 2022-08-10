@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="前端 算法 技术" />
+       
+      <meta name="description" content="一个有趣且实用的博客网站，涉及前端，算法，数据结构，操作系统等计算机相关知识。" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>计算机操作系统基础知识点 |  会思想的苇草i</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-计算机操作系统基础知识点"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  计算机操作系统基础知识点
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/05/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9/" class="article-date">
+  <time datetime="2022-05-06T12:09:08.000Z" itemprop="datePublished">2022-05-06</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF/">计算机科学与技术</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.6k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">5 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <hr>
+<h1 id="1、操作系统引论"><a href="#1、操作系统引论" class="headerlink" title="1、操作系统引论"></a>1、操作系统引论</h1><p><img src="https://img-blog.csdnimg.cn/17e92985fd474be8a41c28f13dc5f525.png#pic_center"></p>
+<p><strong>易错点:</strong></p>
+<ul>
+<li>在一段时间内置允许一个进程访问的资源称为<strong>临界资源</strong>或者独占资源</li>
+<li><strong>并发和共享是操作系统两个最基本的特征</strong>，两者之间互为存在的条件</li>
+<li>文件的I&#x2F;O需要在内核态进行，要使用系统调用接口</li>
+<li><strong>shell属于命令解析器，属于命令接口</strong></li>
+<li><strong>多道程序设计失去了封闭性和顺序性，顺序性是单道程序设计的基本特征</strong></li>
+<li>中断技术使得多道批处理系统和I&#x2F;O设备可与CPU并行工作</li>
+</ul>
+<p><strong>批处理操作系统、分时操作系统和实时操作系统各有什么特点?</strong></p>
+<p>批处理操作系统的用户脱机使用计算机，作业都是成批处理的，系统内多道程序并发执行，交互能力差。<br>分时操作系统可让多个用户同时使用计算机，人机交互性较强，具有每个用户独立使用计算机的独占性，系统响应及时。<br>实时操作系统能对控制对象做出及时反映，可靠性高，响应及时，但资源利用率低。</p>
+<p><strong>处理器为什么要区分核心态和用户态两种操作方式？在什么情况下进行两种方式的切换？</strong></p>
+<p>区分执行态的主要目的是保护系统程序。用户态到核心态的转换发生在中断产生时，而核心态到用户态的转换则发生在中断返回用户程序时。</p>
+<hr>
+<h1 id="2、进程的描述和控制"><a href="#2、进程的描述和控制" class="headerlink" title="2、进程的描述和控制"></a>2、进程的描述和控制</h1><p><img src="https://img-blog.csdnimg.cn/d984b21b01d2426da4e600b63d66518d.png#pic_center"></p>
+<h2 id="生产者-消费者问题"><a href="#生产者-消费者问题" class="headerlink" title="生产者-消费者问题"></a>生产者-消费者问题</h2><p><img src="https://img-blog.csdnimg.cn/b72f4ae5975f4f84b7a514b116ca6aa2.png"><br>PV操作题目分析步骤:</p>
+<ol>
+<li><strong>关系分析。</strong> 找出题目中描述的各个进程，分析它们之间的同步、互斥关系。</li>
+<li><strong>整理思路。</strong> 根据各进程的操作流程确定P、V操作的大致顺序。</li>
+<li><strong>设置信号量。</strong> 设置需要的信号量，并根据题目条件确定信号量初值。(互斥信号量初值一般为1，同步信号量的初始值要看对应资源的初始值是多少)</li>
+</ol>
+<p><strong>利用记录型信号量解决生产者-消费者问题</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">item buffer[n]</span><br><span class="line">semaphore mutex = 1;//互斥信号量，实现对缓冲区的互斥访问</span><br><span class="line">semaphore empty = n;//同步信号量，表示空闲缓冲区的数量</span><br><span class="line">semaphore full = 0; //同步信号量，表示产品的数量，也即非空缓冲区的数量</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">prodecer ()&#123;</span><br><span class="line">	while(1)&#123;</span><br><span class="line">		生产一个产品;</span><br><span class="line">		P(emoty);</span><br><span class="line">		P(mutex);</span><br><span class="line">		把产品放入缓冲区;</span><br><span class="line">		V(mutex);</span><br><span class="line">		V(full);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">consumer ()&#123;</span><br><span class="line">	while(1)&#123;</span><br><span class="line">		P(full);</span><br><span class="line">		P(mutex);</span><br><span class="line">		从缓冲区取出一个产品;</span><br><span class="line">		V(mutex);</span><br><span class="line">		V(empty);</span><br><span class="line">		使用产品;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在生产者-消费者问题中应注意:&#x3D;&#x3D;首先，在每个程序中用于实现互斥的wait(mutex)和signal(mutex)必须成对地出现;其次，对资源信号量empty和 full的wait和signal操作，同样需要成对地出现，但它们分别处于不同的程序中&#x3D;&#x3D;。</li>
+<li>例如，wait(empty)在计算进程中，而signal(empty)则在打印进程中，计算进程若因执行wait(empty)而阻塞，则以后将由打印进程将它唤醒;&#x3D;&#x3D;最后，在每个程序中的多个wait操作顺序不能颠倒。应先执行对资源信号量的wait操作，然后再执行对互斥信号量的wait 操作，否则可能引起进程死锁。&#x3D;&#x3D;</li>
+</ul>
+<h2 id="哲学家进餐问题"><a href="#哲学家进餐问题" class="headerlink" title="哲学家进餐问题"></a>哲学家进餐问题</h2><p><img src="https://img-blog.csdnimg.cn/9d0a3b83f4da49fd98f04f829063a7b7.png"></p>
+<p>解决方案：</p>
+<ol>
+<li>可以对哲学家进程施加一些限制条件，比如最多允许四个哲学家同时进餐。这样可以保证至少有一个哲学家是可以拿到左右两只筷子的</li>
+<li>要求奇数号哲学家先拿左边的筷子，然后再拿右边的筷子，而偶数号哲学家刚好相反。用这种方法可以保证如果相邻的两个奇偶号哲学家都想吃饭，那么只会有其中一个可以拿起第一只筷子,另一个会直接阻塞。这就避免了占有一支后再等待另一只的情况。</li>
+<li>仅当一个哲学家左右两支筷子都可用时才允许他抓起筷子。</li>
+</ol>
+<p><strong>利用记录型信号量解决哲学家进餐问题</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">semaphore chopstick[5]=&#123;1,1,1,1,1&#125;;</span><br><span class="line">semaphore mutex = 1;//互斥地取筷子</span><br><span class="line">Pi()&#123;				//i号哲学家的进程</span><br><span class="line">	while(1)&#123;</span><br><span class="line">		p(mutex);</span><br><span class="line">		P(chopstick[i]);		//拿左</span><br><span class="line">		P(chopstick[(i+1)%5];	//拿右</span><br><span class="line">		V(mutex);</span><br><span class="line">		吃饭...</span><br><span class="line">		V(chopstick[i]);	 //放左</span><br><span class="line">		V(chopstick[(i+1)%5];//放右</span><br><span class="line">		思考...</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>哲学家进餐问题的关键在于解决进程死锁。</li>
+<li>这些进程之间只存在互斥关系，但是与之前接触到的互斥关系不同的是，每个进程都需要同时持有两个临界资源，因此就有“死锁”问题的隐患。</li>
+<li>如果遇到了一个进程需要同时持有多个临界资源的情况，应该参考哲学家问题的思想，分析题中给出的进程之间是否会发生循环等待，是否会发生死锁。</li>
+<li>可以参考哲学家就餐问题解决死锁的三种思路。</li>
+</ul>
+<h2 id="读者-写者问题"><a href="#读者-写者问题" class="headerlink" title="读者-写者问题"></a>读者-写者问题</h2><p><img src="https://img-blog.csdnimg.cn/ea1233715f7b4a5686e1440a2e08d1af.png"></p>
+<ul>
+<li>读进程与读进程不存在互斥问题。写者进程和任何进程都互斥。设置一个互斥信号量rw，在写者访问共享文件前后分别执行P、V操作。读者进程和写者进程也要互斥，因此读者访问共享文件前后也要对rw执行P、V操作。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Semapore rmutex = 1;//计数器</span><br><span class="line">Semapore wmutex = 1;//阀门</span><br><span class="line">int readcount = 0;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Wruter():</span><br><span class="line">	while(true)&#123;</span><br><span class="line">		wait(wmutex);</span><br><span class="line">		</span><br><span class="line">		写;</span><br><span class="line">		</span><br><span class="line">		signal(wmutex);</span><br><span class="line">	&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Reader():</span><br><span class="line">	while(true)&#123;</span><br><span class="line">	wait(rmutex);</span><br><span class="line">	</span><br><span class="line">	if(readcount == 0)</span><br><span class="line">	wait(wmutex);</span><br><span class="line">	readcount++;</span><br><span class="line">	signal(rmutex)</span><br><span class="line">	</span><br><span class="line">	读;</span><br><span class="line">	</span><br><span class="line">	wait(rmutex);</span><br><span class="line">	readcount--;</span><br><span class="line">	if(readcount == 0)</span><br><span class="line">	signal(wmutex);</span><br><span class="line">	signal(rmutex);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="3、处理机调度与死锁"><a href="#3、处理机调度与死锁" class="headerlink" title="3、处理机调度与死锁"></a>3、处理机调度与死锁</h1><p><img src="https://img-blog.csdnimg.cn/3420ab469fe244a39daee602196942a6.png#pic_center"></p>
+<h2 id="先来先服务算法-FCFS"><a href="#先来先服务算法-FCFS" class="headerlink" title="先来先服务算法(FCFS)"></a>先来先服务算法(FCFS)</h2><p><img src="https://img-blog.csdnimg.cn/beb590eb9e4c4933ac783acc5c354983.png"></p>
+<h2 id="短进程优先算法-SPF"><a href="#短进程优先算法-SPF" class="headerlink" title="短进程优先算法(SPF)"></a>短进程优先算法(SPF)</h2><p><img src="https://img-blog.csdnimg.cn/fcbeef48f6614febad780093bc17ba92.png"></p>
+<h2 id="高优先权优先算法-HRRN"><a href="#高优先权优先算法-HRRN" class="headerlink" title="高优先权优先算法(HRRN)"></a>高优先权优先算法(HRRN)</h2><p><img src="https://img-blog.csdnimg.cn/1d6c2b6e6862469b96600c6ec29f686c.png"></p>
+<p><img src="https://img-blog.csdnimg.cn/c46f81313a2b4ae8b6637c66c1b0cd6c.png"><br><img src="https://img-blog.csdnimg.cn/f765ba94e91d485a834ba033e759ae73.png"></p>
+<h2 id="安全状态与不安全状态"><a href="#安全状态与不安全状态" class="headerlink" title="安全状态与不安全状态"></a>安全状态与不安全状态</h2><p><img src="https://img-blog.csdnimg.cn/98ba4d9dc3d84721a825a7b281f237b0.png"></p>
+<h2 id="银行家算法"><a href="#银行家算法" class="headerlink" title="银行家算法"></a>银行家算法</h2><p><img src="https://img-blog.csdnimg.cn/f5a81710543a40a0be9ff2009d2b3a3f.png"></p>
+<hr>
+<h1 id="4、存储器管理"><a href="#4、存储器管理" class="headerlink" title="4、存储器管理"></a>4、存储器管理</h1><p><img src="https://img-blog.csdnimg.cn/5f54fb8fa817458096767b4d719ed501.png#pic_center"></p>
+<h2 id="存储器的层次结构"><a href="#存储器的层次结构" class="headerlink" title="存储器的层次结构"></a>存储器的层次结构</h2><p><img src="https://img-blog.csdnimg.cn/656f8d7a8eab42bf81eba4fd6c1d1c3d.png"></p>
+<h2 id="首次适应算法"><a href="#首次适应算法" class="headerlink" title="首次适应算法"></a>首次适应算法</h2><p><img src="https://img-blog.csdnimg.cn/6230a911b0b24c2da249030b459dbebd.png"></p>
+<h2 id="循环首次适应算法"><a href="#循环首次适应算法" class="headerlink" title="循环首次适应算法"></a>循环首次适应算法</h2><p><img src="https://img-blog.csdnimg.cn/4768ff2335cb4b94838081db9316faf0.png"></p>
+<h2 id="最佳适应算法"><a href="#最佳适应算法" class="headerlink" title="最佳适应算法"></a>最佳适应算法</h2><p><img src="https://img-blog.csdnimg.cn/d6487802334348048f1780a03d69bbdc.png"></p>
+<h2 id="最坏适应算法"><a href="#最坏适应算法" class="headerlink" title="最坏适应算法"></a>最坏适应算法</h2><p><img src="https://img-blog.csdnimg.cn/408d4785e46b4ee78b26b8e3ac156497.png"></p>
+<h2 id="相关计算"><a href="#相关计算" class="headerlink" title="相关计算"></a>相关计算</h2><p><img src="https://img-blog.csdnimg.cn/0e96793932904fb69125deec391f5fd8.png"></p>
+<hr>
+<h1 id="5、虚拟存储器"><a href="#5、虚拟存储器" class="headerlink" title="5、虚拟存储器"></a>5、虚拟存储器</h1><p><img src="https://img-blog.csdnimg.cn/01fcd0ed18754b729164d9ead5a9197f.png#pic_center"></p>
+<h2 id="最佳置换算法-OPT"><a href="#最佳置换算法-OPT" class="headerlink" title="最佳置换算法(OPT)"></a>最佳置换算法(OPT)</h2><p><img src="https://img-blog.csdnimg.cn/155765181bd0425a8bf1312660d1178f.png"><br><img src="https://img-blog.csdnimg.cn/7a949e2d61e749b193048ff07799d442.png"></p>
+<h2 id="先进先出置换算法"><a href="#先进先出置换算法" class="headerlink" title="先进先出置换算法"></a>先进先出置换算法</h2><p><img src="https://img-blog.csdnimg.cn/3be3f6a902ac4553a9233fba7b7e6adb.png"></p>
+<h2 id="最近最久未使用算法-LRU"><a href="#最近最久未使用算法-LRU" class="headerlink" title="最近最久未使用算法(LRU)"></a>最近最久未使用算法(LRU)</h2><p><img src="https://img-blog.csdnimg.cn/2a1f4b8ab08d44da8f23a65dc8862cf5.png"></p>
+<hr>
+<h1 id="6、输入输出设备"><a href="#6、输入输出设备" class="headerlink" title="6、输入输出设备"></a>6、输入输出设备</h1><p><img src="https://img-blog.csdnimg.cn/a7c682e2e2f94021a1dc7d91f4de63c0.png#pic_center"></p>
+<h2 id="先来先服务算法"><a href="#先来先服务算法" class="headerlink" title="先来先服务算法"></a>先来先服务算法</h2><p><img src="https://img-blog.csdnimg.cn/08609bc7df53455797fb1ea8eba20ba2.png"></p>
+<h2 id="最短寻道时间优先算法"><a href="#最短寻道时间优先算法" class="headerlink" title="最短寻道时间优先算法"></a>最短寻道时间优先算法</h2><p><img src="https://img-blog.csdnimg.cn/80342cf906f14662a0a4d72cdd027fd7.png"></p>
+<h2 id="扫描算法"><a href="#扫描算法" class="headerlink" title="扫描算法"></a>扫描算法</h2><p><img src="https://img-blog.csdnimg.cn/8b056c1553b64c8488fa705448e230ee.png"></p>
+<h2 id="循环扫描算法"><a href="#循环扫描算法" class="headerlink" title="循环扫描算法"></a>循环扫描算法</h2><p><img src="https://img-blog.csdnimg.cn/e2ab02e3c1374b29acf45cf0882de704.png"></p>
+<hr>
+<h1 id="7、文件管理"><a href="#7、文件管理" class="headerlink" title="7、文件管理"></a>7、文件管理</h1><p><img src="https://img-blog.csdnimg.cn/c1a2a0786a5f4a109a19c3b47c42d3ae.png#pic_center"></p>
+<p><img src="https://img-blog.csdnimg.cn/d02740162bd749229163adf27632acef.png"></p>
+<p><img src="https://img-blog.csdnimg.cn/23a41fd92b41400683d1d45e72855463.png"><br><img src="https://img-blog.csdnimg.cn/317d1c17e620417480c2a0dd883bcd74.png"></p>
+<hr>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/05/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2022/05/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            计算机组成原理基础知识点
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2022/04/24/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">多线程</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "keN4GS5JeQfwvylr07oj8w0n-gzGzoHsz",
+    app_key: "1C2GpGDbNeIOoqy8MLqxpNUu",
+    path: window.location.pathname,
+    avatar: "retro",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+    
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2022
+        <i class="ri-heart-fill heart_icon"></i> 会思想的苇草i
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/favicon.ico" alt="会思想的苇草i"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>感谢打赏哈哈嗝~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+ 
+<script src="/js/clickLove.js"></script>
+ 
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>

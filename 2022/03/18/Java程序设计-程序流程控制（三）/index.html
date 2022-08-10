@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="前端 算法 技术" />
+       
+      <meta name="description" content="一个有趣且实用的博客网站，涉及前端，算法，数据结构，操作系统等计算机相关知识。" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>程序流程控制 |  会思想的苇草i</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-Java程序设计-程序流程控制（三）"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  程序流程控制
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/03/18/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%EF%BC%88%E4%B8%89%EF%BC%89/" class="article-date">
+  <time datetime="2022-03-18T14:49:03.000Z" itemprop="datePublished">2022-03-18</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">4.3k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">17 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <hr>
+<h1 id="1、流程控制语句"><a href="#1、流程控制语句" class="headerlink" title="1、流程控制语句"></a>1、流程控制语句</h1><p>在一个程序执行的过程中，各条语句的执行顺序对程序的结果是有直接影响的。所以，我们必须清楚每条语句的执行流程。而且，很多时候要通过控制语句的执行顺序来实现我们想要的功能。</p>
+<p><strong>流程控制语句分类</strong></p>
+<ol>
+<li>​	顺序结构</li>
+<li>​	分支结构(if, switch)</li>
+<li>​	循环结构(for, while, do…while)</li>
+</ol>
+<hr>
+<h1 id="2、顺序结构"><a href="#2、顺序结构" class="headerlink" title="2、顺序结构"></a>2、顺序结构</h1><p>顺序结构是程序中最简单最基本的流程控制，没有特定的语法结构，按照代码的先后顺序，依次执行，程序中大多数的代码都是这样执行的。</p>
+<p>顺序结构执行流程图：</p>
+<p><img src="https://img-blog.csdnimg.cn/4c47884549aa45929d5edbe09a56ccfc.png#pic_center"></p>
+<hr>
+<h1 id="3、分支结构"><a href="#3、分支结构" class="headerlink" title="3、分支结构"></a>3、分支结构</h1><h2 id="3-1-if语句格式1"><a href="#3-1-if语句格式1" class="headerlink" title="3.1 if语句格式1"></a>3.1 if语句格式1</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">格式：</span><br><span class="line"><span class="keyword">if</span> (关系表达式) &#123;</span><br><span class="line">    语句体;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行流程：</p>
+<ol>
+<li>首先计算关系表达式的值</li>
+<li>如果关系表达式的值为true就执行语句体</li>
+<li>如果关系表达式的值为false就不执行语句体</li>
+<li>继续执行后面的语句内容</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/67efd4c6088841ad84dd8ff1c649ed5f.png#pic_center"></p>
+<p>示例：判断相等</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">IfDemo</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;开始&quot;</span>);	</span><br><span class="line">		<span class="comment">//定义两个变量</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">		<span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">20</span>;	</span><br><span class="line">		<span class="comment">//需求：判断a和b的值是否相等，如果相等，就在控制台输出：a等于b</span></span><br><span class="line">		<span class="keyword">if</span>(a == b) &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;a等于b&quot;</span>);</span><br><span class="line">		&#125;		</span><br><span class="line">		<span class="comment">//需求：判断a和c的值是否相等，如果相等，就在控制台输出：a等于c</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">c</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">		<span class="keyword">if</span>(a == c) &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;a等于c&quot;</span>);</span><br><span class="line">		&#125;		</span><br><span class="line">		System.out.println(<span class="string">&quot;结束&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-2-if语句格式2"><a href="#3-2-if语句格式2" class="headerlink" title="3.2 if语句格式2"></a>3.2 if语句格式2</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">格式：</span><br><span class="line"><span class="keyword">if</span> (关系表达式) &#123;</span><br><span class="line">    语句体<span class="number">1</span>;	</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    语句体<span class="number">2</span>;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行流程：</p>
+<ol>
+<li>首先计算关系表达式的值</li>
+<li>如果关系表达式的值为true就执行语句体1</li>
+<li>如果关系表达式的值为false就执行语句体2</li>
+<li>继续执行后面的语句内容</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/47a13f74bd6241e9b71b764d9655d167.png#pic_center"></p>
+<p>示例：比较大小</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">IfDemo02</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;开始&quot;</span>);		</span><br><span class="line">		<span class="comment">//定义两个变量</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">		<span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">20</span>;</span><br><span class="line">		b = <span class="number">5</span>;	</span><br><span class="line">		<span class="comment">//需求：判断a是否大于b，如果是，在控制台输出：a的值大于b，否则，在控制台输出：a的值不大于b</span></span><br><span class="line">		<span class="keyword">if</span>(a &gt; b) &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;a的值大于b&quot;</span>);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;a的值不大于b&quot;</span>);</span><br><span class="line">		&#125;		</span><br><span class="line">		System.out.println(<span class="string">&quot;结束&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-3-if语句格式3"><a href="#3-3-if语句格式3" class="headerlink" title="3.3 if语句格式3"></a>3.3 if语句格式3</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">格式：</span><br><span class="line"><span class="keyword">if</span> (关系表达式<span class="number">1</span>) &#123;</span><br><span class="line">    语句体<span class="number">1</span>;	</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (关系表达式<span class="number">2</span>) &#123;</span><br><span class="line">    语句体<span class="number">2</span>;	</span><br><span class="line">&#125; </span><br><span class="line">…</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    语句体n+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行流程：</p>
+<ol>
+<li>首先计算关系表达式1的值</li>
+<li>如果值为true就执行语句体1；如果值为false就计算关系表达式2的值</li>
+<li>如果值为true就执行语句体2；如果值为false就计算关系表达式3的值</li>
+<li>…</li>
+<li>如果没有任何关系表达式为true，就执行语句体n+1。</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/fc8826fcb7f04937b2d2c65e6ce1e5d0.png#pic_center"></p>
+<p>示例：键盘录入一个星期数(1,2,…7)，输出对应的星期一，星期二，…星期日。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">IfDemo03</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;开始&quot;</span>);</span><br><span class="line">		<span class="comment">// 需求：键盘录入一个星期数(1,2,...7)，输出对应的星期一，星期二，...星期日</span></span><br><span class="line">		<span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">		System.out.println(<span class="string">&quot;请输入一个星期数(1-7)：&quot;</span>);</span><br><span class="line">		<span class="type">int</span> <span class="variable">week</span> <span class="operator">=</span> sc.nextInt();</span><br><span class="line">		<span class="keyword">if</span>(week == <span class="number">1</span>) &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;星期一&quot;</span>);</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span>(week == <span class="number">2</span>) &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;星期二&quot;</span>);</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span>(week == <span class="number">3</span>) &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;星期三&quot;</span>);</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span>(week == <span class="number">4</span>) &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;星期四&quot;</span>);</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span>(week == <span class="number">5</span>) &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;星期五&quot;</span>);</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span>(week == <span class="number">6</span>) &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;星期六&quot;</span>);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;星期日&quot;</span>);</span><br><span class="line">		&#125;	</span><br><span class="line">		System.out.println(<span class="string">&quot;结束&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="3-4-分支结构：switch语句"><a href="#3-4-分支结构：switch语句" class="headerlink" title="3.4 分支结构：switch语句"></a>3.4 分支结构：switch语句</h2><p>switch语句也是匹配条件去执行分支，适合做值匹配的分支选择，结构清晰，格式良好。</p>
+<p> <strong>switch语句结构</strong></p>
+<p>格式</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (表达式) &#123;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">		语句体<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">		语句体<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	...</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		语句体n+<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行流程：</p>
+<ol>
+<li>首先计算出表达式的值</li>
+<li>其次，和case依次比较，一旦有对应的值，就会执行相应的语句，在执行的过程中，遇到break就会结束。</li>
+<li>最后，如果所有的case都和表达式的值不匹配，就会执行default语句体部分，然后程序结束掉。</li>
+</ol>
+<p><strong>switch语句练习-春夏秋冬</strong></p>
+<p>需求：一年有12个月，分属于春夏秋冬4个季节，键盘录入一个月份，请用程序实现判断该月份属于哪个季节，并输出。 </p>
+<p>运行结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">春：3、4、5</span><br><span class="line">夏：6、7、8</span><br><span class="line">秋：9、10、11</span><br><span class="line">冬：1、2、12</span><br></pre></td></tr></table></figure>
+
+<p>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo1</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//键盘录入月份数据，使用变量接收</span></span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入一个月份：&quot;</span>);</span><br><span class="line">        <span class="type">int</span> <span class="variable">month</span> <span class="operator">=</span> sc.nextInt();</span><br><span class="line">        <span class="comment">//case穿透</span></span><br><span class="line">        <span class="keyword">switch</span>(month) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">case</span> <span class="number">12</span>:</span><br><span class="line">                System.out.println(<span class="string">&quot;冬季&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">            <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">            <span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">                System.out.println(<span class="string">&quot;春季&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">6</span>:</span><br><span class="line">            <span class="keyword">case</span> <span class="number">7</span>:</span><br><span class="line">            <span class="keyword">case</span> <span class="number">8</span>:</span><br><span class="line">                System.out.println(<span class="string">&quot;夏季&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">9</span>:</span><br><span class="line">            <span class="keyword">case</span> <span class="number">10</span>:</span><br><span class="line">            <span class="keyword">case</span> <span class="number">11</span>:</span><br><span class="line">                System.out.println(<span class="string">&quot;秋季&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                System.out.println(<span class="string">&quot;你输入的月份有误&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：如果switch中得case，没有对应break的话，则会出现case穿透的现象。</p>
+<p><strong>switch分支注意事项:</strong></p>
+<ol>
+<li>&#x3D;&#x3D;表达式类型只能是byte、short、int、char，JDK5开始支持枚举，JDK7开始支持String.不支持double、float、long&#x3D;&#x3D;。</li>
+<li>&#x3D;&#x3D;case给出的值不允许重复，且只能是字面量，不能是变量&#x3D;&#x3D;。</li>
+<li>&#x3D;&#x3D;<strong>不要忘记写break，否则会出现穿透现象</strong>&#x3D;&#x3D;。</li>
+</ol>
+<hr>
+<h1 id="4、循环结构"><a href="#4、循环结构" class="headerlink" title="4、循环结构"></a>4、循环结构</h1><h2 id="4-1-for循环结构"><a href="#4-1-for循环结构" class="headerlink" title="4.1 for循环结构"></a>4.1 for循环结构</h2><p>循环：</p>
+<p>  循环语句可以在满足循环条件的情况下，反复执行某一段代码，这段被重复执行的代码被称为循环体语句，当反复 执行这个循环体时，需要在合适的时候把循环判断条件修改为false，从而结束循环，否则循环将一直执行下去，形成死循环。 </p>
+<p>for循环格式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (初始化语句;条件判断语句;条件控制语句) &#123;</span><br><span class="line">	循环体语句;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>格式解释：</p>
+<ol>
+<li>初始化语句：  用于表示循环开启时的起始状态，简单说就是循环开始的时候什么样</li>
+<li>条件判断语句：用于表示循环反复执行的条件，简单说就是判断循环是否能一直执行下去</li>
+<li>循环体语句：  用于表示循环反复执行的内容，简单说就是循环反复执行的事情</li>
+<li>条件控制语句：用于表示循环执行中每次变化的内容，简单说就是控制循环是否能执行下去</li>
+</ol>
+<p> 执行流程：</p>
+<ol>
+<li><p>执行初始化语句</p>
+</li>
+<li><p>执行条件判断语句，看其结果是true还是false<br>    - 如果是false，循环结束		<br>    - 如果是true，继续执行</p>
+</li>
+<li><p>执行循环体语句</p>
+</li>
+<li><p>执行条件控制语句</p>
+</li>
+<li><p>回到2继续</p>
+</li>
+</ol>
+<p><strong>for循环练习-输出数据</strong></p>
+<p>需求：在控制台输出1-5和5-1的数据</p>
+<p>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ForTest01</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">//需求：输出数据1-5</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=<span class="number">5</span>; i++) &#123;</span><br><span class="line">			System.out.println(i);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">&quot;--------&quot;</span>);</span><br><span class="line">		<span class="comment">//需求：输出数据5-1</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">5</span>; i&gt;=<span class="number">1</span>; i--) &#123;</span><br><span class="line">			System.out.println(i);</span><br><span class="line">		&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>for循环练习-求和</strong></p>
+<p>需求：求1-5之间的数据和，并把求和结果在控制台输出  </p>
+<p>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ForTest02</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">//求和的最终结果必须保存起来，需要定义一个变量，用于保存求和的结果，初始值为0</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">		<span class="comment">//从1开始到5结束的数据，使用循环结构完成</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=<span class="number">5</span>; i++) &#123;</span><br><span class="line">			<span class="comment">//将反复进行的事情写入循环结构内部</span></span><br><span class="line">             <span class="comment">// 此处反复进行的事情是将数据 i 加到用于保存最终求和的变量 sum 中</span></span><br><span class="line">			sum += i;</span><br><span class="line">			<span class="comment">/*</span></span><br><span class="line"><span class="comment">				sum += i;	sum = sum + i;</span></span><br><span class="line"><span class="comment">				第一次：sum = sum + i = 0 + 1 = 1;</span></span><br><span class="line"><span class="comment">				第二次：sum = sum + i = 1 + 2 = 3;</span></span><br><span class="line"><span class="comment">				第三次：sum = sum + i = 3 + 3 = 6;</span></span><br><span class="line"><span class="comment">				第四次：sum = sum + i = 6 + 4 = 10;</span></span><br><span class="line"><span class="comment">				第五次：sum = sum + i = 10 + 5 = 15;</span></span><br><span class="line"><span class="comment">			*/</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//当循环执行完毕时，将最终数据打印出来</span></span><br><span class="line">		System.out.println(<span class="string">&quot;1-5之间的数据和是：&quot;</span> + sum);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>本题要点：</p>
+<ul>
+<li>今后遇到的需求中，如果带有求和二字，请立即联想到求和变量</li>
+<li>求和变量的定义位置，必须在循环外部，如果在循环内部则计算出的数据将是错误的</li>
+</ul>
+<p><strong>for循环练习-求偶数和</strong></p>
+<p> 需求：求1-100之间的偶数和，并把求和结果在控制台输出 </p>
+<p> 示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ForTest03</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">//求和的最终结果必须保存起来，需要定义一个变量，用于保存求和的结果，初始值为0</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">		<span class="comment">//对1-100的数据求和与1-5的数据求和几乎完全一样，仅仅是结束条件不同</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=<span class="number">100</span>; i++) &#123;</span><br><span class="line">			<span class="comment">//对1-100的偶数求和，需要对求和操作添加限制条件，判断是否是偶数</span></span><br><span class="line">			<span class="keyword">if</span>(i%<span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">				sum += i;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//当循环执行完毕时，将最终数据打印出来</span></span><br><span class="line">		System.out.println(<span class="string">&quot;1-100之间的偶数和是：&quot;</span> + sum);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>for循环练习-水仙花</strong></p>
+<p>需求：在控制台输出所有的“水仙花数” </p>
+<p>解释：什么是水仙花数？</p>
+<p>水仙花数，指的是一个三位数，个位、十位、百位的数字立方和等于原数</p>
+<p>例如<code>153  3*3*3 + 5*5*5 + 1*1*1 = 153</code></p>
+<p>思路：</p>
+<ol>
+<li>获取所有的三位数，准备进行筛选，最小的三位数为100，最大的三位数为999，使用for循环获取</li>
+<li>获取每一个三位数的个位，十位，百位，做if语句判断是否是水仙花数</li>
+</ol>
+<p>示例代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ForTest04</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">//输出所有的水仙花数必然要使用到循环，遍历所有的三位数，三位数从100开始，到999结束</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">100</span>; i&lt;<span class="number">1000</span>; i++) &#123;</span><br><span class="line">			<span class="comment">//在计算之前获取三位数中每个位上的值</span></span><br><span class="line">			<span class="type">int</span> <span class="variable">ge</span> <span class="operator">=</span> i%<span class="number">10</span>;</span><br><span class="line">			<span class="type">int</span> <span class="variable">shi</span> <span class="operator">=</span> i/<span class="number">10</span>%<span class="number">10</span>;</span><br><span class="line">			<span class="type">int</span> <span class="variable">bai</span> <span class="operator">=</span> i/<span class="number">10</span>/<span class="number">10</span>%<span class="number">10</span>;</span><br><span class="line">			</span><br><span class="line">			<span class="comment">//判定条件是将三位数中的每个数值取出来，计算立方和后与原始数字比较是否相等</span></span><br><span class="line">			<span class="keyword">if</span>(ge*ge*ge + shi*shi*shi + bai*bai*bai == i) &#123;</span><br><span class="line">				<span class="comment">//输出满足条件的数字就是水仙花数</span></span><br><span class="line">				System.out.println(i);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-2-循环结构：-while循环"><a href="#4-2-循环结构：-while循环" class="headerlink" title="4.2 循环结构： while循环"></a>4.2 循环结构： while循环</h2><p> <strong>while结构</strong></p>
+<p>while循环完整格式：</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">初始化语句;</span><br><span class="line"><span class="keyword">while</span> (条件判断语句) &#123;</span><br><span class="line">	循环体语句;</span><br><span class="line">    条件控制语句;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> while循环执行流程：</p>
+<ol>
+<li><p>执行初始化语句</p>
+</li>
+<li><p>执行条件判断语句，看其结果是true还是false<br>- 如果是false，循环结束<br>- 如果是true，继续执行</p>
+</li>
+<li><p>执行循环体语句</p>
+</li>
+<li><p>执行条件控制语句</p>
+</li>
+<li><p>回到②继续</p>
+</li>
+</ol>
+<p> 示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WhileDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//需求：在控制台输出5次&quot;HelloWorld&quot;</span></span><br><span class="line">		<span class="comment">//for循环实现</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=<span class="number">5</span>; i++) &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;HelloWorld&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">&quot;--------&quot;</span>);</span><br><span class="line">		<span class="comment">//while循环实现</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span>(j&lt;=<span class="number">5</span>) &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;HelloWorld&quot;</span>);</span><br><span class="line">			j++;</span><br><span class="line">		&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>while循环练习-珠穆朗玛峰</strong></p>
+<p>需求：世界最高山峰是珠穆朗玛峰(8844.43米&#x3D;8844430毫米)，假如我有一张足够大的纸，它的厚度是0.1毫米。请问，我折叠多少次，可以折成珠穆朗玛峰的高度?<br>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WhileTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">//定义一个计数器，初始值为0</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">		<span class="comment">//定义纸张厚度</span></span><br><span class="line">		<span class="type">double</span> <span class="variable">paper</span> <span class="operator">=</span> <span class="number">0.1</span>;</span><br><span class="line">		<span class="comment">//定义珠穆朗玛峰的高度</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">zf</span> <span class="operator">=</span> <span class="number">8844430</span>;</span><br><span class="line">		<span class="comment">//因为要反复折叠，所以要使用循环，但是不知道折叠多少次，这种情况下更适合使用while循环</span></span><br><span class="line">		<span class="comment">//折叠的过程中当纸张厚度大于珠峰就停止了，因此继续执行的要求是纸张厚度小于珠峰高度</span></span><br><span class="line">		<span class="keyword">while</span>(paper &lt;= zf) &#123;</span><br><span class="line">			<span class="comment">//循环的执行过程中每次纸张折叠，纸张的厚度要加倍</span></span><br><span class="line">			paper *= <span class="number">2</span>;</span><br><span class="line">			<span class="comment">//在循环中执行累加，对应折叠了多少次</span></span><br><span class="line">			count++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//打印计数器的值</span></span><br><span class="line">		System.out.println(<span class="string">&quot;需要折叠：&quot;</span> + count + <span class="string">&quot;次&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-3-循环结构：do-while循环"><a href="#4-3-循环结构：do-while循环" class="headerlink" title="4.3 循环结构：do-while循环"></a>4.3 循环结构：do-while循环</h2><p><strong>do…while循环结构</strong></p>
+<p>完整格式：</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">初始化语句;</span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">	循环体语句;</span><br><span class="line">	条件控制语句;</span><br><span class="line">&#125;<span class="keyword">while</span>(条件判断语句);</span><br></pre></td></tr></table></figure>
+
+<p>执行流程：</p>
+<ol>
+<li><p>执行初始化语句</p>
+</li>
+<li><p>执行循环体语句</p>
+</li>
+<li><p>执行条件控制语句</p>
+</li>
+<li><p>执行条件判断语句，看其结果是true还是false<br>- 如果是false，循环结束<br>- 如果是true，继续执行</p>
+</li>
+<li><p>回到②继续</p>
+</li>
+</ol>
+<p> 示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DoWhileDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//需求：在控制台输出5次&quot;HelloWorld&quot;</span></span><br><span class="line">		<span class="comment">//for循环实现</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=<span class="number">5</span>; i++) &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;HelloWorld&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">&quot;--------&quot;</span>);</span><br><span class="line">		<span class="comment">//do...while循环实现</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">do</span> &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;HelloWorld&quot;</span>);</span><br><span class="line">			j++;</span><br><span class="line">		&#125;<span class="keyword">while</span>(j&lt;=<span class="number">5</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-4-三种循环的区别"><a href="#4-4-三种循环的区别" class="headerlink" title="4.4 三种循环的区别"></a>4.4 三种循环的区别</h2><ul>
+<li>三种循环的区别<ul>
+<li>for循环和while循环先判断条件是否成立，然后决定是否执行循环体（先判断后执行）</li>
+<li>do…while循环先执行一次循环体，然后判断条件是否成立，是否继续执行循环体（先执行后判断）</li>
+</ul>
+</li>
+<li>for循环和while的区别<ul>
+<li>条件控制语句所控制的自增变量，因为归属for循环的语法结构中，在for循环结束后，就不能再次被访问到了</li>
+<li>条件控制语句所控制的自增变量，对于while循环来说不归属其语法结构中，在while循环结束后，该变量还可以继续使用</li>
+</ul>
+</li>
+<li>死循环（无限循环）的三种格式<ol>
+<li>for( ; ; ) {}</li>
+<li>while(true){}</li>
+<li>do {} while(true);</li>
+</ol>
+</li>
+</ul>
+<h2 id="4-5-跳转控制语句"><a href="#4-5-跳转控制语句" class="headerlink" title="4.5  跳转控制语句"></a>4.5  跳转控制语句</h2><ul>
+<li>跳转控制语句（break）<ul>
+<li>跳出循环，结束循环</li>
+</ul>
+</li>
+<li>跳转控制语句（continue）<ul>
+<li>跳过本次循环，继续下次循环</li>
+</ul>
+</li>
+<li>注意： continue只能在循环中进行使用！</li>
+</ul>
+<h2 id="4-5-循环嵌套"><a href="#4-5-循环嵌套" class="headerlink" title="4.5 循环嵌套"></a>4.5 循环嵌套</h2><p> 循环嵌套概述：在循环中，继续定义循环</p>
+<p>示例代码：</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">       <span class="comment">//外循环控制小时的范围，内循环控制分钟的范围</span></span><br><span class="line">       <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">hour</span> <span class="operator">=</span> <span class="number">0</span>; hour &lt; <span class="number">24</span>; hour++) &#123;</span><br><span class="line">           <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">minute</span> <span class="operator">=</span> <span class="number">0</span>; minute &lt; <span class="number">60</span>; minute++) &#123;</span><br><span class="line">               System.out.println(hour + <span class="string">&quot;时&quot;</span> + minute + <span class="string">&quot;分&quot;</span>);</span><br><span class="line">           &#125;</span><br><span class="line">           System.out.println(<span class="string">&quot;--------&quot;</span>);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>理解：</p>
+<p>整个内循环，就是外循环的一个循环体，内部循环体没有执行完毕，外循环是不会继续向下执行的</p>
+<p>结论：</p>
+<p>外循环执行一次，内循环执行一圈</p>
+<hr>
+<h1 id="5、Random类"><a href="#5、Random类" class="headerlink" title="5、Random类"></a>5、Random类</h1><p><strong>Random产生随机数</strong></p>
+<p>概述：</p>
+<p>Random类似Scanner，也是Java提供好的API，内部提供了产生随机数的功能</p>
+<p>使用步骤：</p>
+<ol>
+<li><p>导入包</p>
+<p>import java.util.Random;</p>
+</li>
+<li><p>创建对象</p>
+<p>Random r &#x3D; new Random();</p>
+</li>
+<li><p>产生随机数</p>
+<p>int num &#x3D; r.nextInt(10);</p>
+</li>
+</ol>
+<p>解释： 10代表的是一个范围，如果括号写10，产生的随机数就是0-9，括号写20，参数的随机数则是0-19</p>
+<p>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RandomDemo</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">//创建对象</span></span><br><span class="line">		<span class="type">Random</span> <span class="variable">r</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span>();</span><br><span class="line">		<span class="comment">//用循环获取10个随机数</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++) &#123;</span><br><span class="line">			<span class="comment">//获取随机数</span></span><br><span class="line">			<span class="type">int</span> <span class="variable">number</span> <span class="operator">=</span> r.nextInt(<span class="number">10</span>);</span><br><span class="line">			System.out.println(<span class="string">&quot;number:&quot;</span> + number);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//需求：获取一个1-100之间的随机数</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> r.nextInt(<span class="number">100</span>) + <span class="number">1</span>;</span><br><span class="line">		System.out.println(x);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> <strong>Random练习-猜数字（应用）</strong></p>
+<ul>
+<li><p>需求：</p>
+<p>程序自动生成一个1-100之间的数字，使用程序实现猜出这个数字是多少？</p>
+<p>当猜错的时候根据不同情况给出相应的提示</p>
+<p>A. 如果猜的数字比真实数字大，提示你猜的数据大了</p>
+<p>B. 如果猜的数字比真实数字小，提示你猜的数据小了</p>
+<p>C. 如果猜的数字与真实数字相等，提示恭喜你猜中了</p>
+</li>
+<li><p>示例代码：</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RandomTest</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		<span class="comment">//要完成猜数字的游戏，首先需要有一个要猜的数字，使用随机数生成该数字，范围1到100</span></span><br><span class="line">		<span class="type">Random</span> <span class="variable">r</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span>();</span><br><span class="line">		<span class="type">int</span> <span class="variable">number</span> <span class="operator">=</span> r.nextInt(<span class="number">100</span>) + <span class="number">1</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">			<span class="comment">//使用程序实现猜数字，每次均要输入猜测的数字值，需要使用键盘录入实现</span></span><br><span class="line">			<span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">			</span><br><span class="line">			System.out.println(<span class="string">&quot;请输入你要猜的数字：&quot;</span>);</span><br><span class="line">			<span class="type">int</span> <span class="variable">guessNumber</span> <span class="operator">=</span> sc.nextInt();</span><br><span class="line">			</span><br><span class="line">			<span class="comment">//比较输入的数字和系统产生的数据，需要使用分支语句。</span></span><br><span class="line">             <span class="comment">//这里使用if..else..if..格式，根据不同情况进行猜测结果显示</span></span><br><span class="line">			<span class="keyword">if</span>(guessNumber &gt; number) &#123;</span><br><span class="line">				System.out.println(<span class="string">&quot;你猜的数字&quot;</span> + guessNumber + <span class="string">&quot;大了&quot;</span>);</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span>(guessNumber &lt; number) &#123;</span><br><span class="line">				System.out.println(<span class="string">&quot;你猜的数字&quot;</span> + guessNumber + <span class="string">&quot;小了&quot;</span>);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				System.out.println(<span class="string">&quot;恭喜你猜中了&quot;</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/03/18/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%EF%BC%88%E4%B8%89%EF%BC%89/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B5%81%E7%A8%8B/" rel="tag">流程</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2022/03/18/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E6%95%B0%E7%BB%84%EF%BC%88%E5%9B%9B%EF%BC%89/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            数组
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2022/03/18/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%EF%BC%88%E4%BA%8C%EF%BC%89/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Java基础语法</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "keN4GS5JeQfwvylr07oj8w0n-gzGzoHsz",
+    app_key: "1C2GpGDbNeIOoqy8MLqxpNUu",
+    path: window.location.pathname,
+    avatar: "retro",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+    
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2022
+        <i class="ri-heart-fill heart_icon"></i> 会思想的苇草i
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/favicon.ico" alt="会思想的苇草i"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>感谢打赏哈哈嗝~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+ 
+<script src="/js/clickLove.js"></script>
+ 
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="前端 算法 技术" />
+       
+      <meta name="description" content="一个有趣且实用的博客网站，涉及前端，算法，数据结构，操作系统等计算机相关知识。" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>数组 |  会思想的苇草i</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-Java程序设计-数组（四）"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  数组
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/03/18/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E6%95%B0%E7%BB%84%EF%BC%88%E5%9B%9B%EF%BC%89/" class="article-date">
+  <time datetime="2022-03-18T15:10:42.000Z" itemprop="datePublished">2022-03-18</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.8k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">11 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>@<a href="">TOC</a></p>
+<hr>
+<h1 id="1、数组的定义"><a href="#1、数组的定义" class="headerlink" title="1、数组的定义"></a>1、数组的定义</h1><h2 id="1-1-什么是数组"><a href="#1-1-什么是数组" class="headerlink" title="1.1 什么是数组"></a>1.1 什么是数组</h2><p>数组就是用来存储一批&#x3D;&#x3D;同种类型数据&#x3D;&#x3D;的&#x3D;&#x3D;内存区域&#x3D;&#x3D;(可以理解成容器)。</p>
+<p><img src="https://img-blog.csdnimg.cn/fa05e359adbc46bcb24aedfcbe6d25c4.png#pic_center"></p>
+<h2 id="1-2-数组定义格式"><a href="#1-2-数组定义格式" class="headerlink" title="1.2 数组定义格式"></a>1.2 数组定义格式</h2><p><strong>第一种</strong></p>
+<p>​	&#x3D;&#x3D;数据类型[]  数组名&#x3D;&#x3D;</p>
+<p>​	示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] arr;        </span><br><span class="line"><span class="type">double</span>[] arr;      </span><br><span class="line"><span class="type">char</span>[] arr;</span><br></pre></td></tr></table></figure>
+
+<p><strong>第二种</strong></p>
+<p>​	&#x3D;&#x3D;数据类型 数组名[]&#x3D;&#x3D;</p>
+<p>​	示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> arr[];</span><br><span class="line"><span class="type">double</span> arr[];</span><br><span class="line"><span class="type">char</span> arr[];</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-3-静态化初始化数组"><a href="#1-3-静态化初始化数组" class="headerlink" title="1.3 静态化初始化数组"></a>1.3 静态化初始化数组</h2><p>定义数组的时候直接给数组赋值</p>
+<p>静态初始化格式</p>
+<ul>
+<li><p>完整版格式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数据类型[] 数组名 = <span class="keyword">new</span> 数据类型[] &#123;元素<span class="number">1</span>,元素<span class="number">2</span>,...&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>简化版格式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数据类型[] 数组名 = &#123;元素<span class="number">1</span>,元素<span class="number">2</span>,...&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ArrayDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//定义数组</span></span><br><span class="line">        <span class="type">int</span>[] arr = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//输出数组名</span></span><br><span class="line">        System.out.println(arr);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//输出数组中的元素</span></span><br><span class="line">        System.out.println(arr[<span class="number">0</span>]);</span><br><span class="line">        System.out.println(arr[<span class="number">1</span>]);</span><br><span class="line">        System.out.println(arr[<span class="number">2</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/fff229f8783940599648a277314edf45.png#pic_center"><br>&#x3D;&#x3D;数组变量名中存储的是数组在内存中的地址，数组是引用类型。&#x3D;&#x3D;</p>
+<p><strong>数组元素访问</strong></p>
+<ul>
+<li>每一个存储到数组的元素，都会自动的拥有一个编号，从0开始。</li>
+<li>​	这个自动编号称为数组索引(index)，可以通过数组的索引访问到数组中的元素。</li>
+<li>数组的最大索引可以表示为：数组名.length - 1（前提是元素个数大于0）</li>
+</ul>
+<p><strong>访问数组元素格式</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数组名[索引];</span><br></pre></td></tr></table></figure>
+
+
+<p>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ArrayDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[] arr = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">//输出数组名</span></span><br><span class="line">        System.out.println(arr); <span class="comment">//[I@880ec60</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//输出数组中的元素</span></span><br><span class="line">        System.out.println(arr[<span class="number">0</span>]);</span><br><span class="line">        System.out.println(arr[<span class="number">1</span>]);</span><br><span class="line">        System.out.println(arr[<span class="number">2</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>数组的几个注意事项：</strong></p>
+<ul>
+<li>&#x3D;&#x3D;“数据类型[] 数组名”也可以写成“数据类型 数组名[]”&#x3D;&#x3D;。</li>
+<li>&#x3D;&#x3D;什么类型的数组存放什么类型的数据，否则报错&#x3D;&#x3D;。</li>
+<li>&#x3D;&#x3D;数组一旦定义出来，程序执行的过程中，长度、类型就固定了&#x3D;&#x3D; 。</li>
+</ul>
+<h2 id="1-4-数组动态初始化"><a href="#1-4-数组动态初始化" class="headerlink" title="1.4 数组动态初始化"></a>1.4 数组动态初始化</h2><p>定义数组的时候只确定元素的类型和数组的长度，之后再存入具体数据。</p>
+<p><strong>动态初始化格式</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数据类型[] 数组名 = <span class="keyword">new</span> 数据类型[数组长度];</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] arr = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">3</span>];</span><br></pre></td></tr></table></figure>
+
+<p><strong>动态初始化数组的元素默认值</strong></p>
+<p>元素默认值</p>
+<table>
+<thead>
+<tr>
+<th align="center">数据类型</th>
+<th align="center">明细</th>
+<th align="center">默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">基本类型</td>
+<td align="center">byte、short、char、int、long</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">基本类型</td>
+<td align="center">floa、double</td>
+<td align="center">0.0</td>
+</tr>
+<tr>
+<td align="center">基本类型</td>
+<td align="center">boolean</td>
+<td align="center">false</td>
+</tr>
+<tr>
+<td align="center">引用类型</td>
+<td align="center">类、接口、数组、String</td>
+<td align="center">null</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="2、数组的遍历"><a href="#2、数组的遍历" class="headerlink" title="2、数组的遍历"></a>2、数组的遍历</h1><p>遍历就是一个一个数据的访问。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ArrayDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 目标：学会进行数组元素的遍历</span></span><br><span class="line">        <span class="type">int</span>[] arr = &#123;<span class="number">12</span>, <span class="number">24</span>, <span class="number">12</span>, <span class="number">48</span>, <span class="number">98</span>&#125;;</span><br><span class="line">        <span class="comment">//           0    1   2   3   4</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 原始遍历方式</span></span><br><span class="line"><span class="comment">//        System.out.println(arr[0]);</span></span><br><span class="line"><span class="comment">//        System.out.println(arr[1]);</span></span><br><span class="line"><span class="comment">//        System.out.println(arr[2]);</span></span><br><span class="line"><span class="comment">//        System.out.println(arr[3]);</span></span><br><span class="line"><span class="comment">//        System.out.println(arr[4]);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//        for (int i = 0; i &lt; 5; i++) &#123;</span></span><br><span class="line"><span class="comment">//            System.out.println(arr[i]);</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 终极数组遍历形式</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">            System.out.println(arr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="3、数组的案例"><a href="#3、数组的案例" class="headerlink" title="3、数组的案例"></a>3、数组的案例</h1><p><strong>数组元素求和</strong></p>
+<p>需求:某部门5名员工的销售额分别是: 16、26、36、6、100，请计算出他们部门的总销售额。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test1</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 需求：数组元素求和</span></span><br><span class="line">        <span class="comment">// 1、把这些数据拿到程序中使用数组记住</span></span><br><span class="line">        <span class="type">int</span>[] money = &#123;<span class="number">16</span>, <span class="number">32</span>, <span class="number">8</span>, <span class="number">100</span>, <span class="number">78</span>&#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3、定义一个求和变量累加数组的元素值</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2、遍历数组中的每个元素</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; money.length; i++) &#123;</span><br><span class="line">            <span class="comment">// 拿到每个元素值累加</span></span><br><span class="line">            sum += money[i];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 4、输出求和变量即可</span></span><br><span class="line">        System.out.println(<span class="string">&quot;数组的元素和是：&quot;</span> + sum);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>数组求最值</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/86aacfad9165439695a5adb55462461a.png#pic_center"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test2</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 需求：数组元素求最值。</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1、定义一个静态初始化的数组，存储一批颜值。</span></span><br><span class="line">        <span class="type">int</span>[] faceScore = &#123;<span class="number">15</span>, <span class="number">9000</span>, <span class="number">10000</span>, <span class="number">20000</span>, <span class="number">9500</span>, -<span class="number">5</span>&#125;;</span><br><span class="line">        <span class="comment">//                 0    1      2     3      4    5</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2、定义一个变量用于存储最大值元素，建议使用第一个元素作为参照。</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">max</span> <span class="operator">=</span> faceScore[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3、遍历数组的每个元素，依次与最大值变量的数据比较，若较大，则替换。</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; faceScore.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(faceScore[i] &gt; max)&#123;</span><br><span class="line">                max = faceScore[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 4、输出最大值变量存储的数据即可。</span></span><br><span class="line">        System.out.println(<span class="string">&quot;数组的最大值是：&quot;</span> + max);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>猜数字游戏</strong></p>
+<p>开发一个幸运小游戏，游戏规则如下:<br>游戏后台随机生成1-20之间的5个数（无所谓是否重复)，然后让大家来猜数字:</p>
+<ul>
+<li>未猜中提示:“未命中”，并继续猜测</li>
+<li>猜中提示:“运气不错，猜中了”，并输出该数据第一次出现的位置，且输出全部5个数据，</li>
+</ul>
+<p>最终结束本游戏。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test3</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 需求：5个 1-20之间的随机数，让用户猜测，猜中要提示猜中，还要输出该数据在数组中第一次出现的索引，并打印数组的内容出来。</span></span><br><span class="line">        <span class="comment">// 没有猜中继续。</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1、定义一个动态初始化的数组存储5个随机的1-20之间的数据</span></span><br><span class="line">        <span class="type">int</span>[] data = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2、动态的生成5个1-20之间的随机数并存入到数组中去。</span></span><br><span class="line">        <span class="type">Random</span> <span class="variable">r</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; data.length; i++) &#123;</span><br><span class="line">            <span class="comment">// i = 0 1 2 3 4</span></span><br><span class="line">            data[i] = r.nextInt(<span class="number">20</span>) + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3、使用一个死循环让用户进行猜测</span></span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        OUT:</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;请您输入一个1-20之间的整数进行猜测：&quot;</span>);</span><br><span class="line">            <span class="type">int</span> <span class="variable">guessData</span> <span class="operator">=</span> sc.nextInt();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 4、遍历数组中的每个数据，看是否有数据与猜测的数据相同，相同代表猜中了，给出提示</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; data.length; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span>(data[i] == guessData)&#123;</span><br><span class="line">                    System.out.println(<span class="string">&quot;您已经猜中了该数据，运气不错了！您猜中的数据索引是：&quot;</span> + i);</span><br><span class="line">                    <span class="keyword">break</span> OUT; <span class="comment">// 结束了整个死循环，代表游戏结束了！</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">&quot;当前猜测的数据在数组中不存在，请重新猜测！&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 5、输出数组的全部元素，让用户看到自己确实是猜中了某个数据。</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; data.length; i++) &#123;</span><br><span class="line">            System.out.print(data[i] + <span class="string">&quot;\t&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>随机排名</strong></p>
+<p>某公司开发部5名开发人员，要进行项目进展汇报演讲，现在采取随机排名后进行汇报。请先依次录入5名员工的工号，然后展示出一组随机的排名顺序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test4</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 目标：键盘录入一组工号，最终要随机输出一组出来作为排名</span></span><br><span class="line">        <span class="comment">// 1、动态初始化一个数组，存储5个工号</span></span><br><span class="line">        <span class="type">int</span>[] codes = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2、定义一个循环，循环5次，依次录入一个工号存入对应的位置</span></span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; codes.length; i++) &#123;</span><br><span class="line">            <span class="comment">// 正式录入工号</span></span><br><span class="line">            System.out.println(<span class="string">&quot;请您输入第&quot;</span> + (i + <span class="number">1</span>) + <span class="string">&quot;个员工的工号：&quot;</span>);</span><br><span class="line">            <span class="type">int</span> <span class="variable">code</span> <span class="operator">=</span> sc.nextInt();</span><br><span class="line">            <span class="comment">// 存入到数组中去</span></span><br><span class="line">            codes[i] = code;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3、遍历数组中的每个元素，然后随机一个索引出来，让该元素与随机索引位置处的元素值进行交换（本节的重点）</span></span><br><span class="line">        <span class="comment">// codes = [12, 36, 28, 45, 99]</span></span><br><span class="line">        <span class="type">Random</span> <span class="variable">r</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; codes.length; i++) &#123;</span><br><span class="line">            <span class="comment">// 当前遍历的元素值：codes[i]</span></span><br><span class="line">            <span class="comment">// 随机一个索引位置出来：codes[index]</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> r.nextInt(codes.length);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 定义一个临时变量存储index位置处的值</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> codes[index];</span><br><span class="line">            codes[index] = codes[i];</span><br><span class="line">            codes[i] = temp;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 4、遍历数组元素输出就是随机排名的结果</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; codes.length; i++) &#123;</span><br><span class="line">            System.out.print(codes[i] + <span class="string">&quot;\t&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>数组排序</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test5</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 1、定义一个数组，存储一些数据啊</span></span><br><span class="line">        <span class="type">int</span>[] arr = &#123;<span class="number">5</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>&#125;;</span><br><span class="line">        <span class="comment">//           0  1  2  3</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2、定义一个循环控制比较的轮数</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; arr.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="comment">// i == 0  比较的次数 3  j = 0 1 2</span></span><br><span class="line">            <span class="comment">// i == 1  比较的次数 2  j = 0 1</span></span><br><span class="line">            <span class="comment">// i == 2  比较的次数 1  j = 0</span></span><br><span class="line">            <span class="comment">// 3、定义一个循环控制每轮比较的次数，占位</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; arr.length - i - <span class="number">1</span>; j++) &#123;</span><br><span class="line">                <span class="comment">// 判断j当前位置的元素值 是否 大于后一个位置 若较大 则交换</span></span><br><span class="line">                <span class="keyword">if</span>(arr[j] &gt; arr[j+<span class="number">1</span>]) &#123;</span><br><span class="line">                    <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> arr[j+<span class="number">1</span>];</span><br><span class="line">                    arr[j+<span class="number">1</span>] = arr[j];</span><br><span class="line">                    arr[j] = temp;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 遍历数组内容输出</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">            System.out.print(arr[i] + <span class="string">&quot;\t&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="4、数组的内存图"><a href="#4、数组的内存图" class="headerlink" title="4、数组的内存图"></a>4、数组的内存图</h1><h2 id="4-1-内存概述"><a href="#4-1-内存概述" class="headerlink" title="4.1 内存概述"></a>4.1 内存概述</h2><p>​	内存是计算机中的重要原件，临时存储区域，作用是运行程序。</p>
+<p>​	我们编写的程序是存放在硬盘中的，在硬盘中的程序是不会运行的。</p>
+<p>​	必须放进内存中才能运行，运行完毕后会清空内存。 </p>
+<p>​	Java虚拟机要运行程序，必须要对内存进行空间的分配和管理。 </p>
+<h2 id="4-2-java中的内存分配"><a href="#4-2-java中的内存分配" class="headerlink" title="4.2 java中的内存分配"></a>4.2 java中的内存分配</h2><ul>
+<li>目前我们只需要记住两个内存，分别是：<strong>栈内存</strong>和<strong>堆内存</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>区域名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>寄存器</td>
+<td>给CPU使用，和我们开发无关。</td>
+</tr>
+<tr>
+<td>本地方法栈</td>
+<td>JVM在使用操作系统功能的时候使用，和我们开发无关。</td>
+</tr>
+<tr>
+<td>方法区</td>
+<td>存储可以运行的class文件。</td>
+</tr>
+<tr>
+<td>堆内存</td>
+<td>存储对象或者数组，new来创建的，都存储在堆内存。</td>
+</tr>
+<tr>
+<td>方法栈</td>
+<td>方法运行时使用的内存，比如main方法运行，进入方法栈中执行。</td>
+</tr>
+</tbody></table>
+<p><strong>java内存分配、数组内存图</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/b7d79fc8f1e543f4a6c524bfcf954005.png#pic_center"><br><img src="https://img-blog.csdnimg.cn/ed006f91efc542e1ba6a80d8bae8fdc7.png#pic_center"></p>
+<p><strong>两个数组变量指向同一个数组对象</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/abc4b2a649de480a8d75308eb84d7e21.png#pic_center"></p>
+<hr>
+<h1 id="5、数组使用的常见问题"><a href="#5、数组使用的常见问题" class="headerlink" title="5、数组使用的常见问题"></a>5、数组使用的常见问题</h1><h2 id="5-1-索引越界异常"><a href="#5-1-索引越界异常" class="headerlink" title="5.1 索引越界异常"></a>5.1 索引越界异常</h2><p>出现原因</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ArrayDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[] arr = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">3</span>];</span><br><span class="line">        System.out.println(arr[<span class="number">3</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>  数组长度为3，索引范围是0~2，但是我们却访问了一个3的索引。</p>
+<p>  程序运行后，将会抛出ArrayIndexOutOfBoundsException 数组越界异常。在开发中，数组的越界异常是不能出现的，一旦出现了，就必须要修改我们编写的代码。 </p>
+<ul>
+<li><p>解决方案</p>
+<p>将错误的索引修改为正确的索引范围即可！</p>
+</li>
+</ul>
+<h2 id="5-2-空指针异常"><a href="#5-2-空指针异常" class="headerlink" title="5.2 空指针异常"></a>5.2 空指针异常</h2><p>出现原因</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ArrayDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[] arr = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">//把null赋值给数组</span></span><br><span class="line">        arr = <span class="literal">null</span>;</span><br><span class="line">        System.out.println(arr[<span class="number">0</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>  arr &#x3D; null 这行代码，意味着变量arr将不会再保存数组的内存地址，也就不允许再操作数组了，因此运行的时候会抛出 NullPointerException 空指针异常。在开发中，数组的越界异常是不能出现的，一旦出现了，就必须要修改我们编写的代码。</p>
+<ul>
+<li><p>解决方案</p>
+<p>给数组一个真正的堆内存空间引用即可！</p>
+</li>
+</ul>
+<hr>
+<h1 id="6、Debug工具的使用"><a href="#6、Debug工具的使用" class="headerlink" title="6、Debug工具的使用"></a>6、Debug工具的使用</h1><p>Debug工具</p>
+<p>IDEA自带的断点调试(排错)工具，可以控制代码从断点开始一行一行的执行，然后详细观看程序执行的情况。<br><img src="https://img-blog.csdnimg.cn/660420143cf142279edf56b474f19d06.png#pic_center"></p>
+<hr>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/03/18/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E6%95%B0%E7%BB%84%EF%BC%88%E5%9B%9B%EF%BC%89/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E7%BB%84/" rel="tag">数组</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2022/03/19/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E6%96%B9%E6%B3%95%EF%BC%88%E4%BA%94%EF%BC%89/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            方法
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2022/03/18/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%EF%BC%88%E4%B8%89%EF%BC%89/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">程序流程控制</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "keN4GS5JeQfwvylr07oj8w0n-gzGzoHsz",
+    app_key: "1C2GpGDbNeIOoqy8MLqxpNUu",
+    path: window.location.pathname,
+    avatar: "retro",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+    
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2022
+        <i class="ri-heart-fill heart_icon"></i> 会思想的苇草i
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/favicon.ico" alt="会思想的苇草i"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>感谢打赏哈哈嗝~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+ 
+<script src="/js/clickLove.js"></script>
+ 
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>
