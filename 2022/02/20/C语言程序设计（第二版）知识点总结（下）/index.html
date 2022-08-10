@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="前端 算法 技术" />
+       
+      <meta name="description" content="一个有趣且实用的博客网站，涉及前端，算法，数据结构，操作系统等计算机相关知识。" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>C语言程序设计（第二版）知识点总结(下) |  会思想的苇草i</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-C语言程序设计（第二版）知识点总结（下）"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  C语言程序设计（第二版）知识点总结(下)
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/02/20/C%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%8B%EF%BC%89/" class="article-date">
+  <time datetime="2022-02-20T14:19:54.000Z" itemprop="datePublished">2022-02-20</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C/">C</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">3.2k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">13 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <hr>
+<h1 id="八、结构"><a href="#八、结构" class="headerlink" title="八、结构"></a>八、结构</h1><p>结构属于派生类型，是用其他数据类型的对象构建的。关键字struct用来引出一个结构类型定义，结构标识符用来对这个结构类型命名。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> 结构标识符</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	数据类型 成员<span class="number">1</span>的名字;</span><br><span class="line">	数据类型 成员<span class="number">2</span>的名字;</span><br><span class="line">	...</span><br><span class="line">	数据类型 成员<span class="number">3</span>的名字;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>在此，只是声明了一种数据类型，定义了数据组织形式，并未声明结构类型的变量，不会分配内存。定义结构变量方式如下：</p>
+<ol>
+<li>先声明结构类型，再定义结构变量。</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">student</span> <span class="title">stu</span>;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>声明结构的同时定义结构变量。</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">student</span>&#123;</span></span><br><span class="line">	<span class="type">char</span> ID[<span class="number">16</span>];</span><br><span class="line">	<span class="type">char</span> name[<span class="number">16</span>];</span><br><span class="line">	<span class="type">char</span> sex;</span><br><span class="line">	<span class="type">float</span> score;</span><br><span class="line">&#125;stu;</span><br></pre></td></tr></table></figure>
+<p>结构变量的初始化：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">student</span> <span class="title">stu</span> =</span> &#123;<span class="string">&quot;202222&quot;</span>,<span class="string">&quot;杰哥&quot;</span>,‘M’，<span class="number">69</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span><span class="comment">//结构是一个名字下一组相关变量的集合</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">date</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> year;</span><br><span class="line">    <span class="type">int</span> mouth;</span><br><span class="line">    <span class="type">int</span> day;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">student</span>//为已有变量起别名</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">char</span> ID[<span class="number">16</span>];</span><br><span class="line">    <span class="type">char</span> name[<span class="number">16</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">date</span> <span class="title">birthday</span>;</span><span class="comment">//将一个结构而作为另一个结构的成员</span></span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;STUDENT;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    STUDENT stu = &#123;<span class="string">&quot;2020260104&quot;</span>,<span class="string">&quot;zhangwei&quot;</span>,<span class="string">&#x27;M&#x27;</span>,&#123;<span class="number">2001</span>,<span class="number">9</span>,<span class="number">29</span>&#125;,<span class="number">98</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;学号:%s\n&quot;</span>,stu.ID);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;姓名:%s\n&quot;</span>,stu.name);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;性别:%c\n&quot;</span>,stu.sex);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;生日:%d年%d月%d日\n&quot;</span>,stu.birthday.year,stu.birthday.mouth,stu.birthday.day);<span class="comment">//成员选择运算符</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;成绩:%4.1f\n&quot;</span>,stu.score);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="结构数组与指针"><a href="#结构数组与指针" class="headerlink" title="结构数组与指针"></a>结构数组与指针</h3><p>结构指针的声明方式与其他类型的指针变量相同。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">student</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="type">char</span> ID[<span class="number">16</span>];</span><br><span class="line">	<span class="type">char</span> name[<span class="number">16</span>];</span><br><span class="line">	<span class="type">char</span> sex;</span><br><span class="line">	<span class="type">float</span> score; </span><br><span class="line">&#125;STUDENT;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	STUDENT stu = &#123;<span class="string">&quot;202222&quot;</span>,<span class="string">&quot;杰哥&quot;</span>,<span class="string">&#x27;M&#x27;</span>,<span class="number">69</span>&#125;;</span><br><span class="line">	STUDENT *p;<span class="comment">//定义结构指针</span></span><br><span class="line">	</span><br><span class="line">	p = &amp;stu;<span class="comment">//结构指针初始化</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n%s %s %c %.lf&quot;</span>,stu.ID,stu.name,stu.sex,stu.score); </span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n%s %s %c %.lf&quot;</span>,(*p).ID,(*p).name,(*p).sex,(*p).score); </span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n%s %s %c %.lf&quot;</span>,p-&gt;ID,p-&gt;name,p-&gt;sex,p-&gt;score);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="联合与枚举"><a href="#联合与枚举" class="headerlink" title="联合与枚举"></a>联合与枚举</h3><p>C语言中允许多个不同变量共享同一内存区的功能称为联合（union）。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span><span class="comment">//起作用的成员是最后一次被赋值的成员</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">share</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> a;</span><br><span class="line">    <span class="type">float</span> b;</span><br><span class="line">    <span class="type">double</span> c;</span><br><span class="line">&#125;u;<span class="comment">//按变量最长的类型为联合变量分配存储空间，所以为u分配8个字节</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    u.a = <span class="number">10</span>;</span><br><span class="line">    u.b = <span class="number">100.5f</span>;</span><br><span class="line">    u.c = <span class="number">10000.1</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a=%d,b=%f,c=%lf\n&quot;</span>,u.a,u.b,u.c);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;u size=%d,a size=%d,b size=%d,c size=%d\n&quot;</span>,</span><br><span class="line">    <span class="keyword">sizeof</span>(u),<span class="keyword">sizeof</span>(u.a),<span class="keyword">sizeof</span>(u.b),<span class="keyword">sizeof</span>(u.c));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>枚举类型（enumerated type）是一种代表整数常量的数据类型。通过关键字enum，可以创建一个新“类型”并指定它的值。枚举类型的语法与结构体的语法相类似。设计枚举类型的目的在于提高程序的可读性。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;time.h&gt;</span><span class="comment">//时间函数头文件</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">weekday</span> &#123;</span>Sun,Mon,Tue,Wed,Thu,Fri,Sat&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">time_t</span> rawtime;<span class="comment">//定义代表时间的变量；</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">tm</span>*<span class="title">timeinfo</span>;</span><span class="comment">//定义一个指向tm结构变量的指针；</span></span><br><span class="line">    <span class="class"><span class="keyword">enum</span> <span class="title">weekday</span> <span class="title">wday</span>;</span><span class="comment">//定义一个枚举变量</span></span><br><span class="line"></span><br><span class="line">    rawtime = time(<span class="literal">NULL</span>);<span class="comment">//获取当前的日历时间；（返回从1970年1月1日0点到现在的秒数）</span></span><br><span class="line">    timeinfo = localtime(&amp;rawtime);<span class="comment">//把日历时间值转化为日期类型</span></span><br><span class="line">    wday = (<span class="keyword">enum</span> weekday)timeinfo-&gt;tm_wday;<span class="comment">//获取星期域的值</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">switch</span> (wday)</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="keyword">case</span> Mon:<span class="built_in">printf</span>(<span class="string">&quot;学习编程!\n&quot;</span>);<span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> Wed:<span class="built_in">printf</span>(<span class="string">&quot;继续学习编程!\n&quot;</span>);<span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> Thu:<span class="built_in">printf</span>(<span class="string">&quot;还是学习编程!\n&quot;</span>);<span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> Sat:<span class="built_in">printf</span>(<span class="string">&quot;看编程视频!\n&quot;</span>);<span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:<span class="built_in">printf</span>(<span class="string">&quot;刷编程题\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="单链表"><a href="#单链表" class="headerlink" title="单链表"></a>单链表</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ASHIYI66/article/details/113467748">单链表</a>  <a target="_blank" rel="noopener" href="https://blog.csdn.net/ASHIYI66/article/details/113467748">https://blog.csdn.net/ASHIYI66/article/details/113467748</a></p>
+<h1 id="九、文件"><a href="#九、文件" class="headerlink" title="九、文件"></a>九、文件</h1><h3 id="文件指针"><a href="#文件指针" class="headerlink" title="文件指针"></a>文件指针</h3><p>每一个被使用的文件都要在内存中开辟一个区域，用来存放有关信息，包括文件名称、文件状态和文件当前位置。这些信息被保存在一个结构变量中，该结构类型被系统定义为FILE，放在头文件“stdio.h”文件中。有了FILE类型后，可以用它来定义若干个FILE类型的变量，以便存放若干个文件的信息，一般使用文件型指针变量。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FILE *fp;</span><br></pre></td></tr></table></figure>
+<p>定义一个文件指针fp，指向该文件对应的结构变量，即可通过文件指针访问该文件。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fp = fopen(<span class="string">&quot;f1.txt&quot;</span>,<span class="string">&quot;w&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="文件的打开和关闭"><a href="#文件的打开和关闭" class="headerlink" title="文件的打开和关闭"></a>文件的打开和关闭</h3><p>ANSI C规定了标准&#x2F;输出函数库，用fopen函数来实现打开文件。fopen函数的原型定义在头文件stdio.h中。一般形式为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FILE *fp; fp=fopen(filename,mode);</span><br></pre></td></tr></table></figure>
+<p>fopen函数有两个参数：<br>filename：一个指向字符的指针<br>mode：系统规定的字符串，表示文件的操作属性<br>mode字符串对应的操作模式：<br><img src="https://img-blog.csdnimg.cn/c4cf9c14cb124f7a9d019b7867befb0b.png"><br>三个基本模式：<br>“r”(read)模式总是打开一个已经存在的文件，如果文件不存在则出错。<br>“w”(write)模式建立一个新文件，如果文件已经存在，那么先删除存在的文件，再建立新文件。<br>“a”(append)打开一个存在的文件，在文件的尾部追加数据。</p>
+<hr>
+<p>三个追加符：<br>“b”(binary)表示二进制文件。<br>“t”(或默认)表示文本文件。<br>“+”表示将模式扩展为可读、可写方式。</p>
+<hr>
+<p>文件打开的目的是为了读&#x2F;写，当文件使用完毕后，应当关闭文件。C语言定义了关闭文件的标准函数fclose。函数原型定义在头文件stdio.h中，其一般形式为:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fclose(文件指针);</span><br></pre></td></tr></table></figure>
+<p>正常关闭文件，返回值为0；无法正常关闭文件，返回值为EOF（-1）。</p>
+<h3 id="文件读-x2F-写操作"><a href="#文件读-x2F-写操作" class="headerlink" title="文件读&#x2F;写操作"></a>文件读&#x2F;写操作</h3><p>字符读&#x2F;写函数fgetc()和fputc()</p>
+<hr>
+<p>字符输出函数fputc()<br>用法:<strong>fputc(ch,fp)</strong>;<br>ch:输出的字符；fp:文件指针变量<br>功能:把一个字符写到磁盘文件上，同时移动读写位置指针到下一个写入位置。如果调用函数成功，则返回ch的值；如果失败，则返回值EOF(系统定义的宏，值为-1);</p>
+<hr>
+<p>字符输入函数fgetc()<br>用法:<strong>ch&#x3D;fgetc(fp)</strong>;<br>fp:文件指针变量<br>功能:从磁盘文件读取一个字符。如果调用成功，则返回读到的字符(赋值给ch);如果读到文件结束，则返回EOF(-1)。</p>
+<hr>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*字符读/写操作*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	FILE *fp;</span><br><span class="line">	<span class="type">char</span> ch;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>((fp=fopen(<span class="string">&quot;f2.txt&quot;</span>,<span class="string">&quot;w&quot;</span>))==<span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;can not open this file\n&quot;</span>);</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(;(ch=getchar())!=<span class="string">&#x27;@&#x27;</span>;)</span><br><span class="line">		fputc(ch,fp);</span><br><span class="line">	</span><br><span class="line">	fclose(fp);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>((fp=fopen(<span class="string">&quot;f1.txt&quot;</span>,<span class="string">&quot;r&quot;</span>))==<span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;can not open this file\n&quot;</span>);</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(;(ch=fgetc(fp))!=EOF;)</span><br><span class="line">		<span class="built_in">putchar</span>(ch);</span><br><span class="line">		</span><br><span class="line">	fclose(fp);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"> &#125; </span><br></pre></td></tr></table></figure>
+<p>字符串读&#x2F;写函数fegts()和fputs()</p>
+<hr>
+<p>字符串输入函数fgets()<br>用法:<strong>fgets(str,n,fp);</strong><br>str:字符指针或数组名;n:整型量，说明输入字符串的最大长度(包括‘\0’);fp:文件指针<br>功能:从文本文件中读取字符，从fp对应文件的当前位置，最多输入n-1个字符，在最后加‘\0’，之后放在str为首地址的内存中。<br>注意:在输入过程中，如果遇到换行符或EOF，输入即结束。函数正常调用，返回str的首地址，当出错或遇到文件结束标志时，返回NULL。</p>
+<hr>
+<p>字符串输出函数fputs()<br>用法:<strong>fputs(str,fp);</strong><br>str:函数参数str是字符指针或数组名;fp:文件指针<br>功能:向指定的文本文件写入一个字符串，将首地址是str的字符串输出到fp对应文件的当前位置，自动丢弃str后的‘\0’。函数调用成功后返回值是0，否则是EOF。</p>
+<hr>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	FILE *fp;</span><br><span class="line">	<span class="type">char</span> <span class="built_in">string</span>[<span class="number">81</span>];</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>((fp=fopen(<span class="string">&quot;f2.txt&quot;</span>,<span class="string">&quot;w&quot;</span>))==<span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;can not open this file\n&quot;</span>);</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Input a string:&quot;</span>);</span><br><span class="line">	gets(<span class="built_in">string</span>);</span><br><span class="line">	<span class="built_in">fputs</span>(<span class="built_in">string</span>,fp);</span><br><span class="line">	fclose(fp);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>((fp=fopen(<span class="string">&quot;f2.txt&quot;</span>,<span class="string">&quot;r&quot;</span>))==<span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;can not open this file\n&quot;</span>);</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	fgets(<span class="built_in">string</span>,<span class="built_in">strlen</span>(<span class="built_in">string</span>)+<span class="number">1</span>,fp);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Output the string:&quot;</span>);</span><br><span class="line">	<span class="built_in">puts</span>(<span class="built_in">string</span>);</span><br><span class="line">	fclose(fp);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"> &#125; </span><br></pre></td></tr></table></figure>
+<p>文件的格式化读&#x2F;写函数fscanf()和fprintf()</p>
+<hr>
+<p>格式化输入函数fscanf()<br>用法:<strong>fscanf(fp,format,&amp;arg1,&amp;arg2,…,&amp;argn);</strong><br>fp:文件指针;format:格式说明字符串;&amp;arg1…&amp;argn:输入变量的地址列表。<br>功能:从fp指向的文件的当前位置，顺序读取ASCII码值，按照fomat规定的格式转化为各个变量对应的值，送入指定变量。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">fscanf</span>(fp,<span class="string">&quot;%d%f&quot;</span>,&amp;n,&amp;x);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>格式化输出函数fprintf()<br>用法:<strong>fprintf(fp,format,arg1,arg2,…,argn);</strong><br>fp:文件指针;format:格式说明字符串;arg1…argn:输出参数个数表<br>功能:按指定的格式(format)将输出列表arg1…argn的值转换成对应的ASCII码表示形式，写入fp文件的当前位置。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">fprintf</span>(fp,<span class="string">&quot;%d%f&quot;</span>,n,x);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>文件的数据块读&#x2F;写函数fread()和fwrite()</p>
+<hr>
+<p>数据块输入函数fread()<br>用法:表示从文件中读入数据到内存缓冲区。形式为:fread(buf,size,count,fp);<br>buf:类型为void指针，表示内存中存放着数据到首地址，通常是数组名或数组指针。<br>size:无符号整型，表示一次读取的字节数。<br>count:无符号整型，表示读取的大小为size的块的次数。<br>fp:文件指针。<br>功能:从fp指向的文件的当前位置读区size个字节，共count次，读取的总字节数为size* count，存放到首地址为buf的内存中。读取成功则返回读取的项数count。</p>
+<hr>
+<p>数据块输出函数fwrite()<br>用法:表示从内存输出数据块到文件中。其一般形式为:<br>fwrite(buf,size,count,fp);<br>buf:类型为void指针，表示内存中存放着数据到首地址，通常是数组名或数组指针。<br>size:无符号整型，表示一次写入的字节数。<br>count:无符号整型，表示写入的大小为size的块的次数。<br>fp:文件指针。<br>功能:从fp指向的地址开始，分count次，每次size个字节，向fp指向的文件的当前位置写数据，共写入count*size个字节。写入成功则返回读取的项数count。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fwrite(stuArr,<span class="keyword">sizeof</span>(stuArr),<span class="number">1</span>,fp)</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="文件定位函数"><a href="#文件定位函数" class="headerlink" title="文件定位函数"></a>文件定位函数</h3><p>除了顺序读&#x2F;写，C语言还允许对文件进行随机读&#x2F;写，可以通过定位函数来改变读写指针的位置。</p>
+<ul>
+<li>位置指针定位函数fseek()<br>fseek函数用来改变文件指针的当前位置。其一般形式为:<br>fseek(fp，offset，from);<br>offset:位移量，类型为long型，表示以from为起点移动的量相对值（字节数）。如果是正数，表示向文件尾移动，如果负数，表示向文件头移动。<br>from:移动的起始位置。文件头、当前位置和文件尾部分别对应0、1、2，或常量SEEK_SET、SEEK_CUR、SEEK_END。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fseek(fp,<span class="number">20L</span>,<span class="number">0</span>);<span class="comment">//将文件位置指针移动到离文件首20字节处</span></span><br><span class="line">fseek(fp,<span class="number">-20L</span>,SEEK_END);<span class="comment">//将文件位置指针从文件尾向文件首移动20字节处</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>位置指针复位函数rewind()<br>用来置文件读&#x2F;写位置于开头处。一般形式为:<br>rewind(fp);<br>功能:将文件的当前位置移动到文件的开始处。</li>
+<li>返回文件当前位置函数ftell()<br>用来取文件当前位置。其一般形式为:<br>long n；<br>n&#x3D;ftell(fp);<br>功能:取得文件当前的读&#x2F;写位置。（即从文件开始处到当前读&#x2F;写位置的字节数(用长整型量表示)）。函数调用正确返回文件当前读&#x2F;写位置。调用错误就返回-1L。</li>
+</ul>
+<h3 id="文件检测"><a href="#文件检测" class="headerlink" title="文件检测"></a>文件检测</h3><ul>
+<li>文件结束检测函数feof()<br>用法:feof(fp);<br>fp:文件指针变量<br>功能:判断文件是否处于文件结束位置。如果文件结束，则返回1，否则返回0。它适用于文本文件而不适用于二进制文件。</li>
+<li>检测文件操作错误函数ferror()<br>用法：ferror(fp);<br>fp:文件指针变量<br>功能:检测文件在各种输入输出函数进行读写时是否错误，若返回值为0，表示未出错，否则表示有错。</li>
+<li>清除错误标志函数<br>用法：clearerr(fp);<br>fp:文件指针变量<br>功能:清除出错标志和文件结束标志，把它们置为0。</li>
+</ul>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/02/20/C%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%8B%EF%BC%89/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag">C语言</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2022/02/20/C%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%88%E7%AC%AC%E4%BA%8C%E7%89%88%EF%BC%89%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%AD%EF%BC%89/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            C语言程序设计（第二版）知识点总结(中)
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2022/02/20/C-STL-%E5%B8%B8%E7%94%A8%E5%AE%B9%E5%99%A8/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">C++ STL- 常用容器</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "keN4GS5JeQfwvylr07oj8w0n-gzGzoHsz",
+    app_key: "1C2GpGDbNeIOoqy8MLqxpNUu",
+    path: window.location.pathname,
+    avatar: "retro",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+    
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2022
+        <i class="ri-heart-fill heart_icon"></i> 会思想的苇草i
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/favicon.ico" alt="会思想的苇草i"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>感谢打赏哈哈嗝~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+ 
+<script src="/js/clickLove.js"></script>
+ 
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>

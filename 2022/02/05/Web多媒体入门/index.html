@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="前端 算法 技术" />
+       
+      <meta name="description" content="一个有趣且实用的博客网站，涉及前端，算法，数据结构，操作系统等计算机相关知识。" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>Web多媒体入门 |  会思想的苇草i</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-Web多媒体入门"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Web多媒体入门
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/02/05/Web%E5%A4%9A%E5%AA%92%E4%BD%93%E5%85%A5%E9%97%A8/" class="article-date">
+  <time datetime="2022-02-05T10:40:59.000Z" itemprop="datePublished">2022-02-05</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8%E9%9D%92%E8%AE%AD%E8%90%A5/">字节跳动青训营</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.4k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">5 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <hr>
+<h2 id="1、Web多媒体历史"><a href="#1、Web多媒体历史" class="headerlink" title="1、Web多媒体历史"></a>1、Web多媒体历史</h2><p><img src="https://img-blog.csdnimg.cn/f15abeb50dcd4d8eab44ece5cc8c0690.png"></p>
+<hr>
+<h2 id="2、基础知识"><a href="#2、基础知识" class="headerlink" title="2、基础知识"></a>2、基础知识</h2><h3 id="编码格式"><a href="#编码格式" class="headerlink" title="编码格式"></a>编码格式</h3><p><strong>图像基本概念</strong></p>
+<p>图像分辨率：用于确定组成一副图像的像素数据，就是指在水平和垂直方向上图像所具有的像素个数。如1920*1080（水平方向1920个像素、垂直方向1080个像素）</p>
+<p>图像深度︰图像深度是指存储每个像素所需要的比特数。图像深度决定了图像的每个像素可能的颜色数，或可能的灰度级数。例如, 彩色图像每个像素用R,G,B三个分量表示,每个分量用8位,像素深度为24位可以表示的颜色数目为2的24次方，既16777216个﹔一副单色图像存储每个像素需要8bit，则图像的像素深度为8位，最大灰度数目为2的8次方，既256个。（图片的分辨率越大不一定所占据的存储空间越大，还要根据其图片深度占用位数。）</p>
+<p><strong>视频的基本概念</strong></p>
+<ul>
+<li>分辨率：每一帧图像的分辨率（所有帧分辨率相同）</li>
+<li>帧率：视频单位时间内包含的视频帧的数量</li>
+<li>码率：指视频单位时间内传输的数据量，一般用kbps标签，即千位每秒</li>
+</ul>
+<p><strong>视频帧的分类</strong></p>
+<ul>
+<li>I帧<br>I帧对视频压缩编码无需依赖其他的帧，只要有I帧自己的数据就能完全解码。</li>
+<li>P帧（前项预测编码帧）<br>其解码要依赖前一帧，前一帧没解码自身也无法解码。</li>
+<li>B帧<br>其解码不仅要依赖前一帧，还要根据其后面的帧内容。</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/a2663095ad544286a9814bddadc7fdee.png"></p>
+<p><img src="https://img-blog.csdnimg.cn/2c1ecbbec1e544f5a6519721e54059a9.png"></p>
+<p><strong>为什么要编码</strong><br>假设存在一个图片，分辨率是1920*1080，则其未压缩的占用空间为：1920108024&#x2F;8&#x3D;6220800Byte，大约5.9M；若帧率为30FPS，时长 90分钟，则占用空间为大小 933G，这样的存储空间是不能接受的。因此编码的意义是为了压缩视频视频大小，为了更好的进行视频传输和节约存储空间。视频是有很多冗余的，包括空间冗余、时间冗余、编码冗余、视觉冗余等。</p>
+<p><img src="https://img-blog.csdnimg.cn/80425c5bc2fa4e658ec49e50dba81b91.png"></p>
+<p><strong>编码格式</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/c9443ad8538144b39e0bf69ef49c63dc.png"></p>
+<h3 id="封装格式"><a href="#封装格式" class="headerlink" title="封装格式"></a>封装格式</h3><p>存储音视频、图片或字幕信息的容器，便于存储传输。</p>
+<p><img src="https://img-blog.csdnimg.cn/f18bd836bd2c4d0080130f0ee5db4788.png"></p>
+<p><img src="https://img-blog.csdnimg.cn/702cd2f2b0984780a226878e2e86261d.png"></p>
+<h3 id="多媒体元素和扩展API"><a href="#多媒体元素和扩展API" class="headerlink" title="多媒体元素和扩展API"></a>多媒体元素和扩展API</h3><p><strong>video和audio元素</strong><br>在h5中，通过可以通过video标签和audio标签分别播放视频和音频。两种标签用法一样。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">src</span>=<span class="string">&quot;./video.mp4&quot;</span> <span class="attr">muted</span> <span class="attr">autoplay</span> <span class="attr">width</span>=<span class="string">600</span> <span class="attr">height</span>=<span class="string">300</span> <span class="attr">control</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">muted</span> <span class="attr">autoplay</span> <span class="attr">width</span>=<span class="string">600</span> <span class="attr">height</span>=<span class="string">300</span> <span class="attr">control</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&quot;./video.mp4&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&quot;./video1.mp4&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">source</span>&gt;</span>   </span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 可以写多个source标签 --&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>元素方法</strong></p>
+<ul>
+<li>play：开始播放音频&#x2F;视频 </li>
+<li>pause：暂停当前播放的音频&#x2F;视频 </li>
+<li>load：重新加载音频&#x2F;视频元素</li>
+<li>canPlayType：检测浏览器是否能播放指定的音频&#x2F;视频类型 </li>
+<li>addTextTrack：向音频&#x2F;视频添加新的文本轨道</li>
+</ul>
+<blockquote>
+<p>play方法是异步的，立刻暂停，即立刻调用pause方法会报错</p>
+</blockquote>
+<p> <strong>元素属性</strong></p>
+<ul>
+<li>autoplay：设置或返回是否在加载完成后随即播放 </li>
+<li>control：设置或返回是否显示控件</li>
+<li>currentTime：设置或返回视频&#x2F;视频中的当前播放位置(以秒计)</li>
+<li>duration：返回当前视频&#x2F;音频的长度</li>
+<li>src：设置或返回视频&#x2F;音频的来源 </li>
+<li>volume：设置或返回视频&#x2F;音频的音量TimeRanges对象</li>
+<li>buffered：返回表示视频&#x2F;音频已缓存部分的 </li>
+<li>playbackRate：设置或返回视频&#x2F;音频的播放速度</li>
+<li>error：返回表示错误状态的MediaError对象</li>
+<li>readyState：返回当前的就绪状态</li>
+</ul>
+<p> <strong>元素事件</strong></p>
+<ul>
+<li>loadedmetadata：浏览器开始加载视频&#x2F;音频时触发 </li>
+<li>canplay：浏览器可以开始播放视频&#x2F;音频时触发</li>
+<li>play：视频&#x2F;音频暂停时触发 </li>
+<li>playing：在视频&#x2F;音频在因缓冲而暂停或停止后已就绪时触发 </li>
+<li>pause：视频&#x2F;音频暂停时触发</li>
+<li>timeupdate：用于播放位置改变时触发 </li>
+<li>seeking：用于开始跳跃到视频&#x2F;音频中的新位置时触发</li>
+<li>seeked：用于已跳跃到视频&#x2F;音频中的新位置时触发 </li>
+<li>waiting：视频由于缓冲下一帧而停止时触发 </li>
+<li>ended：播放列表已结束时触发</li>
+</ul>
+<p><strong>video和audio标签的缺陷</strong></p>
+<ul>
+<li>不支持直接播放hls、flv等格式视频</li>
+<li>视频资源的请求和加载无法通过代码控制<ul>
+<li>分段加载（节约流量） </li>
+<li>清晰度无缝切换（增强用户体验） </li>
+<li>精确预加载（增强用户体验）</li>
+</ul>
+</li>
+</ul>
+<p><strong>媒体源扩展MSE(Media Source Extensions)</strong></p>
+<ul>
+<li>无插件在Web端播放流媒体 </li>
+<li>支持播放hls、flv、mp4等格式视频 </li>
+<li>可实现视频分段加载、清晰度无缝切换、自适应码率、精确预加载等</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/dc1c278d08c340048ce4c1635b3c827d.png"></p>
+<p><img src="https://img-blog.csdnimg.cn/11696cbb4fb94c5fbe6d60857f60cd56.png"></p>
+<p><img src="https://img-blog.csdnimg.cn/3d690f0fb7bd4b7f81765dce7e7d7085.png"></p>
+<p><strong>mp4和fmp4</strong><br>fmp4文件结构相比普通的MP4文件多了多个moof和moot文件，因此对流式播放支持得更加友好</p>
+<h3 id="流媒体协议"><a href="#流媒体协议" class="headerlink" title="流媒体协议"></a>流媒体协议</h3><p><img src="https://img-blog.csdnimg.cn/fa03031276894be3a8d63d3587f44f64.png"><br>HLS全称是HTTP Live Streaming，是一个由Apple公司提出的基于HTTP的媒体流传输协议，用于实时音视频流的传输。目前HLS协议被广泛的应用于视频点播和直播领域。在IOS段，只要把M3U8的地址直接赋给video标签的src，就可以直接播放。</p>
+<p><img src="https://img-blog.csdnimg.cn/1ba33bbe1f844c579648b0eebdd63fa8.png"></p>
+<hr>
+<h2 id="3、应用场景"><a href="#3、应用场景" class="headerlink" title="3、应用场景"></a>3、应用场景</h2><p>Web多媒体：视频编辑、点播、直播、图片、云游戏、实时通信。</p>
+<hr>
+<h2 id="4、总结和展望"><a href="#4、总结和展望" class="headerlink" title="4、总结和展望"></a>4、总结和展望</h2><p><strong>总结：</strong></p>
+<ul>
+<li>flash &gt; H5 video&gt; MSE</li>
+<li>编码格式、封装格式、多媒体元素、流媒体协议</li>
+<li>应用场景</li>
+</ul>
+<p><strong>新技术标准：</strong></p>
+<ul>
+<li>Webassembly</li>
+<li>WebCodecs</li>
+<li>WebGPU</li>
+<li>WebVR、WebXR</li>
+</ul>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/02/05/Web%E5%A4%9A%E5%AA%92%E4%BD%93%E5%85%A5%E9%97%A8/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2022/02/06/TypeScript%E5%85%A5%E9%97%A8/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            TypeScript入门
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2022/01/30/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9F%BA%E7%A1%80/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">数据可视化基础</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "keN4GS5JeQfwvylr07oj8w0n-gzGzoHsz",
+    app_key: "1C2GpGDbNeIOoqy8MLqxpNUu",
+    path: window.location.pathname,
+    avatar: "retro",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+    
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2022
+        <i class="ri-heart-fill heart_icon"></i> 会思想的苇草i
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/favicon.ico" alt="会思想的苇草i"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>感谢打赏哈哈嗝~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+ 
+<script src="/js/clickLove.js"></script>
+ 
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>

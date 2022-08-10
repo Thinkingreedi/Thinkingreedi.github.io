@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="前端 算法 技术" />
+       
+      <meta name="description" content="一个有趣且实用的博客网站，涉及前端，算法，数据结构，操作系统等计算机相关知识。" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>串、数组和广义表 |  会思想的苇草i</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-数据结构（C语言版）-串、数组和广义表笔记"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  串、数组和广义表
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/02/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88C%E8%AF%AD%E8%A8%80%E7%89%88%EF%BC%89-%E4%B8%B2%E3%80%81%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2022-02-20T12:45:14.000Z" itemprop="datePublished">2022-02-20</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">4.4k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">17 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <hr>
+<h1 id="1、串"><a href="#1、串" class="headerlink" title="1、串"></a>1、串</h1><h2 id="①-串的定义"><a href="#①-串的定义" class="headerlink" title="①.串的定义"></a>①.串的定义</h2><p>&#x3D;&#x3D;串(String)—-零个或多个字符组成的有限序列，是一种特殊的线性表，其数据元素为一个字符，即内容受限的线性表。&#x3D;&#x3D;</p>
+<p><img src="https://img-blog.csdnimg.cn/8690f5e9360b4bb2bb41071fb70c6362.png#pic_center"></p>
+<p><strong>子串：</strong></p>
+<p>串中任意个连续的字符组成的子序列</p>
+<p><strong>主串：</strong></p>
+<p> 包含子串的串</p>
+<p><strong>字符位置：</strong></p>
+<p> 字符在序列中的序号</p>
+<p><strong>子串位置：</strong></p>
+<p> 以子串的第一个字符在主串中的位置来表示</p>
+<p><strong>空格串：</strong></p>
+<p> 一个或多个空格组成的串 </p>
+<p><img src="https://img-blog.csdnimg.cn/d1a865fdc425412bbe6fe956cfa28699.png#pic_center"></p>
+<p>&#x3D;&#x3D;两个串是相等的，当且仅当这两个串的值相等。也就是说，只有当两个串的<strong>长度相等</strong>，并且各个对应位置的<strong>字符都相等</strong>时才相等&#x3D;&#x3D;。例如，上例中的串a、b、c和d彼此都不相等。</p>
+<p><strong>串的抽象数据类型的定义：</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/bb92b605996b42f6b1d8d4d8c9365154.png#pic_center"><br><img src="https://img-blog.csdnimg.cn/897d1c9fefa8497782687daccd797332.png#pic_center"></p>
+<p>与线性表类似，串也有两种基本存储结构：顺序存储和链式存储。但考虑到存储效率和算法的方便性,串多采用顺序存储结构。</p>
+<h2 id="②-串的顺序存储"><a href="#②-串的顺序存储" class="headerlink" title="②.串的顺序存储"></a>②.串的顺序存储</h2><p>类似于线性表的顺序存储结构，用一组地址连续的存储单元存储串值的字符序列。按照预定义的大小，为每个定义的串变量分配一个固定长度的存储区，则可用定长数组如下描述:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">char</span> ch[MAXLEN + <span class="number">1</span>]; <span class="comment">// MAXLEN为串的最大长度</span></span><br><span class="line">                         <span class="comment">//存储串的一维数组</span></span><br><span class="line">    <span class="type">int</span> length; <span class="comment">//串长度</span></span><br><span class="line">&#125; SString;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>而多数情况下，串的操作是以串的整体形式参与的，串变量之间的长度相差较大，在操作中串值长度的变化也较大，这样为串变量设定固定大小的空间不尽合理。因此最好是根据实际需要，在程序执行过程中动态地分配和释放字符数组空间。在C语言中，存在一个称之为“堆”(Heap）的自由存储区，可以为每个新产生的串动态分配一块实际串长所需的存储空间，若分配成功，则返回一个指向起始地址的指针，作为串的基址，同时为了以后处理方便，约定串长也作为存储结构的一部分。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">char</span> *ch;   <span class="comment">//若串非空，则按串长分配存储区,否则ch为NULL</span></span><br><span class="line">    <span class="type">int</span> length; <span class="comment">//串长度</span></span><br><span class="line">&#125; HString;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="③-串的链式存储"><a href="#③-串的链式存储" class="headerlink" title="③.串的链式存储"></a>③.串的链式存储</h2><p>顺序串的插人和删除操作不方便，需要移动大量的字符。因此，可采用单链表方式存储串。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> CHUNKSIZE 80 <span class="comment">//可由用户定义的块大小</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Chunk</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">char</span> ch[CHUNKSIZE]; <span class="comment">//存储串的一维</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Chunk</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125; Chunk;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    Chunk *head, *tail; <span class="comment">//串的头指针和尾指针</span></span><br><span class="line">    <span class="type">int</span> curlen;         <span class="comment">//串的当前长度</span></span><br><span class="line">&#125; LString;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>串值的链式存储结构对某些串操作，如联接操作等，有一定方便之处，但总地说来，不如顺序存储结构灵活，它占用存储量大且操作复杂。</p>
+<h2 id="④-串的模式匹配算法"><a href="#④-串的模式匹配算法" class="headerlink" title="④.串的模式匹配算法"></a>④.串的模式匹配算法</h2><p>&#x3D;&#x3D;子串的定位运算通常称为串的模式匹配或串匹配，主串称为正文串，子串称为模式串，该算法目的是确定主串中缩含子串第一次出现的位置（定位）&#x3D;&#x3D;。此运算的应用非常广泛,比如在搜索引擎、拼写检查、语言翻译、数据压缩等应用中，都需要进行串匹配。</p>
+<p><strong>BF（Brute-Force）算法</strong></p>
+<p>模式匹配不一定是从主串的第一个位置开始，可以指定主串中查找的起始位置pos。如果采用字符串顺序存储结构，可以写出不依赖于其他串操作的匹配算法。</p>
+<ol>
+<li><p>分别利用计数指针i和j指示主串S和模式T中当前正待比较的字符位置，i初值为pos,j初值为1。</p>
+</li>
+<li><p>如果两个串均未比较到串尾，即i和j均分别小于等于S和T的长度时，则循环执行以下操作:</p>
+<pre><code>- S[i].ch和T[j].ch 比较，若相等，则i和j分别指示串中下个位置，继续比较后续字符;
+
+- 若不等，指针后退重新开始匹配，从主串的下一个字符( i=i-j+2）起再重新和模式的第一个字符(j=1 )比较。
+</code></pre>
+</li>
+<li><p>③如果j&gt;T.length，说明模式T中的每个字符依次和主串S中的一个连续的字符序列相等，则匹配成功，返回和模式T中第一个字符相等的字符在主串S中的序号( i-T.length );否则称匹配不成功，返回0。</p>
+</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/cbd94fd10ccc4fb29a34800cd13ed89d.png#pic_center"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Index</span><span class="params">(SString S, SString T, <span class="type">int</span> pos)</span></span><br><span class="line">&#123;</span><br><span class="line">    i = pos;</span><br><span class="line">    j = <span class="number">1</span>;                              <span class="comment">//初始化</span></span><br><span class="line">    <span class="keyword">while</span> (i &lt;= S[<span class="number">0</span>] &amp;&amp; j &lt;= T[<span class="number">0</span>])		<span class="comment">//两个串均未比较到串尾</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (S[i] = T[j])</span><br><span class="line">        &#123;</span><br><span class="line">            ++i;</span><br><span class="line">            ++j;</span><br><span class="line">        &#125; <span class="comment">//继续比较后继字符</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            i = i - j + <span class="number">2</span>;</span><br><span class="line">            j = <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="comment">//指针后退重新开始匹配</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (j &gt; T[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">return</span> i-T[<span class="number">0</span>]; <span class="comment">//匹配成功</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">//匹配失败</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>BF算法实例：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/***字符串匹配算法***/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> OK 1</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ERROR 0</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> OVERFLOW -2</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> Status;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXSTRLEN 255                <span class="comment">//用户可在255以内定义最长串长</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">char</span> SString[MAXSTRLEN + <span class="number">1</span>]; <span class="comment">// 0号单元存放串的长度</span></span><br><span class="line"></span><br><span class="line">Status <span class="title function_">StrAssign</span><span class="params">(SString T, <span class="type">char</span> *chars)</span></span><br><span class="line">&#123; <span class="comment">//生成一个其值等于chars的串T</span></span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">strlen</span>(chars) &gt; MAXSTRLEN)</span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        T[<span class="number">0</span>] = <span class="built_in">strlen</span>(chars);</span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= T[<span class="number">0</span>]; i++)</span><br><span class="line">            T[i] = *(chars + i - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> OK;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// BF算法</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">Index</span><span class="params">(SString S, SString T, <span class="type">int</span> pos)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//返回模式T在主串S中第pos个字符之后第s一次出现的位置。若不存在，则返回值为0</span></span><br><span class="line">    <span class="comment">//其中，T非空，1≤pos≤StrLength(S)</span></span><br><span class="line">    <span class="type">int</span> i = pos;</span><br><span class="line">    <span class="type">int</span> j = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt;= S[<span class="number">0</span>] &amp;&amp; j &lt;= T[<span class="number">0</span>])</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (S[i] == T[j])</span><br><span class="line">        &#123;</span><br><span class="line">            ++i;</span><br><span class="line">            ++j;</span><br><span class="line">        &#125; <span class="comment">//继续比较后继字符</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            i = i - j + <span class="number">2</span>;</span><br><span class="line">            j = <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="comment">//指针后退重新开始匹配</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (j &gt; T[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">return</span> i - T[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; <span class="comment">// Index</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    SString S;</span><br><span class="line">    StrAssign(S, <span class="string">&quot;bbaaabbaba&quot;</span>);</span><br><span class="line">    SString T;</span><br><span class="line">    StrAssign(T, <span class="string">&quot;abb&quot;</span>);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;主串和子串在第&quot;</span> &lt;&lt; Index(S, T, <span class="number">1</span>) &lt;&lt; <span class="string">&quot;个字符处首次匹配\n&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&#x3D;&#x3D;该算法时间复杂度为：<strong>O（n*m）</strong>&#x3D;&#x3D;</p>
+<p><strong>KMP算法</strong></p>
+<p>这种改进算法是由Knuth、Morris和 Pratt同时设计实现的，因此简称KMP算法。此算法可以在O(n + m)的时间数量级上完成串的模式匹配操作。其改进在于:每当一趟匹配过程中出现字符比较不等时，不需回溯i指针，而是利用已经得到的“部分匹配”的结果将模式向右“滑动”尽可能远的一段距离后，继续进行比较。</p>
+<ol>
+<li><p>分别利用计数指针i和j指示主串S和模式T中当前正待比较的字符位置，i初值为pos,j初值为1。</p>
+</li>
+<li><p>如果两个串均未比较到串尾，即i和j均分别小于等于S和T的长度时，则循环执行以下操作:</p>
+<pre><code>- S[i].ch 和T[i].ch 比较，若相等，则i和j分别指示串中下个位置，继续比较后续字符;
+- 若不等，指针后退重新开始匹配，从主串的下一个字符(i=i-j+2）起再重新和模式的第一个字符(j=1)比较。
+</code></pre>
+</li>
+<li><p>如果j&gt;T.length，说明模式T中的每个字符依次和主串S中的一个连续的字符序列相等，则匹配成功，返回和模式T中第一个字符相等的字符在主串S中的序号(i-T.length);否则称匹配不成功，返回0。</p>
+</li>
+</ol>
+<p>该算法思想感兴趣可观看天勤公开课讲解视频，个人认为讲解比较透彻：</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1jb411V78H">「天勤公开课」KMP算法易懂版</a></p>
+<p>以下对其进行简单阐述：</p>
+<p>&#x3D;&#x3D;kmp算法作用是快速的从一个主串中找到想要的子串，kmp算法可以做到仅仅后移模式串，比较指针不回溯。&#x3D;&#x3D;</p>
+<p><img src="https://img-blog.csdnimg.cn/1479fac823a8463d872052b5ceb9f7ab.png#pic_center"><br><img src="https://img-blog.csdnimg.cn/038630e8a3d649a5a2e1f3182384b7cb.png#pic_center"></p>
+<p>&#x3D;&#x3D;找出模式串不匹配处最长但不长于不匹配处左端的公共前后缀，直接移动模式串，使得前缀直接来到后缀的位置。&#x3D;&#x3D;</p>
+<p><img src="https://img-blog.csdnimg.cn/f65b6c7cdb6a485dba8344a32f3b9036.png#pic_center"><br><img src="https://img-blog.csdnimg.cn/0f7807f5f3e3425787642d9becbc7feb.png#pic_center"></p>
+<p><img src="https://img-blog.csdnimg.cn/a9891b9b9b0f4a6b8adbda0ce28231d5.png#pic_center"></p>
+<p><img src="https://img-blog.csdnimg.cn/a14acb3106c1438abdaf1c02c4556f20.png#pic_center"><br><img src="https://img-blog.csdnimg.cn/5f0f384e76b6447d902eb31ef4a1807d.png#pic_center"><br><img src="https://img-blog.csdnimg.cn/a91c9c9414ab4eb192e87b33136dd81d.png#pic_center"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Index_KMP</span><span class="params">(SString S, SString T, <span class="type">int</span> pos)</span></span><br><span class="line">&#123;</span><br><span class="line">    i = pos;</span><br><span class="line">    j = <span class="number">1</span>;                                 <span class="comment">//初始化</span></span><br><span class="line">    <span class="keyword">while</span> (i &lt;= S.length &amp;&amp; j &lt;= S.length) <span class="comment">//两个串均未比较到串尾</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (j == <span class="number">0</span> || S[i] == T[j])</span><br><span class="line">        &#123;</span><br><span class="line">            ++i;</span><br><span class="line">            ++j;</span><br><span class="line">        &#125; <span class="comment">//继续比较后继字符</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            j = next[j];</span><br><span class="line">        &#125; <span class="comment">//模式串向右移动</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (j &gt; T[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">return</span> i - T[<span class="number">0</span>]; <span class="comment">//匹配成功</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">//匹配失败</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">get_next</span><span class="params">(SString T, <span class="type">int</span> next[])</span></span><br><span class="line">&#123; <span class="comment">//求模式串T的next函数值并存入数组next</span></span><br><span class="line">    i = <span class="number">1</span>;</span><br><span class="line">    next[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; T[<span class="number">0</span>])</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (j == <span class="number">0</span> || T[i])</span><br><span class="line">        &#123;</span><br><span class="line">            ++i;</span><br><span class="line">            ++j;</span><br><span class="line">            next[i] = j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            j = next[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>KMP算法实例：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/***字符串匹配算法***/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> OK 1</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ERROR 0</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> OVERFLOW -2</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> Status;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXSTRLEN 255                <span class="comment">//用户可在255以内定义最长串长</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">char</span> SString[MAXSTRLEN + <span class="number">1</span>]; <span class="comment">// 0号单元存放串的长度</span></span><br><span class="line"></span><br><span class="line">Status <span class="title function_">StrAssign</span><span class="params">(SString T, <span class="type">char</span> *chars)</span></span><br><span class="line">&#123; <span class="comment">//生成一个其值等于chars的串T</span></span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">strlen</span>(chars) &gt; MAXSTRLEN)</span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        T[<span class="number">0</span>] = <span class="built_in">strlen</span>(chars);</span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= T[<span class="number">0</span>]; i++)</span><br><span class="line">            T[i] = *(chars + i - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> OK;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//算法4.3　计算next函数值</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">get_next</span><span class="params">(SString T, <span class="type">int</span> next[])</span></span><br><span class="line">&#123; <span class="comment">//求模式串T的next函数值并存入数组next</span></span><br><span class="line">    <span class="type">int</span> i = <span class="number">1</span>, j = <span class="number">0</span>;</span><br><span class="line">    next[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; T[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">if</span> (j == <span class="number">0</span> || T[i] == T[j])</span><br><span class="line">        &#123;</span><br><span class="line">            ++i;</span><br><span class="line">            ++j;</span><br><span class="line">            next[i] = j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            j = next[j];</span><br><span class="line">&#125; <span class="comment">// get_next</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// KMP算法</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">Index_KMP</span><span class="params">(SString S, SString T, <span class="type">int</span> pos, <span class="type">int</span> next[])</span></span><br><span class="line">&#123; <span class="comment">// 利用模式串T的next函数求T在主串S中第pos个字符之后的位置的KMP算法</span></span><br><span class="line">    <span class="comment">//其中，T非空，1≤pos≤StrLength(S)</span></span><br><span class="line">    <span class="type">int</span> i = pos, j = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt;= S[<span class="number">0</span>] &amp;&amp; j &lt;= T[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">if</span> (j == <span class="number">0</span> || S[i] == T[j]) <span class="comment">// 继续比较后继字</span></span><br><span class="line">        &#123;</span><br><span class="line">            ++i;</span><br><span class="line">            ++j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            j = next[j]; <span class="comment">// 模式串向右移动</span></span><br><span class="line">    <span class="keyword">if</span> (j &gt; T[<span class="number">0</span>])        <span class="comment">// 匹配成功</span></span><br><span class="line">        <span class="keyword">return</span> i - T[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; <span class="comment">// Index_KMP</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    SString S;</span><br><span class="line">    StrAssign(S, <span class="string">&quot;aaabbaba&quot;</span>);</span><br><span class="line">    SString T;</span><br><span class="line">    StrAssign(T, <span class="string">&quot;abb&quot;</span>);</span><br><span class="line">    <span class="type">int</span> *p = new <span class="type">int</span>[T[<span class="number">0</span>] + <span class="number">1</span>]; <span class="comment">// 生成T的next数组</span></span><br><span class="line">    get_next(T, p);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;主串和子串在第&quot;</span> &lt;&lt; Index_KMP(S, T, <span class="number">1</span>, p) &lt;&lt; <span class="string">&quot;个字符处首次匹配\n&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&#x3D;&#x3D;时间复杂度：O（n+m）&#x3D;&#x3D;</p>
+<hr>
+<h1 id="2、数组"><a href="#2、数组" class="headerlink" title="2、数组"></a>2、数组</h1><h2 id="①-数组的定义"><a href="#①-数组的定义" class="headerlink" title="①.数组的定义"></a>①.数组的定义</h2><p>数组是由类型相同的数据元素构成的有序集合，每个元素称为数组元素，每个元素受n(n≥1 )个线性关系的约束，每个元素在n个线性关系中的序号i<del>1</del>，i<del>2</del>，…，i<del>n</del>称为该元素的下标，可以通过下标访问该数据元素。因为数组中每个元素处于n (n≥1)个关系中，故称该数组为n维数组。数组可以看成是线性表的推广，其特点是结构中的元素本身可以是具有某种结构的数据，但属于同一数据类型。</p>
+<p><img src="https://img-blog.csdnimg.cn/32ab897605c54a318ef827c7b7e0a1a3.png#pic_center"></p>
+<h2 id="②-数组的顺序存储"><a href="#②-数组的顺序存储" class="headerlink" title="②.数组的顺序存储"></a>②.数组的顺序存储</h2><p>由于数组一般不做插人或删除操作，也就是说;一旦建立了数组，则结构中的数据元素个数和元素之间的关系就不再发生变动。因此，采用顺序存储结构表示数组比较合适。<br>二维数组可有两种存储方式：<strong>一种是以列序为主序的存储方式；一种是以行序为主序的存储方式。</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/89a1e286031746ab914e084a3c5179c0.png#pic_center"></p>
+<p><img src="https://img-blog.csdnimg.cn/188225e7fe244f5fbd0c6e8fb6ddea8b.png#pic_center" alt="插"></p>
+<p><strong>三维数组的顺序存储：</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/f207775aaa544457916251d2b573ab87.png#pic_center"><br><img src="https://img-blog.csdnimg.cn/008bc3c7febf4434a3ab60cca3b1be3f.png#pic_center"></p>
+<h2 id="③-特殊矩阵的压缩存储"><a href="#③-特殊矩阵的压缩存储" class="headerlink" title="③.特殊矩阵的压缩存储"></a>③.特殊矩阵的压缩存储</h2><p><strong>特殊矩阵:</strong> 值相同的元素或0元素在矩阵中的分布有一定的规律。如:对称矩阵、三角矩阵、对角矩阵等。</p>
+<p><strong>压缩存储:</strong> 压缩存储是指为多个值相同的元只分配一个存储空间,且对零元不分配存储空间。目的是节省大量存储空间。</p>
+<p><strong>什么样的矩阵能够压缩?</strong><br>特殊矩阵、稀疏矩阵等。</p>
+<p><strong>对称矩阵</strong></p>
+<p>若n阶矩阵A中的元满足a<del>ij</del> &#x3D; a<del>ji</del>  1≤i，j≤ n 则称为n阶对称矩阵。对于对称矩阵,可以为每一对对称元分配一个存储空间,则可将n^2^个元压缩存储到n(n+1)&#x2F;2个元的空间中，不失一般性，可以行序为主序存储其下三角（包括对角线）中的元。<br>假设以一维数组sa[r(n+1)&#x2F;2]作为n阶对称矩阵A的存储结构,则 sa[k]和矩阵元aj之间存在着一一对应的关系:</p>
+<p><img src="https://img-blog.csdnimg.cn/2711afc684cd4dcf91ad9157df19a28c.png#pic_center"></p>
+<p><strong>三角矩阵</strong></p>
+<p>以主对角线划分,三角矩阵有上三角矩阵和下三角矩阵两种。上三角矩阵是指矩阵下三角(不包括对角线）中的元均为常数c或零的n阶矩阵，下三角矩阵与之相反。对三角矩阵进行压缩存储时，除了和对称矩阵一样，只存储其上(下)三角中的元素之外，再加一个存储常数c的存储空间即可。</p>
+<p>上三角矩阵<br>sa[k]和矩阵元a<del>ij</del>之间的对应关系为：<br><img src="https://img-blog.csdnimg.cn/022e76c4d85c41fdbb79e3381ef6e4fd.png#pic_center"></p>
+<p>下三角矩阵<br>sa[k]和矩阵元a<del>ij</del>之间的对应关系为:<br><img src="https://img-blog.csdnimg.cn/1dc77f9ba9614048bae2f9f260c34bc8.png#pic_center"></p>
+<p><strong>对角矩阵</strong></p>
+<p>对角矩阵所有的非零元都集中在以主对角线为中心的带状区域中，即除了主对角线上和直接在对角线上、下方若干条对角线上的元之外，所有其他的元皆为零。<br><img src="https://img-blog.csdnimg.cn/9e0fad26cd0c4c9c9c61242dabcf085c.png#pic_center"></p>
+<hr>
+<h1 id="3、广义表"><a href="#3、广义表" class="headerlink" title="3、广义表"></a>3、广义表</h1><h2 id="①-广义表的定义"><a href="#①-广义表的定义" class="headerlink" title="①.广义表的定义"></a>①.广义表的定义</h2><p>&#x3D;&#x3D;广义表：n ( ≥0)个表元素组成的有限序列,记作LS&#x3D;（a<del>1</del>，a<del>2</del>，…，a<del>n</del>）。LS是表名，a<del>i</del>是表元素，它可以是表(称为子表)，可以是数据元素(称为原子)。n为表的长度，n&#x3D;0的广义表称为空表。&#x3D;&#x3D;</p>
+<p>&#x3D;&#x3D;<strong>求表头GetHead(L)</strong>:<strong>非空广义表的第一个元素，可以是一个原子,也可以是一个子表。</strong>&#x3D;&#x3D;<br>&#x3D;&#x3D;<strong>求表尾GetTail(L)</strong>:<strong>非空广义表除去表头元素以外其它所有元素所构成的表。表尾一定是一个表。</strong>&#x3D;&#x3D;</p>
+<p><img src="https://img-blog.csdnimg.cn/0d7e1a74bd9c41628b1a9949f4e39b5c.png#pic_center"></p>
+<h2 id="②-广义表的存储结构"><a href="#②-广义表的存储结构" class="headerlink" title="②.广义表的存储结构"></a>②.广义表的存储结构</h2><p>由于广义表中的数据元素可以有不同的结构(或是原子，或是列表)，因此难以用顺序存储结构表示，通常采用链式存储结构。</p>
+<p><strong>头尾链表的存储结构</strong></p>
+<p>由于广义表中的数据元素可能为原子或广义表，由此需要两种结构的结点:一种是表结点，用以表示广义表;一种是原子结点，用以表示原子。从上节得知:若广义表不空，则可分解成表头和表尾，因此，一对确定的表头和表尾可唯一确定广义表。一个表结点可由3个域组成:标志域、指示表头的指针域和指示表尾的指针域。而原子结点只需两个域:标志域和值域。</p>
+<p><img src="https://img-blog.csdnimg.cn/def7b6fd948c47648baa356c6a066429.png#pic_center"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">enum</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    ATOM,</span><br><span class="line">    LIST</span><br><span class="line">&#125; ElemTag;</span><br><span class="line"><span class="comment">// ATOM==0:原子,LIST==1:子表</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">GLNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    ElemTag tag; <span class="comment">//公共部分,用于区分原子结点和表结点</span></span><br><span class="line">    <span class="class"><span class="keyword">union</span>        //原子结点和表结点的联合部分</span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        AtomType atom; <span class="comment">// atom是原子结点的值域,AtomType由用户定义</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">        &#123;</span></span><br><span class="line">            <span class="class"><span class="keyword">struct</span> <span class="title">GLNode</span> *<span class="title">hp</span>, *<span class="title">tp</span>;</span></span><br><span class="line">        &#125; ptr;</span><br><span class="line">        <span class="comment">// ptr是表结点的指针域,prt.hp和ptr.tp分别指向表头和表尾</span></span><br><span class="line">    &#125;;</span><br><span class="line">&#125; * GList, GLNode; <span class="comment">/* 广义表类型 */</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>扩展线性链表的存储结构</strong></p>
+<p>在这种结构中，无论是原子结点还是表结点均由三个域组成</p>
+<p><img src="https://img-blog.csdnimg.cn/b87e7e24a25d410da6cf2d9273ed174d.png#pic_center"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">glnode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> tag; <span class="comment">// 0 原子结点；1 子表结点</span></span><br><span class="line">    <span class="class"><span class="keyword">union</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        atomtype atom;     <span class="comment">//原子结点的值域</span></span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">glnode</span> *<span class="title">hp</span>;</span> <span class="comment">//子表表头指针</span></span><br><span class="line">    &#125; <span class="class"><span class="keyword">struct</span> <span class="title">glnode</span> *<span class="title">tp</span>;</span>   <span class="comment">//下一元素指针</span></span><br><span class="line">&#125; * glist;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="4、总结"><a href="#4、总结" class="headerlink" title="4、总结"></a>4、总结</h1><ol>
+<li><p>串是内容受限的线性表，它限定了表中的元素为字符。串有两种基本存储结构:顺序存储和链式存储，但多采用顺序存储结构。串的常用算法是模式匹配算法，主要有BF算法和KMP算法。BF算法实现简单，但存在回溯，效率低，时间复杂度为O(m ×n)。KMP算法对BF算法进行改进，消除回溯，提高了效率，时间复杂度为O(m+n)。</p>
+</li>
+<li><p>多维数组可以看成是线性表的推广,其特点是结构中的元素本身可以是具有某种结构的数据，但属于同一数据类型。一个n维数组实质上是n个线性表的组合，其每一维都是一个线性表。数组一般采用顺序存储结构，故存储多维数组时，应先将其确定转换为一维结构，有按“行”转换和按“列”转换两种。科学与工程计算中的矩阵通常用二维数组来表示，为了节省存储空间，对于几种常见形式的特殊矩阵，比如对称矩阵、三角矩阵和对角矩阵，在存储时可进行压缩存储，即为多个值相同的元只分配一个存储空间，对零元不分配空间。</p>
+</li>
+<li><p>广义表是另外一种线性表的推广形式，表中的元素可以是称为原子的单个元素，也可以是一个子表，所以线性表可以看成广义表的特例。广义表的结构相当灵活，在某种前提下，它可以兼容线性表、数组、树和有向图等各种常用的数据结构。广义表的常用操作有取表头和取表尾。广义表通常采用链式存储结构:头尾链表的存储结构和扩展线性链表的存储结构。</p>
+</li>
+</ol>
+<hr>
+<h1 id="5、例题与应用"><a href="#5、例题与应用" class="headerlink" title="5、例题与应用"></a>5、例题与应用</h1><p><img src="https://img-blog.csdnimg.cn/6c4b451e3750463ab27ca27b6bff819b.png#pic_center"><br><img src="https://img-blog.csdnimg.cn/2b35c0d34f7843cfb0c6b52c77aad04d.png#pic_center"></p>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/02/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88C%E8%AF%AD%E8%A8%80%E7%89%88%EF%BC%89-%E4%B8%B2%E3%80%81%E6%95%B0%E7%BB%84%E5%92%8C%E5%B9%BF%E4%B9%89%E8%A1%A8%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BA%BF%E6%80%A7%E8%A1%A8/" rel="tag">线性表</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2022/02/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88C%E8%AF%AD%E8%A8%80%E7%89%88%EF%BC%89-%E6%A0%91%E5%92%8C%E4%BA%8C%E5%8F%89%E6%A0%91%E7%AC%94%E8%AE%B0/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            树和二叉树
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2022/02/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88C%E8%AF%AD%E8%A8%80%E7%89%88%EF%BC%89-%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97%E7%AC%94%E8%AE%B0/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">栈和队列</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "keN4GS5JeQfwvylr07oj8w0n-gzGzoHsz",
+    app_key: "1C2GpGDbNeIOoqy8MLqxpNUu",
+    path: window.location.pathname,
+    avatar: "retro",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+    
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2022
+        <i class="ri-heart-fill heart_icon"></i> 会思想的苇草i
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/favicon.ico" alt="会思想的苇草i"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>感谢打赏哈哈嗝~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+ 
+<script src="/js/clickLove.js"></script>
+ 
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>

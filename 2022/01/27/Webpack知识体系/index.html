@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="前端 算法 技术" />
+       
+      <meta name="description" content="一个有趣且实用的博客网站，涉及前端，算法，数据结构，操作系统等计算机相关知识。" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>Webpack知识体系 |  会思想的苇草i</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-Webpack知识体系"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Webpack知识体系
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/01/27/Webpack%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/" class="article-date">
+  <time datetime="2022-01-27T14:36:23.000Z" itemprop="datePublished">2022-01-27</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8%E9%9D%92%E8%AE%AD%E8%90%A5/">字节跳动青训营</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">844</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">3 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <hr>
+<h2 id="1、什么是Webpack"><a href="#1、什么是Webpack" class="headerlink" title="1、什么是Webpack"></a>1、什么是Webpack</h2><p>webpack 是代码编译工具，有入口、出口、loader 和插件。webpack 是一个用于现代 JavaScript 应用程序的静态模块打包工具。当 webpack 处理应用程序时，它会在内部构建一个依赖图(dependency graph)，此依赖图对应映射到项目所需的每个模块，并生成一个或多个 bundle。</p>
+<p>本质上是一种前端资源编译、打包工具</p>
+<ul>
+<li>多份资源文件打包成一个Bundle </li>
+<li>支持Babel、Eslint、TS等 </li>
+<li>支持模块化处理css、图片等资源 </li>
+<li>支持HMR+开发服务器</li>
+<li>支持持续监听、持续构建 </li>
+<li>支持代码分离</li>
+<li>支持Tree-shaking</li>
+<li>支持Sourcemap</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/394ab26e116d4ba5bdb3777fff920390.png#pic_center"></p>
+<hr>
+<h2 id="2、使用Webpack"><a href="#2、使用Webpack" class="headerlink" title="2、使用Webpack"></a>2、使用Webpack</h2><p><strong>示例</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/b7a308f883ac484fb47961407b03925b.png#pic_center"></p>
+<p><strong>核心流程</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/d73b17d5379b49d39d3a5202947ae892.png#pic_center"></p>
+<p><strong>模块化+一致性</strong></p>
+<ul>
+<li>多个文件资源合并成一个，减少http请求数</li>
+<li>支持模块化开发 支持高级JS特性 </li>
+<li>支持Typescript、CoffeeScript方言</li>
+<li>统一图片、CSS、字体等其它资源的处理模型</li>
+<li>Etc…</li>
+</ul>
+<p><strong>使用Webpack</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/e75d849ae59c49f9af0597e6a9e46010.png#pic_center"></p>
+<ul>
+<li>流程类:作用于流程中某个 or若干个环节，直接影响打包效果的配置项</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/7185714d740949f6b43370237f07b6a7.png#pic_center"><br>按使用频率：</p>
+<pre><code>- entry、output
+- module、plugins
+- mode
+- watch、devServer、devtool
+</code></pre>
+<p><a target="_blank" rel="noopener" href="https://webpack.js.org/configuration/">Webpack配置官方文档</a></p>
+<p>处理CSS</p>
+<p><img src="https://img-blog.csdnimg.cn/843536b0b90f45d9bb63651302f6e8d0.png#pic_center"><br>接入Babel</p>
+<p><img src="https://img-blog.csdnimg.cn/e4e6e4a598194e32bfb51d595a73b5a3.png#pic_center"><br>生成HTML</p>
+<p><img src="https://img-blog.csdnimg.cn/f15a74e30e6140408cf1d7d81b62b2a5.png#pic_center"><br><img src="https://img-blog.csdnimg.cn/1ae3d3adb29149b29d7971258d41dadf.png#pic_center"></p>
+<ul>
+<li>工具类:主流程之外，提供更多工程化能力的配置项</li>
+</ul>
+<p><strong>HMR</strong><br>模块热替换</p>
+<p><img src="https://img-blog.csdnimg.cn/0bdf328d216143ba982735256d4ccaf0.png#pic_center"><br><strong>Tree-Shaking</strong><br>删除没有用到的代码</p>
+<p><img src="https://img-blog.csdnimg.cn/e77bd5dd769a4b8e8278920880373a24.png#pic_center"></p>
+<hr>
+<h2 id="3、Loader组件"><a href="#3、Loader组件" class="headerlink" title="3、Loader组件"></a>3、Loader组件</h2><p>为了处理非标准JS资源，设计出资源翻译模块—— Loader，用于将资源翻译为标准JS<br><strong>使用Loader</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/9226bf368fc34301b261f97bf48e4786.png#pic_center"></p>
+<p><strong>链式调用</strong></p>
+<ul>
+<li>less-loader :实现less &#x3D;&gt; css的转换</li>
+<li>css-loader:将CSS包装成类似module.exports &#x3D; “${css]”的内容，包装后的内容符合JavaScript语法</li>
+<li>style-loader : 将css模块包进require语句，并在运行时调用injectStyle等函数将内容注入到页面的style标签</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/795c0fb955b141c6a5cb03a55fcb3c2c.png#pic_center"></p>
+<p><strong>其它特性</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/70ab9930344a444aa22fde14eef4c6db.png#pic_center"><br>特点</p>
+<ul>
+<li>链式执行</li>
+<li>支持异步执行</li>
+<li>分normal、pitch两种模式</li>
+</ul>
+<p><strong>常见Loader</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/6a723be76148461caddc84ce33446f96.png#pic_center"></p>
+<hr>
+<h2 id="4、Plugin组件"><a href="#4、Plugin组件" class="headerlink" title="4、Plugin组件"></a>4、Plugin组件</h2><p>插件架构精髓：对扩展开放，对修改封闭</p>
+<p><img src="https://img-blog.csdnimg.cn/3f9bec71fe9548fd9c4f936b39af1b43.png#pic_center"></p>
+<p>钩子的核心信息∶</p>
+<ol>
+<li>时机:编译过程的特定节点， Webpack 会以钩子形式通知插件此刻正在发生什么事情;</li>
+<li>上下文:通过tapable提供的回调机制,以参数方式传递上下文信息;</li>
+<li>交互:在上下文参数对象中附带了很多存在side effect 的交互接口，插件可以通过这些接口改变</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/0f04d6532490442d9668c20921ff79b7.png#pic_center"><br><img src="https://img-blog.csdnimg.cn/9de249bdeb62474498a35c6062f2dd59.png#pic_center"></p>
+<hr>
+<h2 id="5、如何学习Webpack"><a href="#5、如何学习Webpack" class="headerlink" title="5、如何学习Webpack"></a>5、如何学习Webpack</h2><ul>
+<li>入门应用<br>  - 理解打包流程<br>  - 熟练掌握常用配置项、Loader、插件的使用方法，能够灵活搭建集成Vue、React、Babel、Eslint、Less、Sass、图片处理等工具的 Webpack 环境<br>  - 掌握常见脚手架工具的用法，例如:Vuo-cli、create-react-app、@angular&#x2F;cli</li>
+<li>进阶<br> - 理解Loader、Plugin机制,能够自行开发Webpack组件<br>      - 理解常见性能优化手段,并能用于解决实际问题<br>  - 理解前端工程化概念与生态现状</li>
+<li>大师级<br> - 阅读源码,理解Webpack编译、打包原理,甚至能够参与共建</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/2ba0af9a6db94c18a1f2b9b2d145a90f.png#pic_center"></p>
+<p>参考资料：<br><a target="_blank" rel="noopener" href="https://gitmind.cn/app/doc/fac1c196e29b8f9052239f16cff7d4c7">Webpack5知识体系</a></p>
+<p>扩展：<br>面试要掌握到什么程度？<br>首先，网上很多相关面试,主要围绕三种主题︰</p>
+<ul>
+<li>Loader有什么作用、怎么写loader、常用loader有哪些？<br>  - css-loader、style-loader、wue-loader、 file-loader.eslint-laader、babel-laader·</li>
+<li>插件有什么用，怎么写插件，插件原理？</li>
+<li>Bundle、chunk、rmodule 分别是什么含义？</li>
+</ul>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/01/27/Webpack%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2022/01/28/WEB%E5%BC%80%E5%8F%91%E7%9A%84%E5%AE%89%E5%85%A8%E4%B9%8B%E6%97%85/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            WEB开发的安全之旅
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2022/01/26/WebGL%E5%88%9D%E8%AF%86/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">WebGL初识</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "keN4GS5JeQfwvylr07oj8w0n-gzGzoHsz",
+    app_key: "1C2GpGDbNeIOoqy8MLqxpNUu",
+    path: window.location.pathname,
+    avatar: "retro",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+    
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2022
+        <i class="ri-heart-fill heart_icon"></i> 会思想的苇草i
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/favicon.ico" alt="会思想的苇草i"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>感谢打赏哈哈嗝~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+ 
+<script src="/js/clickLove.js"></script>
+ 
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>
