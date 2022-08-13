@@ -115,18 +115,18 @@
 <li><p>先在 GitHub 新建一个仓库用于存储图片，打开自己 GitHub <a target="_blank" rel="noopener" href="https://github.com/">主页</a>，点击New新建仓库</p>
 </li>
 <li><p><code>Repository name</code>填写仓库名字，<code>Description</code>填写仓库描述，勾选<code>Add a README file</code>，点击<code>Create repository</code>创建仓库:</p>
-<p><img src="https://img-blog.csdnimg.cn/935085465e9a41fda1082dcf88d4f7d5.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/935085465e9a41fda1082dcf88d4f7d5.png"></p>
 </li>
 <li><p>获取repo tokens:这个 token 主要用于让 PicGo 有权限往我们的仓库 push 代码(图片)。点击自己的头像，选择Settings:</p>
-<p><img src="https://img-blog.csdnimg.cn/88ed338ce08441ab89a72d0ea33fe045.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/88ed338ce08441ab89a72d0ea33fe045.png"></p>
 <p>选择Developer settings:</p>
-<p><img src="https://img-blog.csdnimg.cn/cb6f8f5e08694001be2a97bd8ece4946.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/cb6f8f5e08694001be2a97bd8ece4946.png"></p>
 <p>点击 Personal access tokens，然后点击Generate new token(可能需要确认密码)：</p>
-<p><img src="https://img-blog.csdnimg.cn/1ab20bb6eada475db02070f5ffad0828.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/1ab20bb6eada475db02070f5ffad0828.png"></p>
 <p><code>Note</code>填写 token 用途，用于备忘，下面只需要勾选<code>repo</code>，只给更新仓库的权限，最后点击最下面的Generate token创建成功：</p>
-<p><img src="https://img-blog.csdnimg.cn/40a8c7bf44e648bda8cf2e2adeb8afe7.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/40a8c7bf44e648bda8cf2e2adeb8afe7.png"></p>
 <p><strong>复制字符串下一步使用：此字符串只会出现一次，一定要复制保存好！！！</strong></p>
-<p><img src="https://img-blog.csdnimg.cn/2e62f4c938584e7faa588c4fca3c7fe6.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/2e62f4c938584e7faa588c4fca3c7fe6.png"></p>
 </li>
 </ol>
 <h1 id="二、PicGo-图片上传"><a href="#二、PicGo-图片上传" class="headerlink" title="二、PicGo(图片上传)"></a>二、PicGo(图片上传)</h1><ul>
@@ -141,7 +141,7 @@
 <li><p>下载好之后直接按照提示安装即可：</p>
 </li>
 </ul>
-<p><img src="https://img-blog.csdnimg.cn/402c95f434b745c3bf3520a660fce5e8.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/402c95f434b745c3bf3520a660fce5e8.png"></p>
 <ul>
 <li>PicGo配置：打开PicGo  ,选择图床设置，选择GitHub图床，填写参数：<ul>
 <li>设定仓库名，填写格式为用户名&#x2F;仓库名</li>
@@ -153,31 +153,31 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://img-blog.csdnimg.cn/a212205d6943409cbc1e95e55e73ca85.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/a212205d6943409cbc1e95e55e73ca85.png"></p>
 <h1 id="三、jsDelivr-CDN加速"><a href="#三、jsDelivr-CDN加速" class="headerlink" title="三、jsDelivr(CDN加速)"></a>三、jsDelivr(CDN加速)</h1><ul>
 <li>GitHub 存储的图片地址是 <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/">https://raw.githubusercontent.com</a> 开头的网址，这个域名在某些地方可能打不开或者很慢导致图片加载失败，所以我们需要对图片配置 CDN 加速</li>
 <li>CDN的全称是(Content Delivery Network)，即内容分发网络。其目的是通过在现有的Internet中增加一层新的CACHE(缓存)层，将网站的内容发布到最接近用户的网络”边缘“的节点，使用户可以就近取得所需的内容，提高用户访问网站的响应速度</li>
 <li>jsDelivr CDN，不仅开源免费而且在中国大陆建有许多服务站点，官网还声称是中国大陆唯一拥有许可证的公有 CDN，所以速度、稳定性都可以放心</li>
 <li>打开<a target="_blank" rel="noopener" href="https://www.jsdelivr.com/">jsDelivr CDN 官网</a>，可以看到 jsDelivr 支持 npm、GitHub、WordPress三个站点的加速，用于我们的GitHub图床是再适合不过了</li>
 </ul>
-<p><img src="https://img-blog.csdnimg.cn/0f6e77b46bf345c6abf2d4e9d409a26e.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/0f6e77b46bf345c6abf2d4e9d409a26e.png"></p>
 <ul>
 <li>在浏览器输入<code>https://cdn.jsdelivr.net/gh/用户名/仓库名/</code>，(注意最后的<code>/</code>不要丢)，可以打开我们在 GitHub 上创建的仓库的文件列表，说明我们在 Github 上创建的仓库已经默认被 jsDelivr 缓存</li>
 </ul>
-<p><img src="https://img-blog.csdnimg.cn/28d439312ff046d9b9bba74ffe6ac402.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/28d439312ff046d9b9bba74ffe6ac402.png"></p>
 <ul>
 <li>PicGo 中需要改一下自定义域名，之后上传图片自动生成的链接就是 jsDelivr 的链接了。具体就是在<code>设定自定义域名</code>填写<code>https://cdn.jsdelivr.net/gh/用户名/仓库名@master</code>。</li>
 </ul>
-<p><img src="https://img-blog.csdnimg.cn/d60f18726c4744b098e4f8bdc052c58d.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/d60f18726c4744b098e4f8bdc052c58d.png"></p>
 <h1 id="四、Typora-写文传图"><a href="#四、Typora-写文传图" class="headerlink" title="四、Typora(写文传图)"></a>四、Typora(写文传图)</h1><ul>
 <li>Typora 是一款支持实时预览的 Markdown 文本编辑器，现在支持有 OS X、Windows、Linux 三个平台的版本。Typora 创新的提出实时预览这种方式，源码和显示效果合一显示，所见即所得，非常的方便。建议都学习一下Markdown语法，简单且好用</li>
 <li><a target="_blank" rel="noopener" href="https://typoraio.cn/">Typora 官方中文站 (typoraio.cn)</a></li>
 </ul>
-<p><img src="https://img-blog.csdnimg.cn/ac7c49e8d1c24d1cabb14852796bb825.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/ac7c49e8d1c24d1cabb14852796bb825.png"></p>
 <ul>
 <li>在Typora里点击<code>文件</code>，<code>偏好设置</code>，<code>图像</code>，选择插入图片时<code>上传图片</code>，勾选图中三个选项，上传服务设定选择<code>PicGo (app)</code>，PicGo 路径通过后面的文件夹选择自己电脑上 PicGo 的安装路径</li>
 </ul>
-<p><img src="https://img-blog.csdnimg.cn/c161190a0f284913b61af926d4d08b12.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/c161190a0f284913b61af926d4d08b12.png"></p>
 <ul>
 <li>此时，使用 Typora 编辑文件，拖入或者粘贴图片时，会自动调用 PicGo 将图片上传到 GitHub 图床，并把返回的图片链接粘贴到文章中</li>
 </ul>
