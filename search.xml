@@ -11858,4 +11858,38 @@
         <tag>hexo</tag>
       </tags>
   </entry>
+  <entry>
+    <title>CSDN文章打包下载</title>
+    <url>/2022/08/10/CSDN%E6%96%87%E7%AB%A0%E6%89%93%E5%8C%85%E4%B8%8B%E8%BD%BD/</url>
+    <content><![CDATA[<h1 id="CSDN文章打包下载"><a href="#CSDN文章打包下载" class="headerlink" title="CSDN文章打包下载"></a>CSDN文章打包下载</h1><ul>
+<li>CSDN 没有提供文章导出功能，只有导入功能，所以我们可以用下述方式下载 CSDN 上的文章并保存成 Markdown 格式。</li>
+<li>步骤：</li>
+</ul>
+<ol>
+<li><p>登录CSDN： <a href="https://blog.csdn.net/">https://blog.csdn.net/</a></p>
+</li>
+<li><p>前往：<a href="https://blog-console-api.csdn.net/%EF%BC%88%E5%87%BA%E7%8E%B0404%E4%B9%9F%E6%B2%A1%E5%85%B3%E7%B3%BB%EF%BC%89">https://blog-console-api.csdn.net/（出现404也没关系）</a></p>
+</li>
+<li><p>点击F12，在控制台()中输入下段代码并回车：</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> s=<span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;script&#x27;</span>);s.<span class="property">type</span>=<span class="string">&#x27;text/javascript&#x27;</span>;</span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(s);</span><br><span class="line">s.<span class="property">src</span>=<span class="string">&#x27;//cdn.jsdelivr.net/gh/ame-yu/csdn-move@latest/dist/index.js&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/5256aa6d70c04c468e501b75f91a1fc1.png" alt="在这里插入图片描述"></p>
+<ol start="4">
+<li>CSDN上的文章就会被下载下来啦！</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/102e923fa2b5420ba8a7a5ebd3a09dc1.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>将下载打包的压缩包解压就可以看到文章了！</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/0856bfdf47dd4172af26b60d0b224229.png" alt="在这里插入图片描述"></p>
+]]></content>
+      <categories>
+        <category>博客</category>
+      </categories>
+      <tags>
+        <tag>CSDN</tag>
+      </tags>
+  </entry>
 </search>
