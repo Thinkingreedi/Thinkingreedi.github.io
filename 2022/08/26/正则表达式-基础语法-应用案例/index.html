@@ -15,7 +15,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>基于hexo框架快速从0到1搭建个人博客 -- 文章发布 |  会思想的苇草i</title>
+      <title>正则表达式(基础语法+应用案例) |  会思想的苇草i</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -57,7 +57,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-8-10-基于hexo框架快速从0到1搭建个人博客----文章一键发布"
+  id="post-正则表达式-基础语法-应用案例"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -68,7 +68,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  基于hexo框架快速从0到1搭建个人博客 -- 文章发布
+  正则表达式(基础语法+应用案例)
 </h1>
  
 
@@ -76,11 +76,11 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2022/08/13/8-10-%E5%9F%BA%E4%BA%8Ehexo%E6%A1%86%E6%9E%B6%E5%BF%AB%E9%80%9F%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2----%E6%96%87%E7%AB%A0%E4%B8%80%E9%94%AE%E5%8F%91%E5%B8%83/" class="article-date">
-  <time datetime="2022-08-13T13:26:01.000Z" itemprop="datePublished">2022-08-13</time>
+      <a href="/2022/08/26/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/" class="article-date">
+  <time datetime="2022-08-26T00:41:51.000Z" itemprop="datePublished">2022-08-26</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%8D%9A%E5%AE%A2/">博客</a>
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
   </div>
   
 <div class="word_count">
@@ -88,7 +88,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">879</span>
+            <span class="post-count">1.8k</span>
         </span>
     </span>
 
@@ -97,7 +97,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">3 分钟</span>
+            <span class="post-count">7 分钟</span>
         </span>
     </span>
 </div>
@@ -112,50 +112,336 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <ul>
-<li><strong>前言：在前面的文章中，已经实现了文章的撰写和图片的处理，接踵而至的就是文章的发表，在这里还需要向之前一样复杂吗，所以在这里尝试去实现文章的一键发表</strong>。</li>
-</ul>
-<h1 id="一、文章对比"><a href="#一、文章对比" class="headerlink" title="一、文章对比"></a>一、文章对比</h1><ul>
-<li>平时在本地写文章保存在<code>D:\Markdown</code>目录，而 Hexo 保存在<code>D:\hexoblog</code>目录。发布 Hexo 之前需要先把文章拷贝到<code>D:\hexoblog\source\_posts</code>目录，有时候文章有修改还要重新拷贝覆盖。通过搜寻资料，查看文章，决定用Python脚本实现拷贝文件，判断文件最后修改时间决定是否需要覆盖旧文章。</li>
-<li>因为我们省略了hexo create “title”这一步，直接把文件拷贝到了_posts目录，所以写文章时需要确保在开头加上 title、date、tags、category信息，不然发布的文章会没有没有标题、发布时间、标签、分类信息，其实hexo create命令做的就是这件事。注意最后的空行一定要有。</li>
-</ul>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 基于hexo框架快速从0到1搭建个人博客 -- 文章发布</span><br><span class="line">date: 2022-8-13 21:26:01</span><br><span class="line">tags: hexo</span><br><span class="line"><span class="section">categories : 博客</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
-
+  <h1 id="1、正则表达式简介"><a href="#1、正则表达式简介" class="headerlink" title="1、正则表达式简介"></a>1、正则表达式简介</h1><ul>
+<li><p>正则表达式(Regular Expression)是一种文本模式，包括普通字符（例如，a 到 z 之间的字母）和特殊字符（称为”元字符”）。</p>
+</li>
+<li><p>典型的搜索和替换操作要求提供与预期的搜索结果匹配的确切文本。虽然这种技术对于对静态文本执行简单搜索和替换任务可能已经足够了，但它缺乏灵活性，若采用这种方法搜索动态文本，也会变得很困难。</p>
+</li>
+<li><p>通过使用正则表达式能够：</p>
 <ul>
-<li>Python 代码(电脑要配置好python环境)：</li>
+<li><strong>测试字符串内的模式。（数据验证）</strong></li>
+<li><strong>替换文本。（文本操作）</strong></li>
+<li><strong>基于模式匹配从字符串中提取子字符串。（目标提取）</strong></li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># copy_to_hexo.py</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">copy_to_hexo</span>():</span><br><span class="line">    local_list = os.listdir(LOCAL_ARTICLE_PATH)</span><br><span class="line">    hexo_list = os.listdir(HEXO_ARTICLE_PATH)</span><br><span class="line">    flag = <span class="literal">True</span></span><br><span class="line">    <span class="keyword">for</span> file <span class="keyword">in</span> local_list:</span><br><span class="line">        <span class="keyword">if</span> file <span class="keyword">in</span> IGNORE_LIST:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">if</span> file.endswith(<span class="string">&#x27;.md&#x27;</span>):</span><br><span class="line">            local_version = os.path.join(LOCAL_ARTICLE_PATH, file)</span><br><span class="line">            hexo_version = os.path.join(HEXO_ARTICLE_PATH, file)</span><br><span class="line">            <span class="keyword">if</span> file <span class="keyword">not</span> <span class="keyword">in</span> hexo_list:</span><br><span class="line">                flag = <span class="literal">False</span></span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;新增文章: %s...&quot;</span> % file,</span><br><span class="line">                      <span class="string">&quot;最后修改时间：%s&quot;</span> % TimeStampFormat(os.path.getmtime(local_version)))</span><br><span class="line">                shutil.copy(local_version, hexo_version)</span><br><span class="line">            <span class="keyword">elif</span> os.path.getmtime(local_version) &gt; os.path.getmtime(hexo_version):</span><br><span class="line">                flag = <span class="literal">False</span></span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;更新文章: %s...&quot;</span> % file,</span><br><span class="line">                      <span class="string">&quot;上次修改时间：%s&quot;</span> % TimeStampFormat(os.path.getmtime(hexo_version)),</span><br><span class="line">                      <span class="string">&quot;最后修改时间：%s&quot;</span> % TimeStampFormat(os.path.getmtime(local_version)))</span><br><span class="line">                shutil.copy(local_version, hexo_version)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;文章无变化&#x27;</span> <span class="keyword">if</span> flag <span class="keyword">else</span> <span class="string">&#x27;更新完毕&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 时间格式标准化</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">TimeStampFormat</span>(<span class="params">timestamp</span>):</span><br><span class="line">    <span class="keyword">return</span> time.strftime(<span class="string">&#x27;%Y-%m-%d %H:%M:%S&#x27;</span>, time.localtime(timestamp))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">IGNORE_LIST = [<span class="string">&#x27;欢迎使用Markdown编辑器.md&#x27;</span>]</span><br><span class="line">HEXO_ARTICLE_PATH = <span class="string">&#x27;D:\hexoblog\source\_posts&#x27;</span></span><br><span class="line">LOCAL_ARTICLE_PATH = <span class="string">&#x27;D:/Markdown&#x27;</span></span><br><span class="line"></span><br><span class="line">copy_to_hexo()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="2、正则表达式语法"><a href="#2、正则表达式语法" class="headerlink" title="2、正则表达式语法"></a>2、正则表达式语法</h1><ul>
+<li>JavaScript RegExp对象的创建：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> patt=<span class="keyword">new</span> <span class="title class_">RegExp</span>(pattern,modifiers);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> patt=<span class="regexp">/pattern/m</span>odifiers;</span><br><span class="line"><span class="comment">//pattern（模式） 描述了表达式的模式</span></span><br><span class="line"><span class="comment">//modifiers(修饰符) 用于指定全局匹配、区分大小写的匹配和多行匹配</span></span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>运行效果</li>
-</ul>
-<p><img src="https://img-blog.csdnimg.cn/a8a58af2efdc4cf489e81cfbf02f85d0.png"></p>
-<h1 id="二、发布到Github"><a href="#二、发布到Github" class="headerlink" title="二、发布到Github"></a>二、发布到Github</h1><ul>
-<li>之前已经修改好了hexo的配置：</li>
-</ul>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span></span><br><span class="line">      <span class="attr">github:</span> <span class="string">git@github.com:用户名/用户名.github.io.git,main</span></span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>shell发布脚本：Git Bash支持直接运行 shell 脚本，只需要把下面代码保存为 <code>.sh</code>后缀的文件即可：</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># deploy_hexo.sh</span></span><br><span class="line"><span class="built_in">cd</span> /d/hexoblog</span><br><span class="line"><span class="built_in">pwd</span></span><br><span class="line"><span class="comment"># 白底黑字效果</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;\033[47;30m&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;hexo g&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;\033[0m&quot;</span></span><br><span class="line">hexo g</span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;\033[47;30m&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;hexo d&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;\033[0m&quot;</span></span><br><span class="line">hexo d</span><br><span class="line"><span class="built_in">sleep</span> 5</span><br><span class="line"><span class="comment"># 执行完毕不退出</span></span><br><span class="line"><span class="comment"># exec /bin/bash</span></span><br></pre></td></tr></table></figure>
 
+<h2 id="2-1-修饰符"><a href="#2-1-修饰符" class="headerlink" title="2.1 修饰符"></a>2.1 修饰符</h2><ul>
+<li>修饰符用于执行区分大小写和全局匹配</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">修饰符</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">i</td>
+<td align="center">执行对大小写不敏感的匹配  &#x2F;a&#x2F;i</td>
+</tr>
+<tr>
+<td align="center">g</td>
+<td align="center">执行全局匹配 &#x2F;a&#x2F;g</td>
+</tr>
+<tr>
+<td align="center">m</td>
+<td align="center">执行多行匹配 &#x2F;a&#x2F;m</td>
+</tr>
+</tbody></table>
+<h2 id="2-2-方括号"><a href="#2-2-方括号" class="headerlink" title="2.2 方括号"></a>2.2 方括号</h2><table>
+<thead>
+<tr>
+<th align="center"><strong>表达式</strong></th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">[abc]</td>
+<td align="center">查找方括号之间(给定集合内)的任何字符</td>
+</tr>
+<tr>
+<td align="center">[^abc]</td>
+<td align="center">查找任何不在方括号之间(给定集合外)的字符</td>
+</tr>
+<tr>
+<td align="center">[0-9]</td>
+<td align="center">查找任何从 0 至 9 的数字</td>
+</tr>
+<tr>
+<td align="center">[a-z]</td>
+<td align="center">查找任何从小写 a 到小写 z 的字符</td>
+</tr>
+<tr>
+<td align="center">[A-Z]</td>
+<td align="center">查找任何从大写 A 到大写 Z 的字符</td>
+</tr>
+<tr>
+<td align="center">(a|b|c）</td>
+<td align="center">查找任何指定的选项</td>
+</tr>
+</tbody></table>
+<h2 id="2-3-元字符"><a href="#2-3-元字符" class="headerlink" title="2.3 元字符"></a>2.3 元字符</h2><ul>
+<li>元字符（Metacharacter）是拥有特殊含义的字符</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">元字符</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">.</td>
+<td align="center">查找单个字符，除了换行和行结束符</td>
+</tr>
+<tr>
+<td align="center">\w</td>
+<td align="center">查找数字、字母及下划线</td>
+</tr>
+<tr>
+<td align="center">\W</td>
+<td align="center">查找非单词字符</td>
+</tr>
+<tr>
+<td align="center">\d</td>
+<td align="center">查找数字</td>
+</tr>
+<tr>
+<td align="center">\D</td>
+<td align="center">查找非数字字符</td>
+</tr>
+<tr>
+<td align="center">\s</td>
+<td align="center">查找空白字符</td>
+</tr>
+<tr>
+<td align="center">\S</td>
+<td align="center">查找非空白字符</td>
+</tr>
+<tr>
+<td align="center">\b</td>
+<td align="center">匹配单词边界</td>
+</tr>
+<tr>
+<td align="center">\B</td>
+<td align="center">匹配非单词边界</td>
+</tr>
+<tr>
+<td align="center">\0</td>
+<td align="center">查找 NULL 字符</td>
+</tr>
+<tr>
+<td align="center">\n</td>
+<td align="center">查找换行符</td>
+</tr>
+<tr>
+<td align="center">\f</td>
+<td align="center">查找换页符</td>
+</tr>
+<tr>
+<td align="center">\r</td>
+<td align="center">查找回车符</td>
+</tr>
+<tr>
+<td align="center">\t</td>
+<td align="center">查找制表符</td>
+</tr>
+<tr>
+<td align="center">\v</td>
+<td align="center">查找垂直制表符</td>
+</tr>
+<tr>
+<td align="center">\xxx</td>
+<td align="center">查找以八进制数 xxx 规定的字符</td>
+</tr>
+<tr>
+<td align="center">\xdd</td>
+<td align="center">查找以十六进制数 dd 规定的字符</td>
+</tr>
+<tr>
+<td align="center">\uxxxx</td>
+<td align="center">查找以十六进制数 xxxx 规定的 Unicode 字符</td>
+</tr>
+</tbody></table>
+<h2 id="2-4-量词"><a href="#2-4-量词" class="headerlink" title="2.4 量词"></a>2.4 量词</h2><table>
+<thead>
+<tr>
+<th align="center">量词</th>
+<th align="center"><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">n+</td>
+<td align="center">匹配任何包含至少一个 n 的字符串</td>
+</tr>
+<tr>
+<td align="center">n*</td>
+<td align="center">匹配任何包含零个或多个 n 的字符串</td>
+</tr>
+<tr>
+<td align="center">n?</td>
+<td align="center">匹配任何包含零个或一个 n 的字符串</td>
+</tr>
+<tr>
+<td align="center">n{X}</td>
+<td align="center">匹配包含 X 个 n 的序列的字符串</td>
+</tr>
+<tr>
+<td align="center">n{X,}</td>
+<td align="center">X 是一个正整数。前面的模式 n 连续出现至少 X 次时匹配</td>
+</tr>
+<tr>
+<td align="center">n{X,Y}</td>
+<td align="center">X 和 Y 为正整数。前面的模式 n 连续出现至少 X 次，至多 Y 次时匹配</td>
+</tr>
+<tr>
+<td align="center">n$</td>
+<td align="center">匹配任何结尾为 n 的字符串</td>
+</tr>
+<tr>
+<td align="center">^n</td>
+<td align="center">匹配任何开头为 n 的字符串</td>
+</tr>
+<tr>
+<td align="center">?&#x3D;n</td>
+<td align="center">匹配任何其后紧接指定字符串 n 的字符串</td>
+</tr>
+<tr>
+<td align="center">?!n</td>
+<td align="center">匹配任何其后没有紧接指定字符串 n 的字符串</td>
+</tr>
+</tbody></table>
+<h2 id="2-5-运算符优先级"><a href="#2-5-运算符优先级" class="headerlink" title="2.5 运算符优先级"></a>2.5 运算符优先级</h2><ul>
+<li>正则表达式从左到右进行计算，并遵循优先级顺序，这与算术表达式非常类似。相同优先级的从左到右进行运算，不同优先级的运算先高后低。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">运算符</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">\</td>
+<td align="center">转义符</td>
+</tr>
+<tr>
+<td align="center">(), (?:), (?&#x3D;), []</td>
+<td align="center">圆括号和方括号</td>
+</tr>
+<tr>
+<td align="center">*, +, ?, {n}, {n,}, {n,m}</td>
+<td align="center">限定符</td>
+</tr>
+<tr>
+<td align="center">^, $, \任何元字符、任何字符</td>
+<td align="center">定位点和序列</td>
+</tr>
+<tr>
+<td align="center">|</td>
+<td align="center">替换，”或”操作</td>
+</tr>
+</tbody></table>
+<h1 id="3、正则表达式API"><a href="#3、正则表达式API" class="headerlink" title="3、正则表达式API"></a>3、正则表达式API</h1><h2 id="3-1-RegExp对象属性"><a href="#3-1-RegExp对象属性" class="headerlink" title="3.1 RegExp对象属性"></a>3.1 RegExp对象属性</h2><p><strong>global</strong></p>
 <ul>
-<li>运行效果：</li>
+<li>判断是否设置了 “g” 修饰符，如果 g 标志被设置，则该属性为 true，否则为 false</li>
+<li><code>RegExpObject.global</code></li>
 </ul>
-<p><img src="https://img-blog.csdnimg.cn/8b35acc7bdc74a2a9988eb7e3c8fafba.png"></p>
-<p><img src="https://img-blog.csdnimg.cn/9a8552800eba4c279c71bd2babd168fc.png"></p>
-<h1 id="三、一键发布"><a href="#三、一键发布" class="headerlink" title="三、一键发布"></a>三、一键发布</h1><ul>
-<li>上面写的两个脚本一步一步实现了文章的自动发布，对于 Windows 系统来说，可以使用 bat 脚本把它们整合在一起，完成“一键”发布的需求。</li>
-</ul>
-<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">:: post_my_blog.bat</span><br><span class="line">python copy_to_hexo.py</span><br><span class="line">&quot;C:\Program Files\Git\git-bash.exe&quot; deploy_hexo.sh</span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
-
+<p><strong>ignoreCase</strong></p>
 <ul>
-<li>写好文章后，直接双击<code>post_my_blog.bat</code>就可以发布到三个地方了。</li>
+<li>判断是否设置了 “i” 修饰符，如果设置了 “i” 标志，则返回 true，否则返回 false</li>
+<li><code>RegExpObject.ignoreCase</code></li>
 </ul>
-<p><img src="https://img-blog.csdnimg.cn/fbc089a95e7145a4985662b5d25f462d.png"></p>
-<h1 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h1><ul>
-<li>本文主要实现了文章的发布，参考了许多资料和部分代码，并将其整合在一个文件中，实现真正的一键发布，减少博客文章管理压力，使更加专注于文章的撰写！</li>
+<p><strong>multiline</strong></p>
+<ul>
+<li>判断是否设置了 “m” 修饰符，如果 m 标志被设置，则该属性为 true，否则为 false</li>
+<li><code>RegExpObject.multiline</code></li>
+</ul>
+<p><strong>source</strong></p>
+<ul>
+<li>返回正则表达式的匹配模式</li>
+<li><code>RegExpObject.source</code></li>
+</ul>
+<p><strong>lastIndex</strong></p>
+<ul>
+<li>用于规定下次匹配的起始位置，该属性只有设置标志 g 才能使用</li>
+<li><code>RegExpObject.lastIndex</code></li>
+</ul>
+<h2 id="3-2-RegExp对象方法"><a href="#3-2-RegExp对象方法" class="headerlink" title="3.2 RegExp对象方法"></a>3.2 RegExp对象方法</h2><p><strong>exec</strong></p>
+<ul>
+<li>检索字符串中指定的值。返回找到的值，并确定其位置。</li>
+<li><code>RegExpObject.exec(string)</code></li>
+</ul>
+<p><strong>test</strong></p>
+<ul>
+<li><p>检索字符串中指定的值。返回 true 或 false。</p>
+</li>
+<li><p><code>RegExpObject.test(string)</code></p>
+</li>
+</ul>
+<p><strong>toString</strong></p>
+<ul>
+<li>返回正则表达式的字符串。</li>
+<li><code>RegExpObject.toString()</code></li>
+</ul>
+<h2 id="3-3-支持正则表达式的String对象方法"><a href="#3-3-支持正则表达式的String对象方法" class="headerlink" title="3.3 支持正则表达式的String对象方法"></a>3.3 支持正则表达式的String对象方法</h2><p><strong>search</strong></p>
+<ul>
+<li><p>检索与正则表达式相匹配的值,找到返回起始位置，如果没有找到任何匹配的子串，则返回 -1</p>
+</li>
+<li><p><code>string.search(searchvalue)</code></p>
+</li>
+</ul>
+<p><strong>match</strong></p>
+<ul>
+<li>找到一个或多个正则表达式的匹配,如果 regexp 没有标志 g，那么 match() 方法就只能在 stringObject 中执行一次匹配。如果没有找到任何匹配的文本， match() 将返回 null。否则，它将返回一个数组，其中存放了与它找到的匹配文本有关的信息</li>
+<li><code>string.match(regexp)</code></li>
+</ul>
+<p><strong>replace</strong></p>
+<ul>
+<li><p>替换与正则表达式匹配的子串</p>
+</li>
+<li><p><code>string.replace(searchvalue,newvalue)</code></p>
+</li>
+</ul>
+<p><strong>split</strong></p>
+<ul>
+<li>把字符串分割为字符串数组</li>
+<li><code>string.split(separator,limit)</code></li>
+</ul>
+<h1 id="4、正则表达式应用"><a href="#4、正则表达式应用" class="headerlink" title="4、正则表达式应用"></a>4、正则表达式应用</h1><ul>
+<li><p>简单表达式   <code>/a/</code>  ,匹配a</p>
+</li>
+<li><p>字符匹配  <code>/a.c</code>  ,匹配 aac、abc、acc、adc 等等</p>
+</li>
+<li><p>中文  <code>/[\u4E00-\u9FA5]/</code></p>
+</li>
+<li><p>用户名 <code>/^[a-zA-Z0-9_-]&#123;4,16&#125;$/</code>  4到16位字母、数字、下划线和中划线组成</p>
+</li>
+<li><p>车牌号   <code>/^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]&#123;1&#125;[A-Z]&#123;1&#125;[A-Z0-9]&#123;4&#125;[A-Z0-9挂学警港澳]&#123;1&#125;$/</code></p>
+</li>
+<li><p>微信号  <code>/^[a-zA-Z][-_a-zA-Z0-9]&#123;5,19&#125;$/</code>  6至20位，以字母开头，字母，数字，减号，下划线</p>
+</li>
+<li><p>QQ号  <code>/^[1-9][0-9]&#123;4,10&#125;$/</code> 5至11位数字组成</p>
+</li>
+<li><p>16进制颜色    <code>/^#([a-fA-F0-9]&#123;6&#125;|[a-fA-F0-9]&#123;3&#125;)$/</code>  以#开始 ，6或3个字符（A-F、a-f、0-9）结尾</p>
+</li>
+<li><p>电话号码 <code>/^1(3\d|4[5-9]|5[0-35-9]|6[2567]|7[0-8]|8\d|9[0-35-9])\d&#123;8&#125;$/ </code>    以1开头，3可跟任一数字（\d），4可跟5-9，5可跟0-3或5-9 ，6后2567其中一个，7后是0-8,8后任一数字，9后是0-3或3-5，其余8位是任意数字（\d{8}）</p>
+</li>
+<li><p>身份证号  <code> /^[1-9]\d&#123;5&#125;(19|20|21)\d&#123;2&#125;(0[1-9]|10|11|12)(0[1-9]|[1-2]\d|30|31)\d&#123;3&#125;[\dX]$/</code>     第一位在0-9区间，后面是5位任意数字，4位年份（19、20、21开头，后两位任意），两位代表月份（0开头的1-9或者是10、11、12），两位日期（01-31），三位顺序码，最后一位是校验码，可数字可X</p>
+</li>
+<li><p>网址   <code>/^((https?):)?\/\/([^?:/]+)(:(\d+))?(\/[^?]*)?(\?(.*))?/</code></p>
+</li>
+<li><p>邮箱   <code>/^(([^&lt;&gt;()[\]\\.,;:\s@\&quot;]+(\.[^&lt;&gt;()[\]\\.,;:\s@\&quot;]+)*)|(\&quot;.+\&quot;))@((\[[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]&#123;2,&#125;))$/</code>   </p>
+</li>
+<li><p>最后推荐一下一个网站 – 正则表达式在线测试网站： <a target="_blank" rel="noopener" href="https://c.runoob.com/front-end/854/">正则表达式在线测试</a> ，在这里可以书写正则表达式并在线测试，还有常见应用案例提示以及可视化图等相关功能！</p>
+</li>
 </ul>
  
       <!-- reward -->
@@ -227,12 +513,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/08/13/8-10-%E5%9F%BA%E4%BA%8Ehexo%E6%A1%86%E6%9E%B6%E5%BF%AB%E9%80%9F%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2----%E6%96%87%E7%AB%A0%E4%B8%80%E9%94%AE%E5%8F%91%E5%B8%83/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/08/26/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li></ul>
 
     </footer>
   </div>
@@ -240,19 +526,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2022/08/26/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            正则表达式(基础语法+应用案例)
-          
-        </div>
-      </a>
     
-    
-      <a href="/2022/08/13/8-10-%E5%9F%BA%E4%BA%8Ehexo%E6%A1%86%E6%9E%B6%E5%BF%AB%E9%80%9F%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2----%E6%96%87%E7%AB%A0%E5%86%99%E4%BD%9C/" class="article-nav-link">
+      <a href="/2022/08/13/8-10-%E5%9F%BA%E4%BA%8Ehexo%E6%A1%86%E6%9E%B6%E5%BF%AB%E9%80%9F%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2----%E6%96%87%E7%AB%A0%E4%B8%80%E9%94%AE%E5%8F%91%E5%B8%83/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">基于hexo框架快速从0到1搭建个人博客--文章写作</div>
+        <div class="article-nav-title">基于hexo框架快速从0到1搭建个人博客 -- 文章发布</div>
       </a>
     
   </nav>
