@@ -15,7 +15,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>正则表达式(基础语法+应用案例) |  会思想的苇草i</title>
+      <title>动态规划--01背包问题 |  会思想的苇草i</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -57,7 +57,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-正则表达式-基础语法-应用案例"
+  id="post-动态规划-01背包问题"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -68,7 +68,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  正则表达式(基础语法+应用案例)
+  动态规划--01背包问题
 </h1>
  
 
@@ -76,11 +76,11 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2022/08/26/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/" class="article-date">
-  <time datetime="2022-08-26T00:41:51.000Z" itemprop="datePublished">2022-08-26</time>
+      <a href="/2022/10/07/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-01%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2022-10-07T01:59:46.000Z" itemprop="datePublished">2022-10-07</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
   </div>
   
 <div class="word_count">
@@ -88,7 +88,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.8k</span>
+            <span class="post-count">1.1k</span>
         </span>
     </span>
 
@@ -97,351 +97,107 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">7 分钟</span>
+            <span class="post-count">4 分钟</span>
         </span>
     </span>
 </div>
  
     </div>
       
-    <div class="tocbot"></div>
-
 
 
 
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="1、正则表达式简介"><a href="#1、正则表达式简介" class="headerlink" title="1、正则表达式简介"></a>1、正则表达式简介</h1><ul>
-<li><p>正则表达式(Regular Expression)是一种文本模式，包括普通字符（例如，a 到 z 之间的字母）和特殊字符（称为”元字符”）。</p>
-</li>
-<li><p>典型的搜索和替换操作要求提供与预期的搜索结果匹配的确切文本。虽然这种技术对于对静态文本执行简单搜索和替换任务可能已经足够了，但它缺乏灵活性，若采用这种方法搜索动态文本，也会变得很困难。</p>
-</li>
-<li><p>通过使用正则表达式能够：</p>
+  <p><strong>本文默认读者具有动态规划前置知识</strong></p>
+<hr>
 <ul>
-<li><strong>测试字符串内的模式。（数据验证）</strong></li>
-<li><strong>替换文本。（文本操作）</strong></li>
-<li><strong>基于模式匹配从字符串中提取子字符串。（目标提取）</strong></li>
+<li><strong>动态规划的特点：</strong></li>
 </ul>
-</li>
+<ol>
+<li>重叠子问题</li>
+<li>状态转移方程</li>
+<li>最优子结构</li>
+</ol>
+<ul>
+<li>题型：<strong>求最值</strong></li>
+<li><strong>解题套路：</strong></li>
 </ul>
-<h1 id="2、正则表达式语法"><a href="#2、正则表达式语法" class="headerlink" title="2、正则表达式语法"></a>2、正则表达式语法</h1><ul>
-<li>JavaScript RegExp对象的创建：</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> patt=<span class="keyword">new</span> <span class="title class_">RegExp</span>(pattern,modifiers);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> patt=<span class="regexp">/pattern/m</span>odifiers;</span><br><span class="line"><span class="comment">//pattern（模式） 描述了表达式的模式</span></span><br><span class="line"><span class="comment">//modifiers(修饰符) 用于指定全局匹配、区分大小写的匹配和多行匹配</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="2-1-修饰符"><a href="#2-1-修饰符" class="headerlink" title="2.1 修饰符"></a>2.1 修饰符</h2><ul>
-<li>修饰符用于执行区分大小写和全局匹配</li>
+<ol>
+<li>明确【状态】</li>
+<li>明确【选择】</li>
+<li>明确dp函数&#x2F;数据的定义</li>
+<li>明确base case</li>
+</ol>
+<hr>
+<ul>
+<li>例：给你一个可装载容量为W的背包和N个物品，每个物品有重量和价值两个属性。其中第i个物品的重量为wt[i]，价值为va[i]，现在让你用这个背包装物品，最多能装的价值是多少?</li>
+<li>在这里将问题具体化：现在有<strong>4</strong>  (N&#x3D;4)个物品，背包总容量为<strong>8</strong>  (W&#x3D;8),背包最多能装入价值为多少的物品?</li>
 </ul>
 <table>
 <thead>
 <tr>
-<th align="center">修饰符</th>
-<th align="center">描述</th>
+<th>物体编号</th>
+<th>物体体积</th>
+<th>物体价值</th>
 </tr>
 </thead>
 <tbody><tr>
-<td align="center">i</td>
-<td align="center">执行对大小写不敏感的匹配  &#x2F;a&#x2F;i</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
 </tr>
 <tr>
-<td align="center">g</td>
-<td align="center">执行全局匹配 &#x2F;a&#x2F;g</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
 </tr>
 <tr>
-<td align="center">m</td>
-<td align="center">执行多行匹配 &#x2F;a&#x2F;m</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>4</td>
+<td>5</td>
+<td>6</td>
 </tr>
 </tbody></table>
-<h2 id="2-2-方括号"><a href="#2-2-方括号" class="headerlink" title="2.2 方括号"></a>2.2 方括号</h2><table>
-<thead>
-<tr>
-<th align="center"><strong>表达式</strong></th>
-<th align="center">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">[abc]</td>
-<td align="center">查找方括号之间(给定集合内)的任何字符</td>
-</tr>
-<tr>
-<td align="center">[^abc]</td>
-<td align="center">查找任何不在方括号之间(给定集合外)的字符</td>
-</tr>
-<tr>
-<td align="center">[0-9]</td>
-<td align="center">查找任何从 0 至 9 的数字</td>
-</tr>
-<tr>
-<td align="center">[a-z]</td>
-<td align="center">查找任何从小写 a 到小写 z 的字符</td>
-</tr>
-<tr>
-<td align="center">[A-Z]</td>
-<td align="center">查找任何从大写 A 到大写 Z 的字符</td>
-</tr>
-<tr>
-<td align="center">(a|b|c）</td>
-<td align="center">查找任何指定的选项</td>
-</tr>
-</tbody></table>
-<h2 id="2-3-元字符"><a href="#2-3-元字符" class="headerlink" title="2.3 元字符"></a>2.3 元字符</h2><ul>
-<li>元字符（Metacharacter）是拥有特殊含义的字符</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center">元字符</th>
-<th align="center">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">.</td>
-<td align="center">查找单个字符，除了换行和行结束符</td>
-</tr>
-<tr>
-<td align="center">\w</td>
-<td align="center">查找数字、字母及下划线</td>
-</tr>
-<tr>
-<td align="center">\W</td>
-<td align="center">查找非单词字符</td>
-</tr>
-<tr>
-<td align="center">\d</td>
-<td align="center">查找数字</td>
-</tr>
-<tr>
-<td align="center">\D</td>
-<td align="center">查找非数字字符</td>
-</tr>
-<tr>
-<td align="center">\s</td>
-<td align="center">查找空白字符</td>
-</tr>
-<tr>
-<td align="center">\S</td>
-<td align="center">查找非空白字符</td>
-</tr>
-<tr>
-<td align="center">\b</td>
-<td align="center">匹配单词边界</td>
-</tr>
-<tr>
-<td align="center">\B</td>
-<td align="center">匹配非单词边界</td>
-</tr>
-<tr>
-<td align="center">\0</td>
-<td align="center">查找 NULL 字符</td>
-</tr>
-<tr>
-<td align="center">\n</td>
-<td align="center">查找换行符</td>
-</tr>
-<tr>
-<td align="center">\f</td>
-<td align="center">查找换页符</td>
-</tr>
-<tr>
-<td align="center">\r</td>
-<td align="center">查找回车符</td>
-</tr>
-<tr>
-<td align="center">\t</td>
-<td align="center">查找制表符</td>
-</tr>
-<tr>
-<td align="center">\v</td>
-<td align="center">查找垂直制表符</td>
-</tr>
-<tr>
-<td align="center">\xxx</td>
-<td align="center">查找以八进制数 xxx 规定的字符</td>
-</tr>
-<tr>
-<td align="center">\xdd</td>
-<td align="center">查找以十六进制数 dd 规定的字符</td>
-</tr>
-<tr>
-<td align="center">\uxxxx</td>
-<td align="center">查找以十六进制数 xxxx 规定的 Unicode 字符</td>
-</tr>
-</tbody></table>
-<h2 id="2-4-量词"><a href="#2-4-量词" class="headerlink" title="2.4 量词"></a>2.4 量词</h2><table>
-<thead>
-<tr>
-<th align="center">量词</th>
-<th align="center"><strong>描述</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">n+</td>
-<td align="center">匹配任何包含至少一个 n 的字符串</td>
-</tr>
-<tr>
-<td align="center">n*</td>
-<td align="center">匹配任何包含零个或多个 n 的字符串</td>
-</tr>
-<tr>
-<td align="center">n?</td>
-<td align="center">匹配任何包含零个或一个 n 的字符串</td>
-</tr>
-<tr>
-<td align="center">n{X}</td>
-<td align="center">匹配包含 X 个 n 的序列的字符串</td>
-</tr>
-<tr>
-<td align="center">n{X,}</td>
-<td align="center">X 是一个正整数。前面的模式 n 连续出现至少 X 次时匹配</td>
-</tr>
-<tr>
-<td align="center">n{X,Y}</td>
-<td align="center">X 和 Y 为正整数。前面的模式 n 连续出现至少 X 次，至多 Y 次时匹配</td>
-</tr>
-<tr>
-<td align="center">n$</td>
-<td align="center">匹配任何结尾为 n 的字符串</td>
-</tr>
-<tr>
-<td align="center">^n</td>
-<td align="center">匹配任何开头为 n 的字符串</td>
-</tr>
-<tr>
-<td align="center">?&#x3D;n</td>
-<td align="center">匹配任何其后紧接指定字符串 n 的字符串</td>
-</tr>
-<tr>
-<td align="center">?!n</td>
-<td align="center">匹配任何其后没有紧接指定字符串 n 的字符串</td>
-</tr>
-</tbody></table>
-<h2 id="2-5-运算符优先级"><a href="#2-5-运算符优先级" class="headerlink" title="2.5 运算符优先级"></a>2.5 运算符优先级</h2><ul>
-<li>正则表达式从左到右进行计算，并遵循优先级顺序，这与算术表达式非常类似。相同优先级的从左到右进行运算，不同优先级的运算先高后低。</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center">运算符</th>
-<th align="center">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">\</td>
-<td align="center">转义符</td>
-</tr>
-<tr>
-<td align="center">(), (?:), (?&#x3D;), []</td>
-<td align="center">圆括号和方括号</td>
-</tr>
-<tr>
-<td align="center">*, +, ?, {n}, {n,}, {n,m}</td>
-<td align="center">限定符</td>
-</tr>
-<tr>
-<td align="center">^, $, \任何元字符、任何字符</td>
-<td align="center">定位点和序列</td>
-</tr>
-<tr>
-<td align="center">|</td>
-<td align="center">替换，”或”操作</td>
-</tr>
-</tbody></table>
-<h1 id="3、正则表达式API"><a href="#3、正则表达式API" class="headerlink" title="3、正则表达式API"></a>3、正则表达式API</h1><h2 id="3-1-RegExp对象属性"><a href="#3-1-RegExp对象属性" class="headerlink" title="3.1 RegExp对象属性"></a>3.1 RegExp对象属性</h2><p><strong>global</strong></p>
 <ul>
-<li>判断是否设置了 “g” 修饰符，如果 g 标志被设置，则该属性为 true，否则为 false</li>
-<li><code>RegExpObject.global</code></li>
+<li><p><strong>第一步，明确状态和选择</strong></p>
+</li>
+<li><p>状态：背包的空余容量剩多少；可选择的物品还有哪些</p>
+</li>
+<li><p>选择：把这个物品装进背包；把这个物品装进背包</p>
+</li>
+<li><p><strong>第二步，明确dp数组的定义：对于前1个物品，当背包的容量为w时，可以装的最大价值是 dp[i][w]</strong></p>
+</li>
+<li><p>比如说，dp[4][8]&#x3D;10的含义为:<br>对于给定的一系列物品中，若只对前4个物品进行选择，当背包容量为8时，最多可以装下的价值为10。</p>
+</li>
+<li><p>根据此定义，还可得出:base case为dp[0][..] &#x3D; dp[..][0] &#x3D;0（编号为0，不装物品；容量为0，装不下任何物体），我们想计算的结果是 dp[N][W]<br><img src="https://img-blog.csdnimg.cn/74b9024c428a439eb2d21fdb4281da03.png" alt="在这里插入图片描述"></p>
+</li>
+<li><p>背包容量为1，物品编号可选为1，通过上表可知，物品编号为1时物品体积为2，所以此时选择不装任何物品。</p>
+</li>
+<li><p>背包容量为2，物品编号可选为1，装入则价值为3。依次往后填充该行。<img src="https://img-blog.csdnimg.cn/df7daea62543458683aee24ea803d3d9.png" alt="在这里插入图片描述"></p>
+</li>
+<li><p>背包容量为3，物品编号可选为1、2时，装入编号为2的物品，此时价值为4。</p>
+</li>
+<li><p>背包容量为5，物品编号可选为1、2时，装入编号为1和2的物品，此时价值为7。</p>
+</li>
+<li><p>依次往后填充完该表格<br><img src="https://img-blog.csdnimg.cn/026e4d6ff5574cc9b45ff493d0054abd.png" alt="在这里插入图片描述"></p>
+</li>
+<li><p><strong>第三步，根据[选择]写出状态转移逻辑</strong>：在w的约束下，把物品i装进背包,最大价值是多少；在w的约束下，不把物品i装进背包，最大价值是多少?</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> v=w[i]; v&lt;=c;v++) &#123;</span><br><span class="line">      dp[i][v] = <span class="title class_">Math</span>.<span class="title function_">max</span>(dp[i-<span class="number">1</span>][v], dp[i-<span class="number">1</span>][v-w[i]]+value[i])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
-<p><strong>ignoreCase</strong></p>
+<hr>
 <ul>
-<li>判断是否设置了 “i” 修饰符，如果设置了 “i” 标志，则返回 true，否则返回 false</li>
-<li><code>RegExpObject.ignoreCase</code></li>
+<li>背包问题完整求解代码：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 入参是物品的个数和背包的容量上限，以及物品的重量和价值数组</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">knapsack</span>(<span class="params">n, c, w, value</span>) &#123;</span><br><span class="line">    <span class="comment">// dp是动态规划的状态保存数组</span></span><br><span class="line">    <span class="keyword">const</span> dp = (<span class="keyword">new</span> <span class="title class_">Array</span>(c+<span class="number">1</span>)).<span class="title function_">fill</span>(<span class="number">0</span>)  </span><br><span class="line">    <span class="comment">// res 用来记录所有组合方案中的最大值</span></span><br><span class="line">    <span class="keyword">let</span> res = -<span class="title class_">Infinity</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> v=c;v&gt;=w[i];v--) &#123;</span><br><span class="line">            <span class="comment">// 写出状态转移方程</span></span><br><span class="line">            dp[v] = <span class="title class_">Math</span>.<span class="title function_">max</span>(dp[v], dp[v-w[i]] + value[i])</span><br><span class="line">            <span class="comment">// 即时更新最大值</span></span><br><span class="line">            <span class="keyword">if</span>(dp[v] &gt; res) &#123;</span><br><span class="line">                res = dp[v]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
-<p><strong>multiline</strong></p>
+<hr>
 <ul>
-<li>判断是否设置了 “m” 修饰符，如果 m 标志被设置，则该属性为 true，否则为 false</li>
-<li><code>RegExpObject.multiline</code></li>
-</ul>
-<p><strong>source</strong></p>
-<ul>
-<li>返回正则表达式的匹配模式</li>
-<li><code>RegExpObject.source</code></li>
-</ul>
-<p><strong>lastIndex</strong></p>
-<ul>
-<li>用于规定下次匹配的起始位置，该属性只有设置标志 g 才能使用</li>
-<li><code>RegExpObject.lastIndex</code></li>
-</ul>
-<h2 id="3-2-RegExp对象方法"><a href="#3-2-RegExp对象方法" class="headerlink" title="3.2 RegExp对象方法"></a>3.2 RegExp对象方法</h2><p><strong>exec</strong></p>
-<ul>
-<li>检索字符串中指定的值。返回找到的值，并确定其位置。</li>
-<li><code>RegExpObject.exec(string)</code></li>
-</ul>
-<p><strong>test</strong></p>
-<ul>
-<li><p>检索字符串中指定的值。返回 true 或 false。</p>
-</li>
-<li><p><code>RegExpObject.test(string)</code></p>
-</li>
-</ul>
-<p><strong>toString</strong></p>
-<ul>
-<li>返回正则表达式的字符串。</li>
-<li><code>RegExpObject.toString()</code></li>
-</ul>
-<h2 id="3-3-支持正则表达式的String对象方法"><a href="#3-3-支持正则表达式的String对象方法" class="headerlink" title="3.3 支持正则表达式的String对象方法"></a>3.3 支持正则表达式的String对象方法</h2><p><strong>search</strong></p>
-<ul>
-<li><p>检索与正则表达式相匹配的值,找到返回起始位置，如果没有找到任何匹配的子串，则返回 -1</p>
-</li>
-<li><p><code>string.search(searchvalue)</code></p>
-</li>
-</ul>
-<p><strong>match</strong></p>
-<ul>
-<li>找到一个或多个正则表达式的匹配,如果 regexp 没有标志 g，那么 match() 方法就只能在 stringObject 中执行一次匹配。如果没有找到任何匹配的文本， match() 将返回 null。否则，它将返回一个数组，其中存放了与它找到的匹配文本有关的信息</li>
-<li><code>string.match(regexp)</code></li>
-</ul>
-<p><strong>replace</strong></p>
-<ul>
-<li><p>替换与正则表达式匹配的子串</p>
-</li>
-<li><p><code>string.replace(searchvalue,newvalue)</code></p>
-</li>
-</ul>
-<p><strong>split</strong></p>
-<ul>
-<li>把字符串分割为字符串数组</li>
-<li><code>string.split(separator,limit)</code></li>
-</ul>
-<h1 id="4、正则表达式应用"><a href="#4、正则表达式应用" class="headerlink" title="4、正则表达式应用"></a>4、正则表达式应用</h1><ul>
-<li><p>简单表达式   <code>/a/</code>  ,匹配a</p>
-</li>
-<li><p>字符匹配  <code>/a.c</code>  ,匹配 aac、abc、acc、adc 等等</p>
-</li>
-<li><p>中文  <code>/[\u4E00-\u9FA5]/</code></p>
-</li>
-<li><p>用户名 <code>/^[a-zA-Z0-9_-]&#123;4,16&#125;$/</code>  4到16位字母、数字、下划线和中划线组成</p>
-</li>
-<li><p>车牌号   <code>/^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]&#123;1&#125;[A-Z]&#123;1&#125;[A-Z0-9]&#123;4&#125;[A-Z0-9挂学警港澳]&#123;1&#125;$/</code></p>
-</li>
-<li><p>微信号  <code>/^[a-zA-Z][-_a-zA-Z0-9]&#123;5,19&#125;$/</code>  6至20位，以字母开头，字母，数字，减号，下划线</p>
-</li>
-<li><p>QQ号  <code>/^[1-9][0-9]&#123;4,10&#125;$/</code> 5至11位数字组成</p>
-</li>
-<li><p>16进制颜色    <code>/^#([a-fA-F0-9]&#123;6&#125;|[a-fA-F0-9]&#123;3&#125;)$/</code>  以#开始 ，6或3个字符（A-F、a-f、0-9）结尾</p>
-</li>
-<li><p>电话号码 <code>/^1(3\d|4[5-9]|5[0-35-9]|6[2567]|7[0-8]|8\d|9[0-35-9])\d&#123;8&#125;$/ </code>    以1开头，3可跟任一数字（\d），4可跟5-9，5可跟0-3或5-9 ，6后2567其中一个，7后是0-8,8后任一数字，9后是0-3或3-5，其余8位是任意数字（\d{8}）</p>
-</li>
-<li><p>身份证号  <code> /^[1-9]\d&#123;5&#125;(19|20|21)\d&#123;2&#125;(0[1-9]|10|11|12)(0[1-9]|[1-2]\d|30|31)\d&#123;3&#125;[\dX]$/</code>     第一位在0-9区间，后面是5位任意数字，4位年份（19、20、21开头，后两位任意），两位代表月份（0开头的1-9或者是10、11、12），两位日期（01-31），三位顺序码，最后一位是校验码，可数字可X</p>
-</li>
-<li><p>网址   <code>/^((https?):)?\/\/([^?:/]+)(:(\d+))?(\/[^?]*)?(\?(.*))?/</code></p>
-</li>
-<li><p>邮箱   <code>/^(([^&lt;&gt;()[\]\\.,;:\s@\&quot;]+(\.[^&lt;&gt;()[\]\\.,;:\s@\&quot;]+)*)|(\&quot;.+\&quot;))@((\[[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]&#123;2,&#125;))$/</code>   </p>
-</li>
-<li><p>最后推荐一下一个网站 – 正则表达式在线测试网站： <a target="_blank" rel="noopener" href="https://c.runoob.com/front-end/854/">正则表达式在线测试</a> ，在这里可以书写正则表达式并在线测试，还有常见应用案例提示以及可视化图等相关功能！</p>
-</li>
+<li><strong>扩展 – 最长上升子序列模型</strong><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">题目描述：给定一个无序的整数数组，找到其中最长上升子序列的长度。</span><br><span class="line">示例:</span><br><span class="line">输入: [10,9,2,5,3,7,101,18]</span><br><span class="line">输出: 4</span><br><span class="line">解释: 最长的上升子序列是 [2,3,7,101]，它的长度是 4。</span><br></pre></td></tr></table></figure></li>
+<li>代码实现<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number[]</span>&#125; <span class="variable">nums</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">// 入参是一个数字序列</span></span><br><span class="line"><span class="keyword">const</span> lengthOfLIS = <span class="keyword">function</span>(<span class="params">nums</span>) &#123;</span><br><span class="line">  <span class="comment">// 缓存序列的长度</span></span><br><span class="line">  <span class="keyword">const</span> len = nums.<span class="property">length</span>  </span><br><span class="line">  <span class="comment">// 处理边界条件</span></span><br><span class="line">  <span class="keyword">if</span>(!len) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 初始化数组里面每一个索引位的状态值</span></span><br><span class="line">  <span class="keyword">const</span> dp = (<span class="keyword">new</span> <span class="title class_">Array</span>(len)).<span class="title function_">fill</span>(<span class="number">1</span>)</span><br><span class="line">  <span class="comment">// 初始化最大上升子序列的长度为1</span></span><br><span class="line">  <span class="keyword">let</span> maxLen = <span class="number">1</span> </span><br><span class="line">  <span class="comment">// 从第2个元素开始，遍历整个数组</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">1</span>;i&lt;len;i++) &#123;</span><br><span class="line">      <span class="comment">// 每遍历一个新元素，都要“回头看”，看看能不能延长原有的上升子序列</span></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> j=<span class="number">0</span>;j&lt;i;j++) &#123;  </span><br><span class="line">          <span class="comment">// 若遇到了一个比当前元素小的值，则意味着遇到了一个可以延长的上升子序列，故更新当前元素索引位对应的状态</span></span><br><span class="line">          <span class="keyword">if</span>(nums[j]&lt;nums[i]) &#123;</span><br><span class="line">              dp[i] = <span class="title class_">Math</span>.<span class="title function_">max</span>(dp[i], dp[j] + <span class="number">1</span>)  </span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 及时更新上升子序列长度的最大值</span></span><br><span class="line">      <span class="keyword">if</span>(dp[i] &gt; maxLen) &#123;</span><br><span class="line">          maxLen = dp[i]</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 遍历完毕，最后到手的就是最大上升子序列的长度</span></span><br><span class="line">  <span class="keyword">return</span> maxLen</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
 </ul>
  
       <!-- reward -->
@@ -513,12 +269,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/08/26/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2022/10/07/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-01%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
 
     </footer>
   </div>
@@ -526,19 +282,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2022/10/07/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-01%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            动态规划--01背包问题
-          
-        </div>
-      </a>
     
-    
-      <a href="/2022/08/13/8-10-%E5%9F%BA%E4%BA%8Ehexo%E6%A1%86%E6%9E%B6%E5%BF%AB%E9%80%9F%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2----%E6%96%87%E7%AB%A0%E4%B8%80%E9%94%AE%E5%8F%91%E5%B8%83/" class="article-nav-link">
+      <a href="/2022/08/26/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95-%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">基于hexo框架快速从0到1搭建个人博客 -- 文章发布</div>
+        <div class="article-nav-title">正则表达式(基础语法+应用案例)</div>
       </a>
     
   </nav>
